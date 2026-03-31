@@ -3,69 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Srinivas | AI/ML Portfolio</title>
+<title>Srinivas | Portfolio</title>
+
 <link rel="stylesheet" href="style.css">
+<script defer src="script.js"></script>
 </head>
 
 <body>
 
+<!-- NAVBAR -->
+<nav class="navbar">
+    <div class="logo">Srinivas</div>
+
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</nav>
+
 <!-- HERO -->
-<section class="hero">
-    <h1>Srinivas Gampasani</h1>
-    <p>AI/ML Engineer • Data Science • Python</p>
-    <a href="resume.pdf" class="btn" target="_blank">Download Resume</a>
+<section id="home" class="hero">
+    <div class="hero-content">
+        <h1>Hi, I'm Srinivas</h1>
+        <p>AI/ML Engineer | Data Scientist</p>
+
+        <div class="buttons">
+            <a href="assets/resume.pdf" class="btn" target="_blank">Download Resume</a>
+            <a href="#projects" class="btn-outline">View Projects</a>
+        </div>
+    </div>
 </section>
 
 <!-- ABOUT -->
-<section>
+<section id="about">
     <h2>About Me</h2>
     <p>
-        I am an aspiring AI/ML Engineer focused on building scalable machine learning models,
-        performing data analysis, and solving real-world problems using Python, SQL, and ML techniques.
+        I specialize in building machine learning models, data pipelines, and analytics dashboards.
+        Passionate about solving real-world problems using AI and data.
     </p>
 </section>
 
 <!-- SKILLS -->
-<section>
+<section id="skills">
     <h2>Skills</h2>
-    <div class="skills">
-        <span>Python</span>
-        <span>Machine Learning</span>
-        <span>SQL</span>
-        <span>Pandas</span>
-        <span>NumPy</span>
-        <span>Power BI</span>
-        <span>Data Analysis</span>
+    <div class="skills-grid">
+        <div>Python</div>
+        <div>Machine Learning</div>
+        <div>SQL</div>
+        <div>Pandas</div>
+        <div>NumPy</div>
+        <div>Power BI</div>
+        <div>Deep Learning</div>
+        <div>Data Analysis</div>
     </div>
 </section>
 
 <!-- PROJECTS -->
-<section>
+<section id="projects">
     <h2>Projects</h2>
 
-    <div class="project">
-        <h3>ML Prediction System</h3>
-        <p>Built a machine learning model for predictive analytics using real-world datasets.</p>
-        <a href="#" target="_blank">View Project</a>
-    </div>
+    <div class="projects-grid">
 
-    <div class="project">
-        <h3>Data Dashboard</h3>
-        <p>Created interactive dashboards using Power BI for business insights.</p>
-        <a href="#" target="_blank">View Project</a>
-    </div>
+        <div class="card">
+            <h3>ML Prediction System</h3>
+            <p>Built predictive model using real datasets.</p>
+            <a href="#">GitHub</a>
+        </div>
 
+        <div class="card">
+            <h3>Analytics Dashboard</h3>
+            <p>Created Power BI dashboard for insights.</p>
+            <a href="#">GitHub</a>
+        </div>
+
+    </div>
 </section>
 
 <!-- CONTACT -->
-<section>
+<section id="contact">
     <h2>Contact</h2>
     <p>Email: your@email.com</p>
-    <p>GitHub: <a href="https://github.com/srinivas-gampasani" target="_blank">Profile</a></p>
+    <p><a href="https://github.com/srinivas-gampasani">GitHub</a></p>
 </section>
 
 <footer>
-    <p>© 2026 Srinivas Gampasani</p>
+    <p>© 2026 Srinivas</p>
 </footer>
 
 </body>
