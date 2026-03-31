@@ -1,3 +1,4 @@
+// Typing effect
 const roles = [
     "AI/ML Engineer",
     "Data Scientist",
@@ -5,43 +6,39 @@ const roles = [
     "Machine Learning Enthusiast"
 ];
 
-let i = 0;
-let j = 0;
-let currentRole = "";
-let isDeleting = false;
+let i = 0, j = 0, current = "", deleting = false;
 
 function type() {
-    currentRole = roles[i];
+    current = roles[i];
 
-    if (!isDeleting) {
-        document.getElementById("typing").textContent =
-            currentRole.substring(0, j++);
+    document.getElementById("typing").textContent =
+        current.substring(0, j);
+
+    if (!deleting) {
+        j++;
+        if (j > current.length) {
+            deleting = true;
+            setTimeout(type, 1000);
+            return;
+        }
     } else {
-        document.getElementById("typing").textContent =
-            currentRole.substring(0, j--);
+        j--;
+        if (j === 0) {
+            deleting = false;
+            i = (i + 1) % roles.length;
+        }
     }
 
-    if (j === currentRole.length + 1) {
-        isDeleting = true;
-        setTimeout(type, 1000);
-        return;
-    }
-
-    if (j === 0) {
-        isDeleting = false;
-        i = (i + 1) % roles.length;
-    }
-
-    setTimeout(type, isDeleting ? 50 : 100);
+    setTimeout(type, deleting ? 50 : 100);
 }
 
 type();
 
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        document.querySelector(this.getAttribute('href'))
-            .scrollIntoView({ behavior: 'smooth' });
-    });
+// Theme toggle
+const toggle = document.getElementById("theme-toggle");
+
+toggle.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+    toggle.textContent =
+        document.body.classList.contains("light") ? "☀️" : "🌙";
 });
