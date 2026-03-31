@@ -1,126 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Srinivas | AI/ML Portfolio</title>
-
-<meta name="description" content="Srinivas - AI/ML Engineer portfolio, machine learning, data science, Python projects">
-<meta name="keywords" content="AI, ML, Data Science, Python, Portfolio">
-<meta name="author" content="Srinivas Gampasani">
-
-<link rel="stylesheet" href="style.css">
-<script defer src="script.js"></script>
+  <meta charset="UTF-8">
+  <title>Srinivasarao Gampasani</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <!-- NAVBAR -->
-<nav class="navbar">
-    <div class="logo">Srinivas</div>
+<header>
+  <h2 class="logo">Srinivas</h2>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+    <a href="assets/resume.pdf" target="_blank" class="btn">Resume</a>
+  </nav>
+</header>
 
-    <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-    </ul>
+<!-- HERO SECTION -->
+<section class="hero" id="about">
+  <div class="hero-left">
+    <img src="assets/profile.png" alt="profile">
+  </div>
 
-    <button id="theme-toggle">🌙</button>
-</nav>
+  <div class="hero-right">
+    <h1>Srinivasarao Gampasani</h1>
+    <h3>AI Engineer | Generative AI Engineer | ML Engineer</h3>
 
-<!-- HERO -->
-<section id="home" class="hero">
-    <div class="hero-content">
-        <h1>Hi, I'm Srinivas</h1>
-        <p><span id="typing"></span></p>
-        <p class="cta">I build AI/ML solutions. Open to opportunities.</p>
-
-        <div class="buttons">
-            <a href="assets/resume.pdf" class="btn" target="_blank">Download Resume</a>
-            <a href="#projects" class="btn-outline">View Projects</a>
-        </div>
-    </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about">
-    <h2>About Me</h2>
     <p>
-        AI/ML Engineer with strong foundation in Python, Machine Learning, and Data Analysis.
-        Experienced in building predictive models, data pipelines, and dashboards.
-        Focused on solving real-world problems using AI-driven solutions.
+        AI Engineer and Generative AI Engineer with 3+ years of experience designing, architecting, optimizing, and deploying production-grade Artificial Intelligence (AI), Machine Learning (ML), and Data Science solutions across healthcare and
+enterprise domains. Specialized in Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), Natural Lan
+guage Processing (NLP), AI agents, and transformer-based architectures.
+Proven experience in building scalable machine learning pipelines, data pipelines, and ETL pipelines using Python, SQL,
+Apache Spark, and distributed computing frameworks for large-scale structured and unstructured data. Strong expertise in
+prompt engineering, prompt optimization, semantic search, embeddings, vector databases, and LLM application develop
+ment using LangChain and LlamaIndex.
+Experienced in developing and deploying RESTful APIs (Application Programming Interfaces), microservices architecture,
+and production ML systems using Docker, Kubernetes, MLflow, and CI/CD pipelines. Hands-on experience with AWS,
+Azure Machine Learning, Azure OpenAI, and Google Cloud Platform (GCP) for deploying scalable AI solutions in production
+environments.
+Demonstrated success in optimizing model performance, improving prediction accuracy, reducing latency, and delivering
+AI-driven business solutions. Strong collaboration with cross-functional teams, stakeholders, and Agile environments to
+deliver end-to-end AI/ML solutions.
     </p>
+
+    <div class="buttons">
+      <a href="#projects" class="primary">View Projects</a>
+      <a href="assets/resume.pdf" target="_blank" class="secondary">Download Resume</a>
+    </div>
+  </div>
 </section>
 
 <!-- SKILLS -->
 <section id="skills">
-    <h2>Skills</h2>
-    <div class="skills-grid">
-        <div>Python</div>
-        <div>Machine Learning</div>
-        <div>SQL</div>
-        <div>Pandas</div>
-        <div>NumPy</div>
-        <div>Power BI</div>
-        <div>Deep Learning</div>
-        <div>Data Analysis</div>
-    </div>
+  <h2>Skills</h2>
+  <div class="grid">
+    <div class="card">Python, SQL, PySpark</div>
+    <div class="card">Machine Learning, Deep Learning</div>
+    <div class="card">LLMs, RAG, LangChain, LlamaIndex</div>
+    <div class="card">Vector DBs (FAISS, Pinecone)</div>
+    <div class="card">Docker, Kubernetes, MLflow</div>
+    <div class="card">AWS, Azure, GCP</div>
+  </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
-    <h2>Projects</h2>
+  <h2>Projects</h2>
 
-    <div class="projects-grid">
+  <div class="project">
+    <h3>Enterprise AI Knowledge Retrieval Platform</h3>
+    <p>
+      Built production RAG system with LLMs, processing 100K+ documents with
+      semantic search and real-time responses.
+    </p>
+  </div>
 
-        <div class="card">
-            <img src="assets/project1.png">
-            <h3>Customer Churn Prediction</h3>
-            <p>
-                ✔ Built using Python & ML<br>
-                ✔ Achieved 92% accuracy<br>
-                ✔ Feature engineering & data cleaning<br>
-                ✔ Business impact: reduced churn risk
-            </p>
-            <a href="https://github.com/srinivas-gampasani" target="_blank">View Code</a>
-        </div>
+  <div class="project">
+    <h3>Scalable ML Prediction System</h3>
+    <p>
+      End-to-end ML pipelines using Spark, MLflow, and FastAPI enabling
+      real-time predictions.
+    </p>
+  </div>
+</section>
 
-        <div class="card">
-            <img src="assets/project2.png">
-            <h3>Data Analytics Dashboard</h3>
-            <p>
-                ✔ Built with Power BI<br>
-                ✔ Interactive visualizations<br>
-                ✔ Business insights dashboard<br>
-                ✔ Improved decision making
-            </p>
-            <a href="https://github.com/srinivas-gampasani" target="_blank">View Code</a>
-        </div>
+<!-- EXPERIENCE -->
+<section id="experience">
+  <h2>Experience</h2>
 
-    </div>
+  <div class="exp">
+    <h3>Generative AI Engineer – Ascension Via Christi</h3>
+    <p>Built RAG pipelines, improved accuracy by 40%, deployed scalable AI systems.</p>
+  </div>
+
+  <div class="exp">
+    <h3>Machine Learning Engineer – Colgate-Palmolive</h3>
+    <p>Developed ML pipelines, improved accuracy by 20%, optimized big data processing.</p>
+  </div>
+
+  <div class="exp">
+    <h3>Machine Learning Engineer – Maxton Technology</h3>
+    <p>Built predictive models and deployed scalable ML systems.</p>
+  </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-    <h2>Contact</h2>
-
-    <form action="https://formspree.io/f/YOUR_ID" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Your Message"></textarea>
-        <button type="submit" class="btn">Send Message</button>
-    </form>
-
-    <p style="margin-top:20px;">
-        GitHub: <a href="https://github.com/srinivas-gampasani" target="_blank">Profile</a>
-    </p>
+  <h2>Contact</h2>
+  <p>Email: srinivasgampasani7@gmail.com</p>
+  <p>Phone: +1-314-548-3799</p>
 </section>
 
 <footer>
-    <p>© 2026 Srinivas Gampasani</p>
+  <p>© 2026 Srinivasarao Gampasani</p>
 </footer>
 
 </body>
