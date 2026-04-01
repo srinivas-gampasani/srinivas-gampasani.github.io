@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>Srinivasarao Gampasani</title>
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Soria:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -13,11 +14,11 @@
 <header>
   <h2 class="logo">Srinivas</h2>
   <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Experience</a>
-    <a href="#contact">Contact</a>
+    <a href="#about"><i class="fas fa-user"></i> About</a>
+    <a href="#skills"><i class="fas fa-code"></i> Skills</a>
+    <a href="#projects"><i class="fas fa-diagram-project"></i> Projects</a>
+    <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
+    <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
     <a href="assets/Srinivas Resume.pdf" target="_blank" class="btn">Resume</a>
   </nav>
 </header>
@@ -30,7 +31,7 @@
 
   <div class="hero-right">
     <h1>Srinivasarao Gampasani</h1>
-    <h3>AI Engineer | Generative AI Engineer | ML Engineer</h3>
+    <h3 id="typing"></h3>
 
     <p>
         AI Engineer and Generative AI Engineer with 3+ years of experience designing, architecting, optimizing, and deploying production-grade Artificial Intelligence (AI), Machine Learning (ML), and Data Science solutions across healthcare and
@@ -63,17 +64,17 @@ deliver end-to-end AI/ML solutions.
 </section>
 
 <!-- SKILLS -->
-<section id="skills">
+<section id="skills" class="fade-in">
   <h2>Skills</h2>
   <div class="grid">
     
-    <div class="card"><h3>Programming</h3>
+    <div class="card"><i class="fas fa-code"></i><h3>Programming</h3>
     <p>
       Python, SQL, PySpark
     </p>
     </div>
     
-    <div class="card"><h3>Machine Learning</h3>
+    <div class="card"><i class="fa-brain"></i><h3>Machine Learning</h3>
     <p>
       Machine Learning (ML), Artificial Intelligence (AI), Deep Learning, Scikit-learn, XGBoost, LightGBM,
 PyTorch, TensorFlow, Model Evaluation, Feature Engineering, Cross Validation, Hyperparameter Tuning, Regression, Clas
@@ -81,7 +82,7 @@ sification, Random Forest, Gradient Boosting
     </p>
     </div>
     
-    <div class="card"><h3>Generative AI & LLMs</h3>
+    <div class="card"><i class="fas fa-robot"></i><h3>Generative AI & LLMs</h3>
     <p>
       Machine Learning (ML), Artificial Intelligence (AI), Deep Learning, Scikit-learn, XGBoost, LightGBM,
 PyTorch, TensorFlow, Model Evaluation, Feature Engineering, Cross Validation, Hyperparameter Tuning, Regression, Clas
@@ -89,33 +90,33 @@ sification, Random Forest, Gradient Boosting
     </p>
     </div>
    
-    <div class="card"><h3>Data Engineering</h3>
+    <div class="card"><i class="fas fa-database"></i><h3>Data Engineering</h3>
     <p>
       Apache Spark, Databricks, Airflow, ETL Pipelines, Data Pipelines, Data Warehousing, Distributed Com
 puting, Batch Processing, Real-Time Processing, Big Data Technologies
     </p>
     </div>
     
-    <div class="card"><h3>MLOps & Deployment</h3>
+    <div class="card"><i class="fas fa-cogs"></i><h3>MLOps & Deployment</h3>
     <p>
       MLflow, Docker, Kubernetes, CI/CD Pipelines, Model Deployment, Model Monitoring, Model Ver
 sioning, RESTful APIs, FastAPI, Flask, Microservices Architecture
     </p>
     </div>
     
-    <div class="card"><h3>Cloud Platforms</h3>
+    <div class="card"><i class="fas fa-cloud"></i><h3>Cloud Platforms</h3>
     <p>
       AWS (EC2, S3, SageMaker), Azure Machine Learning, Azure OpenAI, Google Cloud Platform (GCP)
     </p>
     </div>
     
-    <div class="card"><h3>Databases & Tools</h3>
+    <div class="card"><i class="fas fa-server"></i><h3>Databases & Tools</h3>
     <p>
       PostgreSQL, NoSQL, Vector Databases, Git, Linux, Jupyter Notebook, VS Code
     </p>
     </div>
     
-    <div class="card"><h3>Software Engineering</h3>
+    <div class="card"><i class="fas fa-layer-group"></i><h3>Software Engineering</h3>
     <p>
       Object-Oriented Programming, System Design, Scalable Architecture, API Development
     </p>
@@ -125,7 +126,7 @@ sioning, RESTful APIs, FastAPI, Flask, Microservices Architecture
 </section>
 
 <!-- PROJECTS -->
-<section id="projects">
+<section id="projects" class="fade-in">
   <h2>Projects</h2>
 
   <div class="project">
@@ -161,7 +162,7 @@ model training, and deployment.</li>
 </section>
 
 <!-- EXPERIENCE -->
-<section id="experience">
+<section id="experience" class="fade-in">
   <h2>Experience</h2>
 
   <div class="exp">
@@ -230,7 +231,7 @@ efficiency for enterprise applications.</li>
 </section>
 
 <!-- CONTACT -->
-<section id="contact">
+<section id="contact" class="fade-in">
   <h2>Contact</h2>
   <p>Email: srinivasgampasani7@gmail.com</p>
   <p>Phone: +1-314-548-3799</p>
@@ -240,6 +241,34 @@ efficiency for enterprise applications.</li>
 <footer>
   <p>© 2026 Srinivasarao Gampasani</p>
 </footer>
+
+<script>
+const text = "AI Engineer | Generative AI Engineer | ML Engineer";
+let i = 0;
+
+function typing() {
+  if (i < text.length) {
+    document.getElementById("typing").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(typing, 40);
+  }
+}
+
+typing();
+</script>
+<script>
+const elements = document.querySelectorAll('.fade-in');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+});
+
+elements.forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
