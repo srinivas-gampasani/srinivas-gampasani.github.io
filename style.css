@@ -1,3 +1,5 @@
+
+
 /* ================= RESET ================= */
 * {
   margin: 0;
@@ -7,6 +9,7 @@
 
 /* ================= BODY ================= */
 body {
+  background: red !important;
   font-family: 'Inter', sans-serif;
   background: #f8fafc;
   color: #1e293b;
@@ -30,6 +33,10 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+header, .logo, nav, nav a {
+  display: flex !important;
+  align-items: center !important;
 }
 
 /* LOGO FIX */
