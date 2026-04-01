@@ -275,3 +275,100 @@ footer {
     gap: 10px;
   }
 }
+
+
+
+/* DARK MODE */
+.dark {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+.dark header {
+  background: #020617;
+}
+
+.dark .card,
+.dark .project,
+.dark .exp {
+  background: #1e293b;
+  color: white;
+}
+
+.dark .secondary {
+  background: #334155;
+}
+
+#darkModeToggle {
+  margin-left: 20px;
+  padding: 6px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+
+/* TIMELINE */
+.timeline {
+  position: relative;
+  margin: 40px auto;
+  padding-left: 20px;
+  border-left: 3px solid #2563eb;
+}
+
+.timeline-item {
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -10px;
+  top: 5px;
+  width: 15px;
+  height: 15px;
+  background: #2563eb;
+  border-radius: 50%;
+}
+
+.timeline-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-left: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.dark .timeline-content {
+  background: #1e293b;
+}
+
+
+
+.project-card {
+  background: white;
+  padding: 25px;
+  border-radius: 12px;
+  transition: 0.3s;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+}
+
+.project-buttons {
+  margin-top: 15px;
+}
+
+.project-buttons a {
+  margin-right: 10px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+}
+
+.dark .project-card {
+  background: #1e293b;
+}
+
