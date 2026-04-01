@@ -12,6 +12,7 @@
 
 <!-- NAVBAR -->
 <header>
+  <button id="darkModeToggle">🌙</button>
   <h2 class="logo">Srinivas</h2>
   <nav>
     <a href="#about"><i class="fas fa-user"></i> About</a>
@@ -128,44 +129,60 @@ sioning, RESTful APIs, FastAPI, Flask, Microservices Architecture
 <!-- PROJECTS -->
 <section id="projects" class="fade-in">
   <h2>Projects</h2>
-
-  <div class="project">
-    <h3>Enterprise AI Knowledge Retrieval Platform</h3>
-    <ul>
-    <li>Architected a production-grade Retrieval-Augmented Generation (RAG) system using Large Language Models (LLMs),
+  <div class="grid">
+    
+    <div class="project-card">
+      <h3>Enterprise AI Knowledge Retrieval Platform</h3>
+      <ul>
+        <li>Architected a production-grade Retrieval-Augmented Generation (RAG) system using Large Language Models (LLMs),
 enabling real-time question answering across enterprise datasets.</li>
-    <li>Built scalable document ingestion, embedding, and vector indexing pipelines processing 100K+ documents using Python,
+        <li>Built scalable document ingestion, embedding, and vector indexing pipelines processing 100K+ documents using Python,
 LangChain, and FAISS.</li>
-    <li>Implemented semantic search and vector similarity retrieval achieving sub-second latency for real-time AI applications.</li>
-    <li>Developed RESTful APIs using FastAPI to serve LLM-powered applications to enterprise users.</li>
-    <li>Applied prompt engineering and prompt optimization techniques improving response accuracy by 35% and reducing
+        <li>Implemented semantic search and vector similarity retrieval achieving sub-second latency for real-time AI applications.</li>
+        <li>Developed RESTful APIs using FastAPI to serve LLM-powered applications to enterprise users.</li>
+        <li>Applied prompt engineering and prompt optimization techniques improving response accuracy by 35% and reducing
 hallucinations.</li>
-    <li>Deployed containerized AI systems using Docker and Kubernetes ensuring high availability and scalability.</li>
-    <li>Integrated Azure OpenAI and OpenAI APIs for production-grade AI workflows.</li>
-    <li>Designed end-to-end MLOps pipelines using MLflow and CI/CD pipelines for model versioning and monitoring.</li>
-    </ul>
-  </div>
-
-  <div class="project">
-    <h3>Scalable ML Prediction System</h3>
-    <ul>
-    <li>Built end-to-end machine learning pipelines for predictive analytics including data preprocessing, feature engineering,
+        <li>Deployed containerized AI systems using Docker and Kubernetes ensuring high availability and scalability.</li>
+        <li>Integrated Azure OpenAI and OpenAI APIs for production-grade AI workflows.</li>
+        <li>Designed end-to-end MLOps pipelines using MLflow and CI/CD pipelines for model versioning and monitoring.</li>
+      </ul>
+      <div class="project-buttons">
+        <a href="#" class="primary">Live</a>
+        <a href="#" class="secondary">GitHub</a>
+      </div>
+    </div>
+    
+    <div class="project-card">
+      <h3>Scalable ML Prediction System</h3>
+      <ul>
+        <li>Built end-to-end machine learning pipelines for predictive analytics including data preprocessing, feature engineering,
 model training, and deployment.</li>
-    <li>Processed large-scale datasets using Apache Spark and PySpark handling millions of records efficiently.</li>
-    <li>Implemented MLflow for model tracking, versioning, and experiment management improving reproducibility.</li>
-    <li>Developed REST APIs using FastAPI enabling real-time predictions with low latency.</li>
-    <li>Designed distributed data pipelines and ETL workflows improving data processing efficiency by 30%.</li>
-    <li>Deployed models using Docker and Kubernetes ensuring scalable production deployment.</li>
-    <li>Optimized model performance using hyperparameter tuning and cross-validation improving accuracy by 20%.</li>
-    </ul>
+        <li>Processed large-scale datasets using Apache Spark and PySpark handling millions of records efficiently.</li>
+        <li>Implemented MLflow for model tracking, versioning, and experiment management improving reproducibility.</li>
+        <li>Developed REST APIs using FastAPI enabling real-time predictions with low latency.</li>
+        <li>Designed distributed data pipelines and ETL workflows improving data processing efficiency by 30%.</li>
+        <li>Deployed models using Docker and Kubernetes ensuring scalable production deployment.</li>
+        <li>Optimized model performance using hyperparameter tuning and cross-validation improving accuracy by 20%.</li>
+      </ul>
+      <div class="project-buttons">
+        <a href="#" class="primary">Live</a>
+        <a href="#" class="secondary">GitHub</a>
+      </div>
+    </div>
+    
   </div>
 </section>
 
 <!-- EXPERIENCE -->
+
+    
 <section id="experience" class="fade-in">
   <h2>Experience</h2>
-
-  <div class="exp">
+  <div class="timeline">
+  
+  <div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-content">
     <h3>Generative AI Engineer – Ascension Via Christi</h3>
     <ul>
     <li>Architected and deployed production-grade Retrieval-Augmented Generation (RAG) pipelines using Large Language Mod
@@ -187,8 +204,12 @@ updates and decreasing deployment errors by 30%.</li>
 launch AI-driven diagnostic tools that met business objectives and improved patient workflow efficiency.</li>
     </ul>
   </div>
+  </div>
 
-  <div class="exp">
+
+  <div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-content">
     <h3>Machine Learning Engineer – Colgate-Palmolive</h3>
     <ul>
     <li>Developed end-to-end machine learning pipelines using Python, MLflow, and CI/CD pipelines, enabling scalable model
@@ -208,8 +229,11 @@ ment cycles.</li>
     <li>Collaborated with stakeholders and engineering teams in Agile environments to deliver scalable solutions.</li>
     </ul>
   </div>
+  </div>
 
-  <div class="exp">
+  <div class="timeline-item">
+  <div class="timeline-dot"></div>
+  <div class="timeline-content">
     <h3>Machine Learning Engineer – Maxton Technology</h3>
     <ul>
     <li>Developed machine learning models for forecasting, anomaly detection, and predictive analytics improving accuracy by
@@ -227,6 +251,9 @@ systems and improving inference latency.</li>
     <li>Built reusable machine learning pipelines and scalable architectures, improving model training speed and deployment
 efficiency for enterprise applications.</li>
     </ul>
+  </div>
+  </div>
+
   </div>
 </section>
 
@@ -268,6 +295,13 @@ const observer = new IntersectionObserver(entries => {
 });
 
 elements.forEach(el => observer.observe(el));
+</script>
+<script>
+const toggle = document.getElementById("darkModeToggle");
+
+toggle.onclick = () => {
+  document.body.classList.toggle("dark");
+};
 </script>
 
 </body>
