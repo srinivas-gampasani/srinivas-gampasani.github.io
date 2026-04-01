@@ -308,14 +308,14 @@ footer {
 }
 
 
-/* TIMELINE */
-/* TIMELINE */
+
+/* ================= TIMELINE ================= */
 .timeline {
   position: relative;
-  margin: 40px auto;
-  max-width: 800px;
+  margin: 60px auto;
+  max-width: 900px;
+  padding-left: 200px;
   border-left: 3px solid #2563eb;
-  padding-left: 30px;
 }
 
 /* ITEM */
@@ -327,20 +327,28 @@ footer {
 /* DATE */
 .timeline-date {
   position: absolute;
-  left: -180px;
-  top: 0;
-  width: 150px;
+  left: -200px;
+  top: 5px;
+  width: 170px;
   text-align: right;
   font-weight: 600;
   color: #2563eb;
+  font-size: 14px;
 }
 
 /* CONTENT */
 .timeline-content {
   background: white;
   padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+/* HOVER EFFECT */
+.timeline-content:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.1);
 }
 
 /* DARK MODE */
@@ -348,49 +356,70 @@ footer {
   background: #1e293b;
 }
 
-/* MOBILE */
+/* MOBILE FIX */
 @media (max-width: 900px) {
   .timeline {
-    border-left: none;
     padding-left: 0;
+    border-left: none;
   }
 
   .timeline-date {
     position: relative;
     left: 0;
     text-align: left;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
   }
 }
 
 
-
-
-
+/* ================= PROJECT CARD ================= */
 .project-card {
   background: white;
   padding: 25px;
-  border-radius: 12px;
+  border-radius: 14px;
   transition: 0.3s;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+  position: relative;
+  overflow: hidden;
 }
 
+/* HOVER EFFECT */
 .project-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-10px) scale(1.01);
+  box-shadow: 0 25px 60px rgba(0,0,0,0.15);
 }
 
+/* TITLE */
+.project-card h3 {
+  margin-bottom: 10px;
+}
+
+/* TEXT */
+.project-card p {
+  color: #475569;
+  line-height: 1.6;
+}
+
+/* BUTTONS */
 .project-buttons {
-  margin-top: 15px;
+  margin-top: 18px;
 }
 
 .project-buttons a {
   margin-right: 10px;
-  padding: 8px 14px;
+  padding: 8px 16px;
   border-radius: 6px;
   text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
 }
 
+/* BUTTON HOVER */
+.project-buttons a:hover {
+  transform: translateY(-2px);
+}
+
+/* DARK MODE */
 .dark .project-card {
   background: #1e293b;
 }
-
