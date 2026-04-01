@@ -504,3 +504,55 @@ footer {
 .dark .social-icons a {
   background: #334155;
 }
+
+
+
+
+
+/* ================= LEARN MORE ================= */
+.learn-more {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.learn-more h2 {
+  margin-bottom: 30px;
+}
+
+/* BUTTON GRID */
+.learn-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* CARD STYLE */
+.learn-card {
+  background: white;
+  padding: 18px 30px;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #1e293b;
+  font-weight: 500;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+/* HOVER */
+.learn-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+}
+
+/* DARK CARD (resume style) */
+.dark-card {
+  background: #111827;
+  color: white;
+}
+
+/* DARK MODE */
+.dark .learn-card {
+  background: #1e293b;
+  color: white;
+}
