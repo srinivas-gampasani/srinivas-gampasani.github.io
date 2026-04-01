@@ -463,3 +463,44 @@ footer {
 .dark .form-note {
   color: #cbd5e1;
 }
+
+
+
+
+
+
+
+
+/* ================= SOCIAL ICONS ================= */
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+/* ICON STYLE */
+.social-icons a {
+  width: 45px;
+  height: 45px;
+  background: #1e293b;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: 0.3s;
+  font-size: 18px;
+}
+
+/* HOVER EFFECT */
+.social-icons a:hover {
+  transform: translateY(-5px);
+  background: linear-gradient(90deg, #2563eb, #06b6d4);
+}
+
+/* DARK MODE */
+.dark .social-icons a {
+  background: #334155;
+}
