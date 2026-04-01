@@ -33,10 +33,7 @@ header {
   top: 0;
   z-index: 1000;
 }
-header, .logo, nav, nav a {
-  display: flex !important;
-  align-items: center !important;
-}
+
 
 /* LOGO FIX */
 .logo {
