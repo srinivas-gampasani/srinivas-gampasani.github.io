@@ -1,1 +1,949 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projects — Srinivas Gampasani | AI & ML Engineer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Extra styles scoped to projects page */
+    .back-nav {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text2); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+      padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--surface); transition: all 0.2s;
+    }
+    .back-nav:hover { color: var(--accent); border-color: var(--accent); }
+    .back-nav-wrap {
+      position: absolute; top: 88px; left: 32px; z-index: 10;
+    }
+    @media(max-width:600px){ .back-nav-wrap { left: 20px; top: 84px; } }
 
+    /* Impact bar */
+    .impact-bar {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 32px;
+      margin-bottom: 0;
+    }
+    .impact-bar-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; justify-content: space-around; flex-wrap: wrap; gap: 20px;
+    }
+    .impact-stat { text-align: center; }
+    .impact-stat-num {
+      font-size: 2rem; font-weight: 800; color: var(--accent);
+      display: block; line-height: 1;
+    }
+    .impact-stat-lbl {
+      font-size: 0.72rem; color: var(--text3);
+      text-transform: uppercase; letter-spacing: 0.12em; margin-top: 5px;
+      display: block;
+    }
+
+    /* Project section divider label */
+    .category-divider {
+      display: flex; align-items: center; gap: 16px;
+      max-width: 1200px; margin: 56px auto 32px; padding: 0 32px;
+    }
+    .category-divider-line { flex: 1; height: 1px; background: var(--border); }
+    .category-divider-label {
+      font-family: 'Space Mono', monospace; font-size: 0.72rem;
+      letter-spacing: 0.18em; text-transform: uppercase; color: var(--text3);
+      white-space: nowrap;
+    }
+    @media(max-width:600px){ .category-divider { padding: 0 20px; } }
+
+    /* Project detail chips inside cards */
+    .detail-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .detail-chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.73rem; font-weight: 600;
+      padding: 4px 11px; border-radius: 100px;
+      border: 1px solid var(--border); color: var(--text2);
+      background: var(--bg2);
+    }
+    .detail-chip i { font-size: 0.65rem; color: var(--accent); }
+
+    /* Highlight quote inside cards */
+    .project-quote {
+      border-left: 3px solid var(--accent);
+      padding: 10px 16px;
+      margin: 14px 0;
+      background: rgba(0,212,255,0.04);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.85rem; color: var(--text2); font-style: italic;
+      line-height: 1.7;
+    }
+    [data-theme="light"] .project-quote {
+      background: rgba(0,119,182,0.05);
+      border-color: var(--accent);
+    }
+
+    /* Full card reverse layout image goes right */
+    .full-project-card.reverse .full-project-img { order: 2; }
+    .full-project-card.reverse .full-project-body { order: 1; }
+
+    @media(max-width:900px){
+      .full-project-card.reverse .full-project-img,
+      .full-project-card.reverse .full-project-body { order: unset; }
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+
+<!-- NAVBAR -->
+<header id="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">SG<span class="dot">.</span></a>
+    <nav>
+      <a href="index.html#about">About</a>
+      <a href="index.html#skills">Skills</a>
+      <a href="projects.html" class="active">Projects</a>
+      <a href="index.html#experience">Experience</a>
+      <a href="index.html#contact">Contact</a>
+    </nav>
+    <a href="assets/Srinivas Resume.pdf" target="_blank" class="nav-resume">
+      <i class="fas fa-download"></i> Resume
+    </a>
+    <button id="theme-toggle" aria-label="Toggle theme">☀️</button>
+    <button id="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="index.html#about">About</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="projects.html">Projects</a>
+    <a href="index.html#experience">Experience</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="assets/Srinivas Resume.pdf" target="_blank">Download Resume</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="projects-page-hero" style="position:relative;">
+  <div class="back-nav-wrap">
+    <a href="index.html" class="back-nav"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+  </div>
+  <span class="section-label">Industry Case Studies</span>
+  <h1>All <span class="accent">Projects</span></h1>
+  <p>13 production-grade AI & ML systems built for healthcare, enterprise, and consumer industries — with real metrics, architecture decisions, and business impact.</p>
+  <div class="projects-stats-bar">
+    <div class="pstat"><span class="pstat-num">13</span><span class="pstat-lbl">Projects shipped</span></div>
+    <div class="pstat"><span class="pstat-num">40%</span><span class="pstat-lbl">Avg accuracy gain</span></div>
+    <div class="pstat"><span class="pstat-num">50K+</span><span class="pstat-lbl">Docs processed</span></div>
+    <div class="pstat"><span class="pstat-num">3</span><span class="pstat-lbl">Cloud platforms</span></div>
+    <div class="pstat"><span class="pstat-num">$2M+</span><span class="pstat-lbl">Cost savings delivered</span></div>
+  </div>
+</section>
+
+<!-- IMPACT BAR -->
+<div class="impact-bar">
+  <div class="impact-bar-inner">
+    <div class="impact-stat"><span class="impact-stat-num">98%</span><span class="impact-stat-lbl">Highest model accuracy</span></div>
+    <div class="impact-stat"><span class="impact-stat-num">&lt;100ms</span><span class="impact-stat-lbl">Best inference latency</span></div>
+    <div class="impact-stat"><span class="impact-stat-num">60%</span><span class="impact-stat-lbl">Max compute cost cut</span></div>
+    <div class="impact-stat"><span class="impact-stat-num">HIPAA</span><span class="impact-stat-lbl">Compliance achieved</span></div>
+    <div class="impact-stat"><span class="impact-stat-num">5+</span><span class="impact-stat-lbl">Autonomous AI agents</span></div>
+  </div>
+</div>
+
+<!-- STICKY FILTER -->
+<div class="projects-filter-section">
+  <div class="projects-filter-inner">
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="genai">Generative AI</button>
+      <button class="filter-btn" data-filter="ml">Machine Learning</button>
+      <button class="filter-btn" data-filter="mlops">MLOps</button>
+      <button class="filter-btn" data-filter="nlp">NLP</button>
+    </div>
+    <span style="font-size:0.8rem;color:var(--text3);white-space:nowrap;">13 projects</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     GENERATIVE AI SECTION
+══════════════════════════════════════ -->
+<div class="category-divider" data-section="genai">
+  <div class="category-divider-line"></div>
+  <span class="category-divider-label"><i class="fas fa-robot" style="color:var(--accent);margin-right:6px;"></i>Generative AI</span>
+  <div class="category-divider-line"></div>
+</div>
+
+<div class="projects-full-grid">
+
+  <!-- PROJECT 1: RAG System -->
+  <div class="full-project-card" data-category="genai" id="rag">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=760&q=80"
+        alt="Enterprise RAG System — AI knowledge retrieval interface"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0f2027,#203a43,#2c5364)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag genai">Generative AI</span>
+        <span class="project-category-tag mlops" style="background:rgba(16,185,129,0.15);color:#10b981;">Production</span>
+      </div>
+      <div class="full-project-number">01</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Enterprise AI Knowledge Retrieval (RAG)</h3>
+      <p>Designed and deployed a production-grade Retrieval-Augmented Generation system at Ascension Via Christi Health, enabling clinical teams to query 100K+ enterprise documents in natural language with real-time, citation-grounded answers.</p>
+      <div class="project-quote">"Reduced average time-to-answer for clinical staff from 8 minutes to under 40 seconds — enabling faster care decisions at the bedside."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-building"></i> Ascension Via Christi Health</span>
+        <span class="detail-chip"><i class="fas fa-calendar"></i> Sep 2024 – Present</span>
+        <span class="detail-chip"><i class="fas fa-lock"></i> HIPAA Compliant</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">35%</span><span class="full-metric-lbl">Accuracy boost</span></div>
+        <div class="full-metric"><span class="full-metric-val">&lt;1s</span><span class="full-metric-lbl">Query latency</span></div>
+        <div class="full-metric"><span class="full-metric-val">100K+</span><span class="full-metric-lbl">Docs indexed</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>LangChain</span><span>FAISS</span><span>Azure OpenAI</span><span>FastAPI</span>
+        <span>Docker</span><span>Pinecone</span><span>Python</span><span>Redis</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 2: Multi-Agent -->
+  <div class="full-project-card reverse" data-category="genai" id="multi-agent">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=760&q=80"
+        alt="Multi-Agent AI Orchestration — neural network visualization"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0d0d0d,#1a0533,#2d0b63)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag genai">Generative AI</span>
+        <span class="project-category-tag mlops" style="background:rgba(124,58,237,0.15);color:#a78bfa;">Agentic AI</span>
+      </div>
+      <div class="full-project-number">02</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Multi-Agent AI Orchestration Framework</h3>
+      <p>Built a LangGraph-powered multi-agent orchestration system where specialized AI agents autonomously decompose complex clinical and enterprise tasks, delegate subtasks, use tools (web search, code execution, database queries), and produce verified outputs — mimicking a high-performing analyst team.</p>
+      <div class="project-quote">"5 specialized agents collaborating in real-time reduced task resolution time by 65% on complex multi-step workflows compared to single-agent approaches."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-robot"></i> 5 Specialized Agents</span>
+        <span class="detail-chip"><i class="fas fa-code-branch"></i> LangGraph DAG</span>
+        <span class="detail-chip"><i class="fas fa-tools"></i> Tool Use + RAG</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">5+</span><span class="full-metric-lbl">AI agents</span></div>
+        <div class="full-metric"><span class="full-metric-val">65%</span><span class="full-metric-lbl">Faster resolution</span></div>
+        <div class="full-metric"><span class="full-metric-val">∞</span><span class="full-metric-lbl">Task types</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>LangGraph</span><span>LangChain</span><span>GPT-4</span><span>FastAPI</span>
+        <span>Redis</span><span>Docker</span><span>Kubernetes</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 3: LLM Fine-Tuning -->
+  <div class="full-project-card" data-category="genai" id="lora">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=760&q=80"
+        alt="LLM Fine-Tuning Pipeline — model training visualization"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0a2342,#126872,#0d4e4e)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag genai">Generative AI</span>
+        <span class="project-category-tag ml" style="background:rgba(16,185,129,0.12);color:#10b981;">Fine-Tuning</span>
+      </div>
+      <div class="full-project-number">03</div>
+    </div>
+    <div class="full-project-body">
+      <h3>LLM Fine-Tuning Pipeline (LoRA / QLoRA)</h3>
+      <p>Engineered a reusable end-to-end fine-tuning pipeline for domain adaptation of open-source LLMs (Llama 2, Mistral) using PEFT techniques. The pipeline handles data curation, quantization, LoRA adapter training, evaluation with ROUGE/BLEU, and automated publishing to HuggingFace Hub.</p>
+      <div class="project-quote">"Achieved 60% GPU memory reduction using 4-bit QLoRA quantization while maintaining 96% of full fine-tune benchmark scores — making domain LLMs accessible on a single A100."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-microchip"></i> QLoRA 4-bit Quantization</span>
+        <span class="detail-chip"><i class="fas fa-database"></i> Custom Domain Datasets</span>
+        <span class="detail-chip"><i class="fas fa-chart-bar"></i> ROUGE / BLEU Eval</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">60%</span><span class="full-metric-lbl">Cost reduction</span></div>
+        <div class="full-metric"><span class="full-metric-val">96%</span><span class="full-metric-lbl">Benchmark score</span></div>
+        <div class="full-metric"><span class="full-metric-val">4-bit</span><span class="full-metric-lbl">Quantization</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>LoRA</span><span>QLoRA</span><span>PEFT</span><span>PyTorch</span>
+        <span>HuggingFace</span><span>Llama 2</span><span>Mistral</span><span>W&B</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 4: Healthcare AI Assistant -->
+  <div class="full-project-card reverse" data-category="genai" id="healthcare-ai">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=760&q=80"
+        alt="Healthcare AI Diagnostic Assistant — clinical AI interface"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#002b36,#004d66,#006080)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag genai">Generative AI</span>
+        <span class="project-category-tag" style="background:rgba(239,68,68,0.12);color:#f87171;border:none;">Healthcare</span>
+      </div>
+      <div class="full-project-number">04</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Healthcare AI Diagnostic Assistant</h3>
+      <p>Built a HIPAA-compliant conversational AI assistant for clinical teams at Ascension. Combines GPT-4 with a RAG layer over structured EHR data and clinical guidelines, enabling care teams to query patient history, surface relevant protocols, and generate draft clinical summaries in real time.</p>
+      <div class="project-quote">"Reduced documentation time for nursing staff by 28% during pilot — flagged for enterprise-wide rollout across 3 hospital networks."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-lock"></i> HIPAA Compliant</span>
+        <span class="detail-chip"><i class="fas fa-hospital"></i> EHR Integration</span>
+        <span class="detail-chip"><i class="fas fa-user-md"></i> Clinical Workflows</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">28%</span><span class="full-metric-lbl">Less doc time</span></div>
+        <div class="full-metric"><span class="full-metric-val">3</span><span class="full-metric-lbl">Hospital networks</span></div>
+        <div class="full-metric"><span class="full-metric-val">99.9%</span><span class="full-metric-lbl">Uptime SLA</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>GPT-4</span><span>LangChain</span><span>FAISS</span><span>Azure</span>
+        <span>FastAPI</span><span>PostgreSQL</span><span>HL7 FHIR</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /genai projects grid -->
+
+
+<!-- ══════════════════════════════════════
+     NLP SECTION
+══════════════════════════════════════ -->
+<div class="category-divider" data-section="nlp">
+  <div class="category-divider-line"></div>
+  <span class="category-divider-label"><i class="fas fa-language" style="color:#fbbf24;margin-right:6px;"></i>NLP & Language Intelligence</span>
+  <div class="category-divider-line"></div>
+</div>
+
+<div class="projects-full-grid">
+
+  <!-- PROJECT 5: Clinical NLP -->
+  <div class="full-project-card" data-category="nlp" id="clinical-nlp">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=760&q=80"
+        alt="Clinical NLP Document Intelligence — medical records processing"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag nlp">NLP</span>
+        <span class="project-category-tag" style="background:rgba(239,68,68,0.12);color:#f87171;border:none;">Healthcare</span>
+      </div>
+      <div class="full-project-number">05</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Clinical NLP Document Intelligence</h3>
+      <p>Engineered a HIPAA-compliant NLP pipeline that ingests unstructured clinical notes, discharge summaries, and radiology reports, then extracts structured entities (diagnoses, medications, procedures) and generates concise summaries. Deployed on Apache Spark for hospital-scale throughput.</p>
+      <div class="project-quote">"Processed 50,000+ patient documents in the first production run — reducing manual chart review effort by 30% across the care coordination team."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-file-medical"></i> 50K+ Records</span>
+        <span class="detail-chip"><i class="fas fa-tags"></i> NER + Summarization</span>
+        <span class="detail-chip"><i class="fas fa-fire"></i> Spark Distributed</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">30%</span><span class="full-metric-lbl">Manual effort saved</span></div>
+        <div class="full-metric"><span class="full-metric-val">50K+</span><span class="full-metric-lbl">Docs processed</span></div>
+        <div class="full-metric"><span class="full-metric-val">F1 0.91</span><span class="full-metric-lbl">NER accuracy</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>BERT</span><span>Transformers</span><span>spaCy</span><span>Apache Spark</span>
+        <span>Python</span><span>Hugging Face</span><span>MLflow</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 6: Semantic Search -->
+  <div class="full-project-card reverse" data-category="nlp" id="semantic-search">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=760&q=80"
+        alt="Semantic Search Engine — vector search visualization"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0c1445,#1a237e,#283593)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag nlp">NLP</span>
+        <span class="project-category-tag mlops" style="background:rgba(16,185,129,0.12);color:#10b981;border:none;">Vector Search</span>
+      </div>
+      <div class="full-project-number">06</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Hybrid Semantic Search Engine</h3>
+      <p>Built a production semantic search platform combining dense bi-encoder embeddings (Sentence Transformers) with BM25 sparse retrieval using Reciprocal Rank Fusion. Deployed on Pinecone and Weaviate with an A/B testing framework that continuously improves ranking models using implicit user feedback signals.</p>
+      <div class="project-quote">"Improved search relevance MRR@10 from 0.54 to 0.81 — a 50% uplift — by combining dense + sparse signals with cross-encoder reranking."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-search"></i> Hybrid Dense + BM25</span>
+        <span class="detail-chip"><i class="fas fa-flask"></i> A/B Testing</span>
+        <span class="detail-chip"><i class="fas fa-clock"></i> &lt;100ms Latency</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">50%</span><span class="full-metric-lbl">MRR uplift</span></div>
+        <div class="full-metric"><span class="full-metric-val">&lt;100ms</span><span class="full-metric-lbl">P99 latency</span></div>
+        <div class="full-metric"><span class="full-metric-val">1M+</span><span class="full-metric-lbl">Vectors indexed</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Sentence Transformers</span><span>Pinecone</span><span>Weaviate</span>
+        <span>FastAPI</span><span>BM25</span><span>Cross-Encoder</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 7: Knowledge Graph -->
+  <div class="full-project-card" data-category="nlp" id="knowledge-graph">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=760&q=80"
+        alt="Knowledge Graph AI System — graph database visualization"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a0033,#3d0080,#4a0096)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag nlp">NLP</span>
+        <span class="project-category-tag genai">Graph AI</span>
+      </div>
+      <div class="full-project-number">07</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Knowledge Graph AI System</h3>
+      <p>Designed an AI-powered knowledge graph platform that ingests documents, extracts entities and relationships using BERT-based NER, builds a Neo4j graph, and exposes a GraphQL API enabling LLMs to reason over structured enterprise knowledge — bridging unstructured text and graph traversal.</p>
+      <div class="project-quote">"Enabled analysts to answer multi-hop questions across 200K+ entity relationships that previously required 3 separate database queries and manual joining."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-project-diagram"></i> Neo4j Graph DB</span>
+        <span class="detail-chip"><i class="fas fa-link"></i> Entity Linking</span>
+        <span class="detail-chip"><i class="fas fa-code"></i> GraphQL API</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">200K+</span><span class="full-metric-lbl">Entities mapped</span></div>
+        <div class="full-metric"><span class="full-metric-val">F1 0.88</span><span class="full-metric-lbl">Relation extract</span></div>
+        <div class="full-metric"><span class="full-metric-val">3x</span><span class="full-metric-lbl">Query speed</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Neo4j</span><span>LlamaIndex</span><span>NER</span><span>BERT</span>
+        <span>GraphQL</span><span>Python</span><span>spaCy</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /nlp projects grid -->
+
+
+<!-- ══════════════════════════════════════
+     MACHINE LEARNING SECTION
+══════════════════════════════════════ -->
+<div class="category-divider" data-section="ml">
+  <div class="category-divider-line"></div>
+  <span class="category-divider-label"><i class="fas fa-brain" style="color:#10b981;margin-right:6px;"></i>Machine Learning</span>
+  <div class="category-divider-line"></div>
+</div>
+
+<div class="projects-full-grid">
+
+  <!-- PROJECT 8: Demand Forecasting -->
+  <div class="full-project-card" data-category="ml" id="demand-forecast">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=760&q=80"
+        alt="Demand Forecasting ML System — analytics dashboard"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1e3c0f,#2d5a17,#1a4a0a)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag ml">Machine Learning</span>
+        <span class="project-category-tag" style="background:rgba(251,191,36,0.12);color:#fbbf24;border:none;">Colgate-Palmolive</span>
+      </div>
+      <div class="full-project-number">08</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Demand Forecasting ML System</h3>
+      <p>Built an enterprise demand forecasting platform for Colgate-Palmolive covering 5,000+ SKUs across 12 global markets. Ensemble of XGBoost, LightGBM, and LSTM with automated feature engineering (lag features, rolling statistics, calendar events) and Airflow-orchestrated weekly retraining cycles.</p>
+      <div class="project-quote">"20% improvement in forecast MAPE over the legacy statistical model — translating to ~$1.4M in reduced overstock and stockout costs annually."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-building"></i> Colgate-Palmolive</span>
+        <span class="detail-chip"><i class="fas fa-boxes"></i> 5K+ SKUs</span>
+        <span class="detail-chip"><i class="fas fa-globe"></i> 12 Markets</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">20%</span><span class="full-metric-lbl">MAPE reduction</span></div>
+        <div class="full-metric"><span class="full-metric-val">$1.4M</span><span class="full-metric-lbl">Annual savings</span></div>
+        <div class="full-metric"><span class="full-metric-val">5K+</span><span class="full-metric-lbl">SKUs covered</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>XGBoost</span><span>LightGBM</span><span>TensorFlow</span><span>Airflow</span>
+        <span>MLflow</span><span>PySpark</span><span>Snowflake</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 9: Anomaly Detection -->
+  <div class="full-project-card reverse" data-category="ml" id="anomaly">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=760&q=80"
+        alt="Real-Time Anomaly Detection — monitoring dashboard"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#3b0000,#660000,#8b0000)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag ml">Machine Learning</span>
+        <span class="project-category-tag mlops" style="background:rgba(239,68,68,0.12);color:#f87171;border:none;">Real-Time</span>
+      </div>
+      <div class="full-project-number">09</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Real-Time Anomaly Detection System</h3>
+      <p>Engineered a streaming anomaly detection platform processing Kafka event streams at 50K events/sec. Ensemble of Isolation Forest, Autoencoder, and statistical control charts with adaptive thresholds — triggers automated Slack/PagerDuty alerts and writes flagged events to a Delta Lake audit table.</p>
+      <div class="project-quote">"Caught a data pipeline failure within 4 seconds of onset — previously undetected failures caused 6-hour data gaps impacting downstream analytics."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-stream"></i> 50K Events/sec</span>
+        <span class="detail-chip"><i class="fas fa-bell"></i> PagerDuty Alerts</span>
+        <span class="detail-chip"><i class="fas fa-shield-alt"></i> Adaptive Thresholds</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">95%+</span><span class="full-metric-lbl">Precision</span></div>
+        <div class="full-metric"><span class="full-metric-val">50K/s</span><span class="full-metric-lbl">Event throughput</span></div>
+        <div class="full-metric"><span class="full-metric-val">4s</span><span class="full-metric-lbl">Detection lag</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Kafka</span><span>Isolation Forest</span><span>PyTorch Autoencoder</span>
+        <span>Scikit-learn</span><span>FastAPI</span><span>Delta Lake</span><span>Docker</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 10: Computer Vision OCR -->
+  <div class="full-project-card" data-category="ml" id="ocr">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1666112835156-c65bb806b71e?w=760&q=80"
+        alt="Computer Vision OCR Pipeline — document scanning AI"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a1a0d,#3d3d00,#595900)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag ml">Machine Learning</span>
+        <span class="project-category-tag genai" style="background:rgba(59,130,246,0.12);color:#60a5fa;border:none;">Computer Vision</span>
+      </div>
+      <div class="full-project-number">10</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Computer Vision OCR Pipeline</h3>
+      <p>Developed an automated document digitization system combining Vision Transformers (ViT) for document layout understanding with Tesseract + PaddleOCR for character recognition. Handles handwritten forms, multi-column medical PDFs, and low-quality scans — extracting structured JSON output for downstream systems.</p>
+      <div class="project-quote">"Reduced manual data entry for clinical forms from 4 minutes per document to 8 seconds — enabling same-day processing of incoming patient paperwork."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-file-image"></i> Multi-format Docs</span>
+        <span class="detail-chip"><i class="fas fa-pen"></i> Handwriting Support</span>
+        <span class="detail-chip"><i class="fas fa-code"></i> JSON Output API</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">98%</span><span class="full-metric-lbl">OCR accuracy</span></div>
+        <div class="full-metric"><span class="full-metric-val">30x</span><span class="full-metric-lbl">Faster than manual</span></div>
+        <div class="full-metric"><span class="full-metric-val">8s</span><span class="full-metric-lbl">Per document</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>ViT</span><span>CLIP</span><span>OpenCV</span><span>Tesseract</span>
+        <span>PaddleOCR</span><span>PyTorch</span><span>FastAPI</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /ml projects grid -->
+
+
+<!-- ══════════════════════════════════════
+     MLOPS SECTION
+══════════════════════════════════════ -->
+<div class="category-divider" data-section="mlops">
+  <div class="category-divider-line"></div>
+  <span class="category-divider-label"><i class="fas fa-cogs" style="color:#a78bfa;margin-right:6px;"></i>MLOps & Infrastructure</span>
+  <div class="category-divider-line"></div>
+</div>
+
+<div class="projects-full-grid">
+
+  <!-- PROJECT 11: MLOps Pipeline -->
+  <div class="full-project-card" data-category="mlops" id="mlops-pipeline">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=760&q=80"
+        alt="End-to-End MLOps Pipeline — Kubernetes deployment infrastructure"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1c1c1c,#2e2e2e,#3a3a3a)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag mlops">MLOps</span>
+        <span class="project-category-tag" style="background:rgba(16,185,129,0.12);color:#10b981;border:none;">Zero Downtime</span>
+      </div>
+      <div class="full-project-number">11</div>
+    </div>
+    <div class="full-project-body">
+      <h3>End-to-End MLOps Platform</h3>
+      <p>Architected a complete ML lifecycle management platform — from experiment tracking (MLflow) and model registry to canary deployments on Kubernetes, automated drift detection (evidently.ai), and a Grafana observability stack. Standardized the path from notebook to production across 3 engineering teams.</p>
+      <div class="project-quote">"Reduced model deployment time from 3 days to 45 minutes — with 30% fewer post-deployment incidents thanks to automated drift alerting."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-ship"></i> Kubernetes Canary</span>
+        <span class="detail-chip"><i class="fas fa-chart-area"></i> Drift Detection</span>
+        <span class="detail-chip"><i class="fas fa-users"></i> 3 Teams Onboarded</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">45min</span><span class="full-metric-lbl">Deploy time</span></div>
+        <div class="full-metric"><span class="full-metric-val">30%</span><span class="full-metric-lbl">Fewer incidents</span></div>
+        <div class="full-metric"><span class="full-metric-val">100%</span><span class="full-metric-lbl">Zero-downtime</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>MLflow</span><span>Kubernetes</span><span>Prometheus</span><span>Grafana</span>
+        <span>CI/CD</span><span>Jenkins</span><span>evidently.ai</span><span>Docker</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 12: Streaming Prediction -->
+  <div class="full-project-card reverse" data-category="mlops" id="streaming">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=760&q=80"
+        alt="Real-Time Streaming Prediction System — server infrastructure"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0d1b2a,#1b263b,#415a77)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag mlops">MLOps</span>
+        <span class="project-category-tag genai" style="background:rgba(251,191,36,0.12);color:#fbbf24;border:none;">AWS</span>
+      </div>
+      <div class="full-project-number">12</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Real-Time Streaming Prediction System</h3>
+      <p>Built an event-driven ML inference platform on AWS where Kafka topics trigger real-time model scoring via SageMaker endpoints. Features horizontal autoscaling (response to traffic spikes in &lt;90s), live Grafana dashboards, and a shadow-mode framework for safely validating new model versions before full cutover.</p>
+      <div class="project-quote">"System handled 3x traffic spike during product launch (Black Friday equivalent) with zero degradation — inference latency stayed under 85ms at peak."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-bolt"></i> &lt;85ms Inference</span>
+        <span class="detail-chip"><i class="fas fa-expand-arrows-alt"></i> Auto-scaling &lt;90s</span>
+        <span class="detail-chip"><i class="fab fa-aws"></i> AWS SageMaker</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">&lt;85ms</span><span class="full-metric-lbl">P99 latency</span></div>
+        <div class="full-metric"><span class="full-metric-val">3x</span><span class="full-metric-lbl">Traffic spike handled</span></div>
+        <div class="full-metric"><span class="full-metric-val">99.95%</span><span class="full-metric-lbl">Availability</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Kafka</span><span>TensorFlow</span><span>AWS SageMaker</span><span>Databricks</span>
+        <span>Grafana</span><span>Terraform</span><span>Docker</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 13: ETL Data Platform -->
+  <div class="full-project-card" data-category="mlops" id="etl-platform">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1599658880436-c61792e70672?w=760&q=80"
+        alt="Scalable ETL Data Platform — data pipeline architecture"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0a1628,#0d2137,#102a47)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag mlops">MLOps</span>
+        <span class="project-category-tag" style="background:rgba(6,182,212,0.12);color:#22d3ee;border:none;">Data Engineering</span>
+      </div>
+      <div class="full-project-number">13</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Scalable Clinical Data ETL Platform</h3>
+      <p>Designed a fault-tolerant ETL platform ingesting data from 8 source systems (EHR, lab systems, billing, scheduling) into a unified Snowflake data warehouse. Built with dbt for transformation lineage, Apache Airflow for orchestration, and great_expectations for automated data quality gates — serving as the foundation for all downstream ML models.</p>
+      <div class="project-quote">"Reduced data pipeline latency from 6 hours to 22 minutes — enabling near-real-time clinical dashboards that inform daily bed management decisions."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-database"></i> 8 Source Systems</span>
+        <span class="detail-chip"><i class="fas fa-check-circle"></i> Data Quality Gates</span>
+        <span class="detail-chip"><i class="fas fa-clock"></i> 22min Latency</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">94%</span><span class="full-metric-lbl">Latency reduction</span></div>
+        <div class="full-metric"><span class="full-metric-val">8</span><span class="full-metric-lbl">Source systems</span></div>
+        <div class="full-metric"><span class="full-metric-val">99.8%</span><span class="full-metric-lbl">Data quality score</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Apache Spark</span><span>Airflow</span><span>dbt</span><span>Snowflake</span>
+        <span>Delta Lake</span><span>great_expectations</span><span>Python</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /mlops projects grid -->
+
+
+<!-- CTA FOOTER BAND -->
+<div style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 32px;text-align:center;position:relative;z-index:1;">
+  <div style="max-width:600px;margin:0 auto;">
+    <span class="section-label">Let's Work Together</span>
+    <h2 style="font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;margin:16px 0;letter-spacing:-0.02em;">Interested in my work?</h2>
+    <p style="color:var(--text2);font-size:1.05rem;margin-bottom:32px;line-height:1.8;">
+      I'm actively seeking roles in Generative AI, ML Engineering, and Data Science. Let's build something impactful together.
+    </p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="index.html#contact" class="btn-primary"><i class="fas fa-paper-plane"></i> Get In Touch</a>
+      <a href="assets/Srinivas Resume.pdf" target="_blank" class="btn-outline"><i class="fas fa-download"></i> Download Resume</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">SG<span class="dot">.</span></div>
+    <p>© 2026 Srinivas Gampasani · AI & ML Engineer · St. Louis, MO</p>
+    <div class="footer-social">
+      <a href="mailto:srinivasgampasani7@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://www.linkedin.com/in/srinivas-gampasani-85338b235/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/srinivas-gampasani" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
+</footer>
+
+<button class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
+
+<script>
+// ── Theme Toggle (synced with index.html via localStorage) ──
+const html = document.documentElement;
+const themeBtn = document.getElementById('theme-toggle');
+const savedTheme = localStorage.getItem('sg-theme') || 'dark';
+html.setAttribute('data-theme', savedTheme);
+themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+let particleColor = savedTheme === 'dark' ? 'rgba(0,212,255,' : 'rgba(0,119,182,';
+
+themeBtn.addEventListener('click', () => {
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('sg-theme', next);
+  themeBtn.textContent = next === 'dark' ? '☀️' : '🌙';
+  particleColor = next === 'dark' ? 'rgba(0,212,255,' : 'rgba(0,119,182,';
+});
+
+// ── Particle canvas ──
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+
+function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+resize();
+window.addEventListener('resize', resize);
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * W; this.y = Math.random() * H;
+    this.r = Math.random() * 1.2 + 0.3;
+    this.vx = (Math.random() - 0.5) * 0.25; this.vy = (Math.random() - 0.5) * 0.25;
+    this.alpha = Math.random() * 0.3 + 0.05;
+  }
+  update() {
+    this.x += this.vx; this.y += this.vy;
+    if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
+  }
+  draw() {
+    ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = `${particleColor}${this.alpha})`; ctx.fill();
+  }
+}
+for (let i = 0; i < 70; i++) particles.push(new Particle());
+
+function drawLines() {
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      if (d < 90) {
+        ctx.strokeStyle = `${particleColor}${0.05 * (1 - d/90)})`;
+        ctx.lineWidth = 0.4; ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
+    }
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => { p.update(); p.draw(); });
+  drawLines(); requestAnimationFrame(animate);
+}
+animate();
+
+// ── Navbar scroll ──
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+  document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 300);
+});
+
+// ── Mobile menu ──
+document.getElementById('menu-toggle').addEventListener('click', function() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+  this.classList.toggle('active');
+});
+document.querySelectorAll('#mobile-menu a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.getElementById('menu-toggle').classList.remove('active');
+  });
+});
+
+// ── Filter ──
+const allCards = document.querySelectorAll('.full-project-card');
+const allDividers = document.querySelectorAll('.category-divider');
+const allGrids = document.querySelectorAll('.projects-full-grid');
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const filter = this.dataset.filter;
+
+    allCards.forEach(card => {
+      const show = filter === 'all' || card.dataset.category === filter;
+      card.style.display = show ? '' : 'none';
+    });
+
+    // Show/hide section dividers & grids based on whether any card in them is visible
+    allDividers.forEach(div => {
+      const section = div.dataset.section;
+      if (filter === 'all') {
+        div.style.display = '';
+        return;
+      }
+      div.style.display = (section === filter) ? '' : 'none';
+    });
+
+    allGrids.forEach(grid => {
+      const visible = [...grid.querySelectorAll('.full-project-card')].some(c => c.style.display !== 'none');
+      grid.style.display = visible ? '' : 'none';
+    });
+  });
+});
+
+// ── Back to top ──
+document.getElementById('back-to-top').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ── Reveal on scroll ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.full-project-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(28px)';
+  el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+  observer.observe(el);
+});
+// Trigger visible class to apply
+document.querySelectorAll('.full-project-card').forEach(el => {
+  el.addEventListener('transitionend', () => {}, { once: true });
+});
+// Override observer to set styles directly
+const cardObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'none';
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.full-project-card').forEach(el => cardObserver.observe(el));
+
+// ── Handle anchor hash scrolling (from index.html links) ──
+window.addEventListener('load', () => {
+  if (window.location.hash) {
+    setTimeout(() => {
+      const target = document.querySelector(window.location.hash);
+      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }, 300);
+  }
+});
+</script>
+</body>
+</html>
