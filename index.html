@@ -2,349 +2,763 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Srinivasarao Gampasani</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Srinivas Gampasani — AI & ML Engineer</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Soria:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
-
 <body>
 
+<!-- BACKGROUND CANVAS -->
+<canvas id="bg-canvas"></canvas>
+
 <!-- NAVBAR -->
-<header>
-  <button id="darkModeToggle">🌙</button>
-  <nav>
-    <a href="#about"><i class="fas fa-user"></i> About</a>
-    <a href="#skills"><i class="fas fa-code"></i> Skills</a>
-    <a href="#projects"><i class="fas fa-diagram-project"></i> Projects</a>
-    <a href="#experience"><i class="fas fa-briefcase"></i> Experience</a>
-    <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
-    <a href="assets/Srinivas Resume.pdf" target="_blank" class="btn">Resume</a>
-  </nav>
+<header id="navbar">
+  <div class="nav-inner">
+    <div class="nav-logo">SG<span class="dot">.</span></div>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a href="assets/Srinivas Resume.pdf" target="_blank" class="nav-resume">
+      <i class="fas fa-download"></i> Resume
+    </a>
+    <button id="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#contact">Contact</a>
+    <a href="assets/Srinivas Resume.pdf" target="_blank">Download Resume</a>
+  </div>
 </header>
 
-<!-- HERO SECTION -->
-
-<section class="hero" id="about">
-  <div class="hero-left">
-    <img src="assets/Srinivas Profile.png" alt="profile">
-
-    <!-- 👇 ADD HERE (UNDER IMAGE) -->
-    <div class="social-icons">
-
-      <a href="mailto:srinivasgampasani7@gmail.com">
-        <i class="fas fa-envelope"></i>
-      </a>
-
-      <a href="tel:+13145483799">
-        <i class="fas fa-phone"></i>
-      </a>
-
-      <a href="https://www.linkedin.com/in/srinivasarao-gampasani-85338b235/" target="_blank">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-
-      <a href="https://github.com/srinivas-gampasani" target="_blank">
-        <i class="fab fa-github"></i>
-      </a>
-
+<!-- HERO -->
+<section id="about" class="hero">
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-tag animate-up delay-1">Available for opportunities</div>
+      <h1 class="animate-up delay-2">Srinivas<br><span class="accent">Gampasani</span></h1>
+      <div class="typing-wrapper animate-up delay-3">
+        <span id="typing-text"></span><span class="cursor">|</span>
+      </div>
+      <p class="hero-bio animate-up delay-4">
+        Generative AI Engineer with <strong>3+ years</strong> building production-grade LLM systems, RAG pipelines, and scalable ML infrastructure across healthcare and enterprise domains. Specialized in turning complex AI research into real-world impact.
+      </p>
+      <div class="hero-stats animate-up delay-5">
+        <div class="stat"><span class="stat-num">40%</span><span class="stat-lbl">Accuracy boost</span></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-num">50K+</span><span class="stat-lbl">Docs processed</span></div>
+        <div class="stat-div"></div>
+        <div class="stat"><span class="stat-num">3+</span><span class="stat-lbl">Years experience</span></div>
+      </div>
+      <div class="hero-btns animate-up delay-5">
+        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="#contact" class="btn-outline">Contact Me</a>
+      </div>
+      <div class="social-row animate-up delay-5">
+        <a href="mailto:srinivasgampasani7@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+        <a href="https://www.linkedin.com/in/srinivas-gampasani-85338b235/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://github.com/srinivas-gampasani" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        <a href="tel:+13145483799" title="Phone"><i class="fas fa-phone"></i></a>
+      </div>
+    </div>
+    <div class="hero-visual animate-up delay-3">
+      <div class="profile-ring">
+        <img src="assets/Srinivas Profile.png" alt="Srinivas Gampasani" class="profile-img">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+      </div>
+      <div class="floating-badge badge-1"><i class="fas fa-brain"></i> LLM</div>
+      <div class="floating-badge badge-2"><i class="fas fa-robot"></i> RAG</div>
+      <div class="floating-badge badge-3"><i class="fas fa-cloud"></i> MLOps</div>
+      <div class="floating-badge badge-4"><i class="fab fa-python"></i> Python</div>
     </div>
   </div>
-
-  <div class="hero-right">
-    <h1>Srinivasarao Gampasani</h1>
-    <h3 id="typing"></h3>
-
-    <p>
-        AI Engineer and Generative AI Engineer with 3+ years of experience designing, architecting, optimizing, and deploying production-grade Artificial Intelligence (AI), Machine Learning (ML), and Data Science solutions across healthcare and
-enterprise domains. Specialized in Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), Natural Lan
-guage Processing (NLP), AI agents, and transformer-based architectures.
-    </p>
-    <p>
-Proven experience in building scalable machine learning pipelines, data pipelines, and ETL pipelines using Python, SQL,
-Apache Spark, and distributed computing frameworks for large-scale structured and unstructured data. Strong expertise in
-prompt engineering, prompt optimization, semantic search, embeddings, vector databases, and LLM application develop
-ment using LangChain and LlamaIndex.
-    </p>
-    <p>
-Experienced in developing and deploying RESTful APIs (Application Programming Interfaces), microservices architecture,
-and production ML systems using Docker, Kubernetes, MLflow, and CI/CD pipelines. Hands-on experience with AWS,
-Azure Machine Learning, Azure OpenAI, and Google Cloud Platform (GCP) for deploying scalable AI solutions in production
-environments.
-    </p>
-    <p>
-Demonstrated success in optimizing model performance, improving prediction accuracy, reducing latency, and delivering
-AI-driven business solutions. Strong collaboration with cross-functional teams, stakeholders, and Agile environments to
-deliver end-to-end AI/ML solutions.
-    </p>
-
-    <div class="buttons">
-      <a href="#projects" class="primary">View Projects</a>
-      <a href="assets/Srinivas Resume.pdf" target="_blank" class="secondary">Download Resume</a>
-    </div>
-  </div>
+  <div class="scroll-hint"><span>Scroll</span><i class="fas fa-chevron-down"></i></div>
 </section>
 
-
 <!-- SKILLS -->
-<section id="skills" class="fade-in">
-  <h2>Skills</h2>
-  <div class="grid">
-    
-    <div class="card"><i class="fas fa-code"></i><h3>Programming</h3>
-    <p>
-      Python, SQL, PySpark
-    </p>
+<section id="skills" class="section reveal">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">What I Know</span>
+      <h2>Technical <span class="accent">Skills</span></h2>
+      <p>End-to-end expertise from data ingestion to production deployment</p>
     </div>
-    
-    <div class="card"><i class="fa-brain"></i><h3>Machine Learning</h3>
-    <p>
-      Machine Learning (ML), Artificial Intelligence (AI), Deep Learning, Scikit-learn, XGBoost, LightGBM,
-PyTorch, TensorFlow, Model Evaluation, Feature Engineering, Cross Validation, Hyperparameter Tuning, Regression, Clas
-sification, Random Forest, Gradient Boosting
-    </p>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-robot"></i></div>
+        <h3>Generative AI & LLMs</h3>
+        <div class="skill-tags">
+          <span>LangChain</span><span>LlamaIndex</span><span>RAG</span><span>Fine-Tuning</span>
+          <span>LoRA / QLoRA</span><span>Prompt Engineering</span><span>FAISS</span>
+          <span>OpenAI API</span><span>Azure OpenAI</span><span>AI Agents</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-brain"></i></div>
+        <h3>Machine Learning & Deep Learning</h3>
+        <div class="skill-tags">
+          <span>PyTorch</span><span>TensorFlow</span><span>Scikit-learn</span>
+          <span>XGBoost</span><span>LightGBM</span><span>Transformers</span>
+          <span>CNNs</span><span>BERT / GPT</span><span>SHAP / LIME</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-code"></i></div>
+        <h3>Programming & NLP</h3>
+        <div class="skill-tags">
+          <span>Python</span><span>SQL</span><span>PySpark</span><span>Java</span>
+          <span>TypeScript</span><span>Bash</span><span>NER</span>
+          <span>Sentence Transformers</span><span>OCR</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-database"></i></div>
+        <h3>Data Engineering & Big Data</h3>
+        <div class="skill-tags">
+          <span>Apache Spark</span><span>Kafka</span><span>Airflow</span>
+          <span>dbt</span><span>Snowflake</span><span>BigQuery</span>
+          <span>Delta Lake</span><span>Hadoop</span><span>ETL Pipelines</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-cogs"></i></div>
+        <h3>MLOps & Deployment</h3>
+        <div class="skill-tags">
+          <span>MLflow</span><span>Docker</span><span>Kubernetes</span>
+          <span>CI/CD</span><span>FastAPI</span><span>Flask</span>
+          <span>Prometheus</span><span>Grafana</span><span>Jenkins</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon"><i class="fas fa-cloud"></i></div>
+        <h3>Cloud & Databases</h3>
+        <div class="skill-tags">
+          <span>AWS SageMaker</span><span>Azure ML</span><span>GCP Vertex AI</span>
+          <span>Pinecone</span><span>Weaviate</span><span>Milvus</span>
+          <span>PostgreSQL</span><span>Redis</span><span>Neo4j</span>
+        </div>
+      </div>
+
     </div>
-    
-    <div class="card"><i class="fas fa-robot"></i><h3>Generative AI & LLMs</h3>
-    <p>
-      Machine Learning (ML), Artificial Intelligence (AI), Deep Learning, Scikit-learn, XGBoost, LightGBM,
-PyTorch, TensorFlow, Model Evaluation, Feature Engineering, Cross Validation, Hyperparameter Tuning, Regression, Clas
-sification, Random Forest, Gradient Boosting
-    </p>
-    </div>
-   
-    <div class="card"><i class="fas fa-database"></i><h3>Data Engineering</h3>
-    <p>
-      Apache Spark, Databricks, Airflow, ETL Pipelines, Data Pipelines, Data Warehousing, Distributed Com
-puting, Batch Processing, Real-Time Processing, Big Data Technologies
-    </p>
-    </div>
-    
-    <div class="card"><i class="fas fa-cogs"></i><h3>MLOps & Deployment</h3>
-    <p>
-      MLflow, Docker, Kubernetes, CI/CD Pipelines, Model Deployment, Model Monitoring, Model Ver
-sioning, RESTful APIs, FastAPI, Flask, Microservices Architecture
-    </p>
-    </div>
-    
-    <div class="card"><i class="fas fa-cloud"></i><h3>Cloud Platforms</h3>
-    <p>
-      AWS (EC2, S3, SageMaker), Azure Machine Learning, Azure OpenAI, Google Cloud Platform (GCP)
-    </p>
-    </div>
-    
-    <div class="card"><i class="fas fa-server"></i><h3>Databases & Tools</h3>
-    <p>
-      PostgreSQL, NoSQL, Vector Databases, Git, Linux, Jupyter Notebook, VS Code
-    </p>
-    </div>
-    
-    <div class="card"><i class="fas fa-layer-group"></i><h3>Software Engineering</h3>
-    <p>
-      Object-Oriented Programming, System Design, Scalable Architecture, API Development
-    </p>
-    </div>
-    
   </div>
 </section>
 
 <!-- PROJECTS -->
-<section id="projects" class="fade-in">
-  <h2>Projects</h2>
-  <div class="grid">
-    
-    <div class="project-card">
-      <h3>Enterprise AI Knowledge Retrieval Platform</h3>
-      <ul>
-        <li>Architected a production-grade Retrieval-Augmented Generation (RAG) system using Large Language Models (LLMs),
-enabling real-time question answering across enterprise datasets.</li>
-        <li>Built scalable document ingestion, embedding, and vector indexing pipelines processing 100K+ documents using Python,
-LangChain, and FAISS.</li>
-        <li>Implemented semantic search and vector similarity retrieval achieving sub-second latency for real-time AI applications.</li>
-        <li>Developed RESTful APIs using FastAPI to serve LLM-powered applications to enterprise users.</li>
-        <li>Applied prompt engineering and prompt optimization techniques improving response accuracy by 35% and reducing
-hallucinations.</li>
-        <li>Deployed containerized AI systems using Docker and Kubernetes ensuring high availability and scalability.</li>
-        <li>Integrated Azure OpenAI and OpenAI APIs for production-grade AI workflows.</li>
-        <li>Designed end-to-end MLOps pipelines using MLflow and CI/CD pipelines for model versioning and monitoring.</li>
-      </ul>
-      <div class="project-buttons">
-        <a href="#" class="primary">Live</a>
-        <a href="#" class="secondary">GitHub</a>
-      </div>
+<section id="projects" class="section reveal">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">What I've Built</span>
+      <h2>Featured <span class="accent">Projects</span></h2>
+      <p>Production-grade AI/ML systems solving real business problems</p>
     </div>
-    
-    <div class="project-card">
-      <h3>Scalable ML Prediction System</h3>
-      <ul>
-        <li>Built end-to-end machine learning pipelines for predictive analytics including data preprocessing, feature engineering,
-model training, and deployment.</li>
-        <li>Processed large-scale datasets using Apache Spark and PySpark handling millions of records efficiently.</li>
-        <li>Implemented MLflow for model tracking, versioning, and experiment management improving reproducibility.</li>
-        <li>Developed REST APIs using FastAPI enabling real-time predictions with low latency.</li>
-        <li>Designed distributed data pipelines and ETL workflows improving data processing efficiency by 30%.</li>
-        <li>Deployed models using Docker and Kubernetes ensuring scalable production deployment.</li>
-        <li>Optimized model performance using hyperparameter tuning and cross-validation improving accuracy by 20%.</li>
-      </ul>
-      <div class="project-buttons">
-        <a href="#" class="primary">Live</a>
-        <a href="#" class="secondary">GitHub</a>
-      </div>
+
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="genai">Generative AI</button>
+      <button class="filter-btn" data-filter="ml">Machine Learning</button>
+      <button class="filter-btn" data-filter="mlops">MLOps</button>
+      <button class="filter-btn" data-filter="nlp">NLP</button>
     </div>
-    
+
+    <div class="projects-grid">
+
+      <!-- Project 1 -->
+      <div class="project-card" data-category="genai">
+        <div class="project-img" style="background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);">
+          <div class="project-img-icon"><i class="fas fa-brain"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-category-tag genai">Generative AI</div>
+          <h3>Enterprise AI Knowledge Retrieval (RAG)</h3>
+          <p>Production-grade RAG system enabling real-time Q&A across 100K+ enterprise documents. Achieved sub-second latency with 35% improvement in response accuracy.</p>
+          <div class="tech-stack">
+            <span>LangChain</span><span>FAISS</span><span>Azure OpenAI</span><span>FastAPI</span><span>Docker</span>
+          </div>
+          <div class="project-metrics">
+            <div class="metric"><i class="fas fa-chart-line"></i> 35% accuracy boost</div>
+            <div class="metric"><i class="fas fa-bolt"></i> Sub-second latency</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card" data-category="nlp">
+        <div class="project-img" style="background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);">
+          <div class="project-img-icon"><i class="fas fa-stethoscope"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-category-tag nlp">NLP</div>
+          <h3>Clinical NLP Document Intelligence</h3>
+          <p>HIPAA-compliant NLP pipeline for clinical text summarization and structured information extraction from 50K+ patient records, reducing manual effort by 30%.</p>
+          <div class="tech-stack">
+            <span>BERT</span><span>Transformers</span><span>spaCy</span><span>Apache Spark</span><span>Python</span>
+          </div>
+          <div class="project-metrics">
+            <div class="metric"><i class="fas fa-clock"></i> 30% time saved</div>
+            <div class="metric"><i class="fas fa-file-medical"></i> 50K+ docs</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card" data-category="genai">
+        <div class="project-img" style="background: linear-gradient(135deg, #0d0d0d, #1a0533, #2d0b63);">
+          <div class="project-img-icon"><i class="fas fa-sitemap"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-category-tag genai">Generative AI</div>
+          <h3>Multi-Agent AI Orchestration Framework</h3>
+          <p>LangGraph-powered multi-agent system enabling complex task decomposition, autonomous tool use, and collaborative reasoning across specialized AI agents.</p>
+          <div class="tech-stack">
+            <span>LangGraph</span><span>LangChain</span><span>GPT-4</span><span>FastAPI</span><span>Redis</span>
+          </div>
+          <div class="project-metrics">
+            <div class="metric"><i class="fas fa-robot"></i> 5+ agents</div>
+            <div class="metric"><i class="fas fa-network-wired"></i> Autonomous tasks</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="project-card" data-category="genai">
+        <div class="project-img" style="background: linear-gradient(135deg, #0a2342, #126872, #0d4e4e);">
+          <div class="project-img-icon"><i class="fas fa-sliders"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-category-tag genai">Generative AI</div>
+          <h3>LLM Fine-Tuning Pipeline (LoRA / QLoRA)</h3>
+          <p>End-to-end fine-tuning pipeline for domain adaptation of open-source LLMs using PEFT techniques, reducing compute cost by 60% while maintaining model quality.</p>
+          <div class="tech-stack">
+            <span>LoRA</span><span>QLoRA</span><span>PEFT</span><span>PyTorch</span><span>HuggingFace</span>
+          </div>
+          <div class="project-metrics">
+            <div class="metric"><i class="fas fa-microchip"></i> 60% cost reduction</div>
+            <div class="metric"><i class="fas fa-star"></i> Domain-specific</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 5 -->
+      <div class="project-card" data-category="ml">
+        <div class="project-img" style="background: linear-gradient(135deg, #1e3c0f, #2d5a17, #1a4a0a);">
+          <div class="project-img-icon"><i class="fas fa-chart-bar"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-category-tag ml">Machine Learning</div>
+          <h3>Demand Forecasting ML System</h3>
+          <p>Scalable demand forecasting engine using XGBoost and Neural Networks for Colgate-Palmolive, achieving 20% prediction accuracy improvement with automated retraining.</p>
+          <div class="tech-stack">
+            <span>XGBoost</span><span>TensorFlow</span><span>Airflow</span><span>MLflow</span><span>PySpark</span>
+          </div>
+          <div class="project-metrics">
+            <div class="metric"><i class="fas fa-chart-line"></i> 20% accuracy gain</div>
+            <div class="metric"><i class="fas fa-sync"></i> Auto-retrain</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 6 -->
+      <div class="project-card" data-category="ml">
+        <div class="project-img" style="background: linear-gradient(135deg, #3b0000, #660000, #8b0000);">
+          <div class="project-img-icon"><i class="fas fa-triangle-exclamation"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-category-tag ml">Machine Learning</div>
+          <h3>Real-Time Anomaly Detection System</h3>
+          <p>Streaming anomaly detection pipeline using Kafka and Isolation Forest for real-time monitoring of enterprise data streams, flagging outliers with 95%+ precision.</p>
+          <div class="tech-stack">
+            <span>Kafka</span><span>Isolation Forest</span><span>Scikit-learn</span><span>FastAPI</span><span>Docker</span>
+          </div>
+          <div class="project-metrics">
+            <div class="metric"><i class="fas fa-bolt"></i> Real-time detection</div>
+            <div class="metric"><i class="fas fa-bullseye"></i> 95%+ precision</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 7 -->
+      <div class="project-card" data-category="nlp">
+        <div class="project-img" style="background: linear-gradient(135deg, #0c1445, #1a237e, #283593);">
+          <div class="project-img-icon"><i class="fas fa-magnifying-glass"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-category-tag nlp">NLP</div>
+          <h3>Semantic Search Engine</h3>
+          <p>Hybrid semantic + keyword search engine using dense embeddings and BM25 scoring, enabling high-relevance document retrieval with millisecond response times.</p>
+          <div class="tech-stack">
+            <span>Sentence Transformers</span><span>Pinecone</span><span>Weaviate</span><span>FastAPI</span>
+          </div>
+          <div class="project-metrics">
+            <div class="metric"><i class="fas fa-search"></i> Hybrid search</div>
+            <div class="metric"><i class="fas fa-clock"></i> &lt;100ms latency</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 8 -->
+      <div class="project-card" data-category="mlops">
+        <div class="project-img" style="background: linear-gradient(135deg, #1c1c1c, #2e2e2e, #3a3a3a);">
+          <div class="project-img-icon"><i class="fas fa-gears"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-category-tag mlops">MLOps</div>
+          <h3>End-to-End MLOps Pipeline</h3>
+          <p>Complete ML lifecycle management system with experiment tracking, model versioning, A/B testing, drift detection, and zero-downtime deployments on Kubernetes.</p>
+          <div class="tech-stack">
+            <span>MLflow</span><span>Kubernetes</span><span>Prometheus</span><span>Grafana</span><span>CI/CD</span>
+          </div>
+          <div class="project-metrics">
+            <div class="metric"><i class="fas fa-shield"></i> Zero downtime</div>
+            <div class="metric"><i class="fas fa-bug"></i> 30% fewer errors</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 9 -->
+      <div class="project-card" data-category="genai">
+        <div class="project-img" style="background: linear-gradient(135deg, #002b36, #004d66, #006080);">
+          <div class="project-img-icon"><i class="fas fa-heartbeat"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-category-tag genai">Generative AI</div>
+          <h3>Healthcare AI Diagnostic Assistant</h3>
+          <p>HIPAA-compliant conversational AI assistant for clinical workflows using RAG + LLM, supporting real-time diagnostic guidance and patient data retrieval for care teams.</p>
+          <div class="tech-stack">
+            <span>GPT-4</span><span>LangChain</span><span>FAISS</span><span>Azure</span><span>FastAPI</span>
+          </div>
+          <div class="project-metrics">
+            <div class="metric"><i class="fas fa-hospital"></i> HIPAA compliant</div>
+            <div class="metric"><i class="fas fa-stethoscope"></i> Clinical AI</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 10 -->
+      <div class="project-card" data-category="ml">
+        <div class="project-img" style="background: linear-gradient(135deg, #1a1a0d, #3d3d00, #595900);">
+          <div class="project-img-icon"><i class="fas fa-eye"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-category-tag ml">Machine Learning</div>
+          <h3>Computer Vision OCR Pipeline</h3>
+          <p>Automated document digitization system combining Vision Transformers with OCR for extracting structured data from unstructured medical records and forms at scale.</p>
+          <div class="tech-stack">
+            <span>ViT</span><span>CLIP</span><span>OpenCV</span><span>Tesseract</span><span>PyTorch</span>
+          </div>
+          <div class="project-metrics">
+            <div class="metric"><i class="fas fa-file-image"></i> Document OCR</div>
+            <div class="metric"><i class="fas fa-percentage"></i> 98% accuracy</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 11 -->
+      <div class="project-card" data-category="mlops">
+        <div class="project-img" style="background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);">
+          <div class="project-img-icon"><i class="fas fa-stream"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-category-tag mlops">MLOps</div>
+          <h3>Real-Time Streaming Prediction System</h3>
+          <p>Event-driven ML inference platform processing Kafka streams with sub-100ms prediction latency, deployed on AWS with autoscaling and live model monitoring dashboards.</p>
+          <div class="tech-stack">
+            <span>Kafka</span><span>TensorFlow</span><span>AWS</span><span>Databricks</span><span>Grafana</span>
+          </div>
+          <div class="project-metrics">
+            <div class="metric"><i class="fas fa-bolt"></i> &lt;100ms inference</div>
+            <div class="metric"><i class="fas fa-expand-arrows-alt"></i> Auto-scaling</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Project 12 -->
+      <div class="project-card" data-category="nlp">
+        <div class="project-img" style="background: linear-gradient(135deg, #1a0033, #3d0080, #4a0096);">
+          <div class="project-img-icon"><i class="fas fa-project-diagram"></i></div>
+          <div class="project-overlay">
+            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <div class="project-category-tag nlp">NLP</div>
+          <h3>Knowledge Graph AI System</h3>
+          <p>Graph-based AI knowledge system using Neo4j and LLMs for entity extraction, relationship mapping, and intelligent traversal across structured enterprise knowledge bases.</p>
+          <div class="tech-stack">
+            <span>Neo4j</span><span>LlamaIndex</span><span>NER</span><span>BERT</span><span>GraphQL</span>
+          </div>
+          <div class="project-metrics">
+            <div class="metric"><i class="fas fa-share-alt"></i> Graph reasoning</div>
+            <div class="metric"><i class="fas fa-link"></i> Entity linking</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /projects-grid -->
   </div>
 </section>
 
 <!-- EXPERIENCE -->
+<section id="experience" class="section reveal">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">My Journey</span>
+      <h2>Work <span class="accent">Experience</span></h2>
+      <p>Building AI solutions that scale from prototype to production</p>
+    </div>
+    <div class="timeline">
 
-    
-<section id="experience" class="fade-in">
-  <h2>Experience</h2>
-  <div class="timeline">
-  
-  <div class="timeline-item">
-  <div class="timeline-date">Sep 2024 – Present</div>
-  <div class="timeline-content">
-    <h3>Generative AI Engineer – Ascension Via Christi</h3>
-    <ul>
-    <li>Architected and deployed production-grade Retrieval-Augmented Generation (RAG) pipelines using Large Language Mod
-els (LLMs), improving answer relevance by 40% and enabling real-time AI applications.</li>
-    <li>Engineered scalable ETL and embedding pipelines that process over 50,000 documents using Python, Apache Spark,
-and FAISS, enabling faster data ingestion and supporting downstream AI models.</li>
-    <li>Designed and optimized Natural Language Processing (NLP) pipelines for summarization and information extraction,
-reducing manual effort by 30%.</li>
-    <li>Developed prompt engineering and prompt optimization strategies improving LLM accuracy and reducing hallucinations
-in production environments.</li>
-    <li>Built semantic search and vector search systems using embeddings and vector databases for low-latency retrieval.</li>
-    <li>Integrated OpenAI and Azure OpenAI APIs via RESTful APIs (Application Programming Interfaces), enabling real-time
-AI-driven solutions.</li>
-    <li>Architected microservices and deployed scalable ML systems using Docker, Kubernetes, and CI/CD pipelines.</li>
-    <li>Implemented MLOps pipelines with MLflow for model deployment, monitoring, and versioning, enabling automated model
-updates and decreasing deployment errors by 30%.</li>
-    <li>Optimized SQL and Databricks pipelines reducing data processing time and improving system performance.</li>
-    <li>Collaborated with data engineers, clinicians, and product managers using Airflow and classification models to design and
-launch AI-driven diagnostic tools that met business objectives and improved patient workflow efficiency.</li>
-    </ul>
-  </div>
-  </div>
+      <div class="timeline-item reveal-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <h3>Generative AI Engineer</h3>
+              <div class="timeline-company"><i class="fas fa-building"></i> Ascension Via Christi Health &nbsp;|&nbsp; <i class="fas fa-map-marker-alt"></i> Wichita, KS</div>
+            </div>
+            <div class="timeline-date">Sep 2024 – Present</div>
+          </div>
+          <ul class="timeline-bullets">
+            <li>Architected production-grade RAG pipelines using LLMs, improving answer relevance by <strong>40%</strong> and enabling real-time AI decision support across clinical workflows.</li>
+            <li>Engineered scalable ETL and embedding pipelines processing <strong>50,000+ clinical documents</strong> using Python, Apache Spark, and FAISS.</li>
+            <li>Designed NLP pipelines for clinical text summarization and information extraction, <strong>reducing manual effort by 30%</strong>.</li>
+            <li>Implemented end-to-end MLOps pipelines with MLflow, <strong>reducing deployment errors by 30%</strong> and enabling zero-downtime releases.</li>
+            <li>Integrated OpenAI and Azure OpenAI APIs into enterprise clinical applications ensuring <strong>HIPAA compliance</strong>.</li>
+          </ul>
+          <div class="timeline-tech"><span>LangChain</span><span>Azure OpenAI</span><span>FAISS</span><span>MLflow</span><span>Kubernetes</span><span>Apache Spark</span></div>
+        </div>
+      </div>
 
+      <div class="timeline-item reveal-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <h3>Machine Learning Engineer</h3>
+              <div class="timeline-company"><i class="fas fa-building"></i> Colgate-Palmolive &nbsp;|&nbsp; <i class="fas fa-map-marker-alt"></i> Topeka, KS</div>
+            </div>
+            <div class="timeline-date">Dec 2023 – Aug 2024</div>
+          </div>
+          <ul class="timeline-bullets">
+            <li>Built predictive analytics and demand forecasting models improving <strong>prediction accuracy by 20%</strong> using XGBoost, Random Forest, and Neural Networks.</li>
+            <li>Optimized SQL queries and Apache Spark pipelines, <strong>reducing data processing time by 25%</strong>.</li>
+            <li>Deployed ML models as REST APIs using FastAPI and Docker, enabling low-latency real-time inference.</li>
+            <li>Automated model retraining workflows, <strong>cutting deployment time by 20%</strong>.</li>
+          </ul>
+          <div class="timeline-tech"><span>XGBoost</span><span>TensorFlow</span><span>Kafka</span><span>FastAPI</span><span>Airflow</span><span>Docker</span></div>
+        </div>
+      </div>
 
-  <div class="timeline-item">
-  <div class="timeline-date">Dec 2023 – Aug 2024</div>
-  <div class="timeline-content">
-    <h3>Machine Learning Engineer – Colgate-Palmolive</h3>
-    <ul>
-    <li>Developed end-to-end machine learning pipelines using Python, MLflow, and CI/CD pipelines, enabling scalable model
-deployment across production environments.</li>
-    <li>Built predictive analytics and forecasting models improving prediction accuracy by 20%.</li>
-    <li>Processed large-scale datasets using Apache Spark and optimized SQL queries reducing processing time by 25%.</li>
-    <li>Designed ETL and data pipelines with Apache Airflow and dbt, supporting machine-learning workflows and delivering
-faster data availability for model training.</li>
-    <li>Performed feature engineering, model evaluation, and hyperparameter tuning using TensorFlow, which optimized model
-performance and reduced prediction error.</li>
-    <li>Deployed machine learning models as RESTful APIs using FastAPI, Docker, and Git, enabling real-time inference for
-customer-facing applications.</li>
-    <li>Built real-time prediction systems with TensorFlow and Kafka, allowing business users to make faster decisions based on
-up-to-date forecasts.</li>
-    <li>Automated model retraining pipelines with Apache Airflow and Docker, reducing manual effort and speeding up deploy
-ment cycles.</li>
-    <li>Collaborated with stakeholders and engineering teams in Agile environments to deliver scalable solutions.</li>
-    </ul>
-  </div>
-  </div>
+      <div class="timeline-item reveal-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-header">
+            <div>
+              <h3>Machine Learning Engineer</h3>
+              <div class="timeline-company"><i class="fas fa-building"></i> Maxton Technology Pvt. Ltd. &nbsp;|&nbsp; <i class="fas fa-map-marker-alt"></i> Bangalore, India</div>
+            </div>
+            <div class="timeline-date">Aug 2022 – Aug 2023</div>
+          </div>
+          <ul class="timeline-bullets">
+            <li>Developed ML models for demand forecasting, anomaly detection, and predictive analytics, <strong>improving accuracy by 15%</strong>.</li>
+            <li>Built scalable ETL pipelines <strong>reducing pipeline latency by 25%</strong> using Python and distributed systems.</li>
+            <li>Designed data pipelines on GCP for large-scale processing and downstream analytics.</li>
+            <li>Deployed models via Flask, Docker, and RESTful APIs enabling real-time production inference.</li>
+          </ul>
+          <div class="timeline-tech"><span>Python</span><span>GCP</span><span>Flask</span><span>Docker</span><span>Scikit-learn</span></div>
+        </div>
+      </div>
 
-  <div class="timeline-item">
-  <div class="timeline-date">Aug 2022 – Aug 2023</div>
-  <div class="timeline-content">
-    <h3>Machine Learning Engineer – Maxton Technology</h3>
-    <ul>
-    <li>Developed machine learning models for forecasting, anomaly detection, and predictive analytics improving accuracy by
-15%.</li>
-    <li>Built data preprocessing and scalable ETL pipelines with Python and distributed-computing frameworks, enabling faster
-data ingestion and reducing pipeline latency.</li>
-    <li>Designed data pipelines on Google Cloud Platform (GCP) for large-scale processing, improving data availability for down
-stream analytics.</li>
-    <li>Performed exploratory data analysis (EDA), feature engineering, and statistical modeling, uncovering key features that
-boosted model performance.</li>
-    <li>Evaluated models using cross-validation and metrics such as AUC and RMSE, selecting the best-performing model and
-increasing prediction reliability.</li>
-    <li>Deployed machine learning models using Flask, Docker, and RESTful APIs, enabling real-time predictions for production
-systems and improving inference latency.</li>
-    <li>Built reusable machine learning pipelines and scalable architectures, improving model training speed and deployment
-efficiency for enterprise applications.</li>
-    </ul>
-  </div>
-  </div>
+      <!-- Education -->
+      <div class="timeline-item reveal-item edu-item">
+        <div class="timeline-dot edu-dot"></div>
+        <div class="timeline-card edu-card">
+          <div class="timeline-header">
+            <div>
+              <h3>M.S. in Artificial Intelligence</h3>
+              <div class="timeline-company"><i class="fas fa-university"></i> Saint Louis University &nbsp;|&nbsp; <i class="fas fa-map-marker-alt"></i> St. Louis, MO</div>
+            </div>
+            <div class="timeline-date">Aug 2023 – Dec 2025</div>
+          </div>
+          <div class="certifications">
+            <span class="cert"><i class="fas fa-certificate"></i> AWS Certified Data Analytics</span>
+            <span class="cert"><i class="fas fa-certificate"></i> Future Skills Prime — AI</span>
+            <span class="cert"><i class="fas fa-certificate"></i> Future Skills Prime — Data Science</span>
+            <span class="cert"><i class="fas fa-certificate"></i> Future Skills Prime — NLP</span>
+            <span class="cert"><i class="fas fa-certificate"></i> Coursera — Machine Learning</span>
+          </div>
+        </div>
+      </div>
 
+    </div>
   </div>
 </section>
 
-<section id="contact" class="fade-in">
-  <h2>Get In Touch</h2>
-
-  <div class="contact-wrapper">
-
-    <form action="https://formspree.io/f/xreolyjo" method="POST" class="contact-form">
-
-      <h3>Send Me a Message 🚀</h3>
-
-      <input type="text" name="name" placeholder="Your Name" required>
-
-      <input type="email" name="email" placeholder="Your Email" required>
-
-      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
-
-      <input type="hidden" name="_subject" value="New Portfolio Message">
-
-      <button type="submit">Send Message</button>
-
-    </form>
-
+<!-- CONTACT -->
+<section id="contact" class="section reveal">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-label">Let's Connect</span>
+      <h2>Get In <span class="accent">Touch</span></h2>
+      <p>Open to roles in AI Engineering, ML Engineering, and Data Science</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Let's build something great</h3>
+        <p>I'm actively looking for opportunities in Generative AI, Machine Learning, and Data Engineering. Whether you have a project, a role, or just want to talk AI — I'd love to hear from you.</p>
+        <div class="contact-links">
+          <a href="mailto:srinivasgampasani7@gmail.com" class="contact-link">
+            <div class="contact-link-icon"><i class="fas fa-envelope"></i></div>
+            <div><div class="contact-link-label">Email</div><div class="contact-link-val">srinivasgampasani7@gmail.com</div></div>
+          </a>
+          <a href="https://www.linkedin.com/in/srinivas-gampasani-85338b235/" target="_blank" class="contact-link">
+            <div class="contact-link-icon"><i class="fab fa-linkedin-in"></i></div>
+            <div><div class="contact-link-label">LinkedIn</div><div class="contact-link-val">srinivas-gampasani</div></div>
+          </a>
+          <a href="https://github.com/srinivas-gampasani" target="_blank" class="contact-link">
+            <div class="contact-link-icon"><i class="fab fa-github"></i></div>
+            <div><div class="contact-link-label">GitHub</div><div class="contact-link-val">srinivas-gampasani</div></div>
+          </a>
+          <a href="tel:+13145483799" class="contact-link">
+            <div class="contact-link-icon"><i class="fas fa-phone"></i></div>
+            <div><div class="contact-link-label">Phone</div><div class="contact-link-val">+1 314-548-3799</div></div>
+          </a>
+        </div>
+      </div>
+      <form class="contact-form" action="https://formspree.io/f/xreolyjo" method="POST">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Your Name</label>
+            <input type="text" name="name" placeholder="John Doe" required>
+          </div>
+          <div class="form-group">
+            <label>Your Email</label>
+            <input type="email" name="email" placeholder="john@example.com" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" name="subject" placeholder="Job opportunity / Collaboration">
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea name="message" rows="5" placeholder="Tell me about the opportunity..." required></textarea>
+        </div>
+        <input type="hidden" name="_subject" value="New Portfolio Message">
+        <button type="submit" class="btn-primary full-width">
+          <i class="fas fa-paper-plane"></i> Send Message
+        </button>
+        <p class="form-note"><i class="fas fa-check-circle"></i> I typically respond within 24 hours.</p>
+      </form>
+    </div>
   </div>
-
-  <p class="form-note">✔ I’ll get back to you within 24 hours.</p>
 </section>
-  
-
 
 <footer>
-  <p>© 2026 Srinivasarao Gampasani</p>
+  <div class="footer-inner">
+    <div class="footer-logo">SG<span class="dot">.</span></div>
+    <p>© 2026 Srinivas Gampasani · AI & ML Engineer · St. Louis, MO</p>
+    <div class="footer-social">
+      <a href="mailto:srinivasgampasani7@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="https://www.linkedin.com/in/srinivas-gampasani-85338b235/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://github.com/srinivas-gampasani" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
 </footer>
 
-<script>
-const text = "AI Engineer | Generative AI Engineer | ML Engineer";
-let i = 0;
+<button class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
-function typing() {
-  if (i < text.length) {
-    document.getElementById("typing").innerHTML += text.charAt(i);
-    i++;
-    setTimeout(typing, 40);
+<script>
+// ── Particle canvas background ──
+const canvas = document.getElementById('bg-canvas');
+const ctx = canvas.getContext('2d');
+let W, H, particles = [];
+
+function resize() {
+  W = canvas.width = window.innerWidth;
+  H = canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+class Particle {
+  constructor() { this.reset(); }
+  reset() {
+    this.x = Math.random() * W;
+    this.y = Math.random() * H;
+    this.r = Math.random() * 1.5 + 0.3;
+    this.vx = (Math.random() - 0.5) * 0.3;
+    this.vy = (Math.random() - 0.5) * 0.3;
+    this.alpha = Math.random() * 0.4 + 0.1;
+  }
+  update() {
+    this.x += this.vx; this.y += this.vy;
+    if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
+  }
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(0,212,255,${this.alpha})`;
+    ctx.fill();
   }
 }
 
-typing();
-</script>
-<script>
-const elements = document.querySelectorAll('.fade-in');
+for (let i = 0; i < 90; i++) particles.push(new Particle());
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
+function drawLines() {
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      if (d < 100) {
+        ctx.strokeStyle = `rgba(0,212,255,${0.06 * (1 - d/100)})`;
+        ctx.lineWidth = 0.5;
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
     }
+  }
+}
+
+function animate() {
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => { p.update(); p.draw(); });
+  drawLines();
+  requestAnimationFrame(animate);
+}
+animate();
+
+// ── Typing effect ──
+const roles = [
+  'Generative AI Engineer',
+  'Machine Learning Engineer',
+  'LLM Systems Architect',
+  'Data Engineer',
+  'RAG Pipeline Specialist'
+];
+let roleIdx = 0, charIdx = 0, deleting = false;
+
+function typeEffect() {
+  const el = document.getElementById('typing-text');
+  const current = roles[roleIdx];
+  if (!deleting) {
+    el.textContent = current.slice(0, ++charIdx);
+    if (charIdx === current.length) { deleting = true; setTimeout(typeEffect, 1800); return; }
+  } else {
+    el.textContent = current.slice(0, --charIdx);
+    if (charIdx === 0) { deleting = false; roleIdx = (roleIdx + 1) % roles.length; }
+  }
+  setTimeout(typeEffect, deleting ? 45 : 65);
+}
+typeEffect();
+
+// ── Navbar scroll behaviour ──
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+  document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 300);
+});
+
+// ── Mobile menu ──
+document.getElementById('menu-toggle').addEventListener('click', function() {
+  document.getElementById('mobile-menu').classList.toggle('open');
+  this.classList.toggle('active');
+});
+document.querySelectorAll('#mobile-menu a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('mobile-menu').classList.remove('open');
+    document.getElementById('menu-toggle').classList.remove('active');
   });
 });
 
-elements.forEach(el => observer.observe(el));
-</script>
-<script>
-const toggle = document.getElementById("darkModeToggle");
+// ── Intersection Observer for reveal animations ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+document.querySelectorAll('.reveal, .reveal-item').forEach(el => observer.observe(el));
 
-toggle.onclick = () => {
-  document.body.classList.toggle("dark");
-};
-</script>
+// ── Project filter ──
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+    const filter = this.dataset.filter;
+    document.querySelectorAll('.project-card').forEach(card => {
+      const show = filter === 'all' || card.dataset.category === filter;
+      card.style.opacity = show ? '1' : '0.15';
+      card.style.transform = show ? 'scale(1)' : 'scale(0.95)';
+      card.style.pointerEvents = show ? 'auto' : 'none';
+    });
+  });
+});
 
+// ── Back to top ──
+document.getElementById('back-to-top').addEventListener('click', () => {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+// ── Active nav link ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('header nav a');
+window.addEventListener('scroll', () => {
+  let current = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 120) current = s.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+</script>
 </body>
 </html>
