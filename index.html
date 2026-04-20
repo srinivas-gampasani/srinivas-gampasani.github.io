@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,23 +16,24 @@
 <!-- NAVBAR -->
 <header id="navbar">
   <div class="nav-inner">
-    <div class="nav-logo">SG<span class="dot">.</span></div>
+    <a href="index.html" class="nav-logo">SG<span class="dot">.</span></a>
     <nav>
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
-      <a href="#projects">Projects</a>
+      <a href="projects.html">Projects</a>
       <a href="#experience">Experience</a>
       <a href="#contact">Contact</a>
     </nav>
     <a href="assets/Srinivas Resume.pdf" target="_blank" class="nav-resume">
       <i class="fas fa-download"></i> Resume
     </a>
+    <button id="theme-toggle" aria-label="Toggle theme" title="Toggle dark/light mode">☀️</button>
     <button id="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
   </div>
   <div class="mobile-menu" id="mobile-menu">
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
+    <a href="projects.html">Projects</a>
     <a href="#experience">Experience</a>
     <a href="#contact">Contact</a>
     <a href="assets/Srinivas Resume.pdf" target="_blank">Download Resume</a>
@@ -59,7 +60,7 @@
         <div class="stat"><span class="stat-num">3+</span><span class="stat-lbl">Years experience</span></div>
       </div>
       <div class="hero-btns animate-up delay-5">
-        <a href="#projects" class="btn-primary">View My Work</a>
+        <a href="projects.html" class="btn-primary">View My Work</a>
         <a href="#contact" class="btn-outline">Contact Me</a>
       </div>
       <div class="social-row animate-up delay-5">
@@ -158,7 +159,7 @@
   </div>
 </section>
 
-<!-- PROJECTS -->
+<!-- PROJECTS PREVIEW -->
 <section id="projects" class="section reveal">
   <div class="section-inner">
     <div class="section-header">
@@ -182,7 +183,7 @@
         <div class="project-img" style="background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);">
           <div class="project-img-icon"><i class="fas fa-brain"></i></div>
           <div class="project-overlay">
-            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+            <a href="projects.html#rag" class="overlay-btn"><i class="fas fa-arrow-right"></i> Details</a>
           </div>
         </div>
         <div class="project-body">
@@ -204,7 +205,7 @@
         <div class="project-img" style="background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);">
           <div class="project-img-icon"><i class="fas fa-stethoscope"></i></div>
           <div class="project-overlay">
-            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+            <a href="projects.html#clinical-nlp" class="overlay-btn"><i class="fas fa-arrow-right"></i> Details</a>
           </div>
         </div>
         <div class="project-body">
@@ -226,7 +227,7 @@
         <div class="project-img" style="background: linear-gradient(135deg, #0d0d0d, #1a0533, #2d0b63);">
           <div class="project-img-icon"><i class="fas fa-sitemap"></i></div>
           <div class="project-overlay">
-            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+            <a href="projects.html#multi-agent" class="overlay-btn"><i class="fas fa-arrow-right"></i> Details</a>
           </div>
         </div>
         <div class="project-body">
@@ -248,7 +249,7 @@
         <div class="project-img" style="background: linear-gradient(135deg, #0a2342, #126872, #0d4e4e);">
           <div class="project-img-icon"><i class="fas fa-sliders"></i></div>
           <div class="project-overlay">
-            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+            <a href="projects.html#lora" class="overlay-btn"><i class="fas fa-arrow-right"></i> Details</a>
           </div>
         </div>
         <div class="project-body">
@@ -270,7 +271,7 @@
         <div class="project-img" style="background: linear-gradient(135deg, #1e3c0f, #2d5a17, #1a4a0a);">
           <div class="project-img-icon"><i class="fas fa-chart-bar"></i></div>
           <div class="project-overlay">
-            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+            <a href="projects.html#demand-forecast" class="overlay-btn"><i class="fas fa-arrow-right"></i> Details</a>
           </div>
         </div>
         <div class="project-body">
@@ -292,7 +293,7 @@
         <div class="project-img" style="background: linear-gradient(135deg, #3b0000, #660000, #8b0000);">
           <div class="project-img-icon"><i class="fas fa-triangle-exclamation"></i></div>
           <div class="project-overlay">
-            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
+            <a href="projects.html#anomaly" class="overlay-btn"><i class="fas fa-arrow-right"></i> Details</a>
           </div>
         </div>
         <div class="project-body">
@@ -309,139 +310,17 @@
         </div>
       </div>
 
-      <!-- Project 7 -->
-      <div class="project-card" data-category="nlp">
-        <div class="project-img" style="background: linear-gradient(135deg, #0c1445, #1a237e, #283593);">
-          <div class="project-img-icon"><i class="fas fa-magnifying-glass"></i></div>
-          <div class="project-overlay">
-            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-category-tag nlp">NLP</div>
-          <h3>Semantic Search Engine</h3>
-          <p>Hybrid semantic + keyword search engine using dense embeddings and BM25 scoring, enabling high-relevance document retrieval with millisecond response times.</p>
-          <div class="tech-stack">
-            <span>Sentence Transformers</span><span>Pinecone</span><span>Weaviate</span><span>FastAPI</span>
-          </div>
-          <div class="project-metrics">
-            <div class="metric"><i class="fas fa-search"></i> Hybrid search</div>
-            <div class="metric"><i class="fas fa-clock"></i> &lt;100ms latency</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 8 -->
-      <div class="project-card" data-category="mlops">
-        <div class="project-img" style="background: linear-gradient(135deg, #1c1c1c, #2e2e2e, #3a3a3a);">
-          <div class="project-img-icon"><i class="fas fa-gears"></i></div>
-          <div class="project-overlay">
-            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-category-tag mlops">MLOps</div>
-          <h3>End-to-End MLOps Pipeline</h3>
-          <p>Complete ML lifecycle management system with experiment tracking, model versioning, A/B testing, drift detection, and zero-downtime deployments on Kubernetes.</p>
-          <div class="tech-stack">
-            <span>MLflow</span><span>Kubernetes</span><span>Prometheus</span><span>Grafana</span><span>CI/CD</span>
-          </div>
-          <div class="project-metrics">
-            <div class="metric"><i class="fas fa-shield"></i> Zero downtime</div>
-            <div class="metric"><i class="fas fa-bug"></i> 30% fewer errors</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 9 -->
-      <div class="project-card" data-category="genai">
-        <div class="project-img" style="background: linear-gradient(135deg, #002b36, #004d66, #006080);">
-          <div class="project-img-icon"><i class="fas fa-heartbeat"></i></div>
-          <div class="project-overlay">
-            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-category-tag genai">Generative AI</div>
-          <h3>Healthcare AI Diagnostic Assistant</h3>
-          <p>HIPAA-compliant conversational AI assistant for clinical workflows using RAG + LLM, supporting real-time diagnostic guidance and patient data retrieval for care teams.</p>
-          <div class="tech-stack">
-            <span>GPT-4</span><span>LangChain</span><span>FAISS</span><span>Azure</span><span>FastAPI</span>
-          </div>
-          <div class="project-metrics">
-            <div class="metric"><i class="fas fa-hospital"></i> HIPAA compliant</div>
-            <div class="metric"><i class="fas fa-stethoscope"></i> Clinical AI</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 10 -->
-      <div class="project-card" data-category="ml">
-        <div class="project-img" style="background: linear-gradient(135deg, #1a1a0d, #3d3d00, #595900);">
-          <div class="project-img-icon"><i class="fas fa-eye"></i></div>
-          <div class="project-overlay">
-            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-category-tag ml">Machine Learning</div>
-          <h3>Computer Vision OCR Pipeline</h3>
-          <p>Automated document digitization system combining Vision Transformers with OCR for extracting structured data from unstructured medical records and forms at scale.</p>
-          <div class="tech-stack">
-            <span>ViT</span><span>CLIP</span><span>OpenCV</span><span>Tesseract</span><span>PyTorch</span>
-          </div>
-          <div class="project-metrics">
-            <div class="metric"><i class="fas fa-file-image"></i> Document OCR</div>
-            <div class="metric"><i class="fas fa-percentage"></i> 98% accuracy</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 11 -->
-      <div class="project-card" data-category="mlops">
-        <div class="project-img" style="background: linear-gradient(135deg, #0d1b2a, #1b263b, #415a77);">
-          <div class="project-img-icon"><i class="fas fa-stream"></i></div>
-          <div class="project-overlay">
-            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-category-tag mlops">MLOps</div>
-          <h3>Real-Time Streaming Prediction System</h3>
-          <p>Event-driven ML inference platform processing Kafka streams with sub-100ms prediction latency, deployed on AWS with autoscaling and live model monitoring dashboards.</p>
-          <div class="tech-stack">
-            <span>Kafka</span><span>TensorFlow</span><span>AWS</span><span>Databricks</span><span>Grafana</span>
-          </div>
-          <div class="project-metrics">
-            <div class="metric"><i class="fas fa-bolt"></i> &lt;100ms inference</div>
-            <div class="metric"><i class="fas fa-expand-arrows-alt"></i> Auto-scaling</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Project 12 -->
-      <div class="project-card" data-category="nlp">
-        <div class="project-img" style="background: linear-gradient(135deg, #1a0033, #3d0080, #4a0096);">
-          <div class="project-img-icon"><i class="fas fa-project-diagram"></i></div>
-          <div class="project-overlay">
-            <a href="https://github.com/srinivas-gampasani" target="_blank" class="overlay-btn"><i class="fab fa-github"></i> Code</a>
-          </div>
-        </div>
-        <div class="project-body">
-          <div class="project-category-tag nlp">NLP</div>
-          <h3>Knowledge Graph AI System</h3>
-          <p>Graph-based AI knowledge system using Neo4j and LLMs for entity extraction, relationship mapping, and intelligent traversal across structured enterprise knowledge bases.</p>
-          <div class="tech-stack">
-            <span>Neo4j</span><span>LlamaIndex</span><span>NER</span><span>BERT</span><span>GraphQL</span>
-          </div>
-          <div class="project-metrics">
-            <div class="metric"><i class="fas fa-share-alt"></i> Graph reasoning</div>
-            <div class="metric"><i class="fas fa-link"></i> Entity linking</div>
-          </div>
-        </div>
-      </div>
-
     </div><!-- /projects-grid -->
+
+    <!-- View all projects CTA -->
+    <div class="view-all-projects">
+      <a href="projects.html">
+        <i class="fas fa-th-large"></i>
+        View All 13 Projects — Full Case Studies
+        <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+
   </div>
 </section>
 
@@ -616,10 +495,32 @@
 <button class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
 <script>
+// ── Theme Toggle ──
+const html = document.documentElement;
+const themeBtn = document.getElementById('theme-toggle');
+
+// Load saved theme
+const savedTheme = localStorage.getItem('sg-theme') || 'dark';
+html.setAttribute('data-theme', savedTheme);
+themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+themeBtn.addEventListener('click', () => {
+  const current = html.getAttribute('data-theme');
+  const next = current === 'dark' ? 'light' : 'dark';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('sg-theme', next);
+  themeBtn.textContent = next === 'dark' ? '☀️' : '🌙';
+
+  // Update particle color dynamically
+  particleColor = next === 'dark' ? 'rgba(0,212,255,' : 'rgba(0,119,182,';
+});
+
 // ── Particle canvas background ──
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
 let W, H, particles = [];
+let particleColor = html.getAttribute('data-theme') === 'dark'
+  ? 'rgba(0,212,255,' : 'rgba(0,119,182,';
 
 function resize() {
   W = canvas.width = window.innerWidth;
@@ -645,7 +546,7 @@ class Particle {
   draw() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(0,212,255,${this.alpha})`;
+    ctx.fillStyle = `${particleColor}${this.alpha})`;
     ctx.fill();
   }
 }
@@ -659,7 +560,7 @@ function drawLines() {
       const dy = particles[i].y - particles[j].y;
       const d = Math.sqrt(dx*dx + dy*dy);
       if (d < 100) {
-        ctx.strokeStyle = `rgba(0,212,255,${0.06 * (1 - d/100)})`;
+        ctx.strokeStyle = `${particleColor}${0.06 * (1 - d/100)})`;
         ctx.lineWidth = 0.5;
         ctx.beginPath();
         ctx.moveTo(particles[i].x, particles[i].y);
