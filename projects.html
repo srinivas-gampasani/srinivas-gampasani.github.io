@@ -792,7 +792,11 @@ const savedTheme = localStorage.getItem('sg-theme') || 'dark';
 html.setAttribute('data-theme', savedTheme);
 themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 
-let particleColor = savedTheme === 'dark' ? 'rgba(0,212,255,' : 'rgba(0,119,182,';
+function getParticleColor(theme) {
+  return theme === 'dark' ? 'rgba(0,212,255,' : 'rgba(0,119,182,';
+}
+
+let particleColor = getParticleColor(savedTheme);
 
 themeBtn.addEventListener('click', () => {
   const current = html.getAttribute('data-theme');
@@ -800,7 +804,7 @@ themeBtn.addEventListener('click', () => {
   html.setAttribute('data-theme', next);
   localStorage.setItem('sg-theme', next);
   themeBtn.textContent = next === 'dark' ? '☀️' : '🌙';
-  particleColor = next === 'dark' ? 'rgba(0,212,255,' : 'rgba(0,119,182,';
+  particleColor = getParticleColor(next);
 });
 
 // ── Particle canvas ──
