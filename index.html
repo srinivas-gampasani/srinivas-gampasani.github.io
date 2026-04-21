@@ -499,10 +499,15 @@
 const html = document.documentElement;
 const themeBtn = document.getElementById('theme-toggle');
 
-// Load saved theme
+// Load saved theme and apply immediately (before paint)
 const savedTheme = localStorage.getItem('sg-theme') || 'dark';
 html.setAttribute('data-theme', savedTheme);
 themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+// Update particle color based on theme
+function getParticleColor(theme) {
+  return theme === 'dark' ? 'rgba(0,212,255,' : 'rgba(0,119,182,';
+}
 
 themeBtn.addEventListener('click', () => {
   const current = html.getAttribute('data-theme');
@@ -512,15 +517,14 @@ themeBtn.addEventListener('click', () => {
   themeBtn.textContent = next === 'dark' ? '☀️' : '🌙';
 
   // Update particle color dynamically
-  particleColor = next === 'dark' ? 'rgba(0,212,255,' : 'rgba(0,119,182,';
+  particleColor = getParticleColor(next);
 });
 
 // ── Particle canvas background ──
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
 let W, H, particles = [];
-let particleColor = html.getAttribute('data-theme') === 'dark'
-  ? 'rgba(0,212,255,' : 'rgba(0,119,182,';
+let particleColor = getParticleColor(html.getAttribute('data-theme'));
 
 function resize() {
   W = canvas.width = window.innerWidth;
