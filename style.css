@@ -53,12 +53,13 @@
 }
 
 /* ── Theme transition ── */
-body, header, .skill-card, .project-card, .timeline-card,
-.contact-link, .contact-form, footer, .mobile-menu,
-.floating-badge, .social-row a, .footer-social a,
-.filter-btn, .back-to-top, .overlay-btn, .cert {
-  transition: background 0.3s ease, color 0.3s ease,
-              border-color 0.3s ease, box-shadow 0.3s ease;
+*, *::before, *::after {
+  transition: background-color 0.35s ease, color 0.35s ease,
+              border-color 0.35s ease, box-shadow 0.35s ease;
+}
+/* Don't transition layout/transform properties */
+.animate-up, .reveal, .reveal-item, canvas {
+  transition: none;
 }
 
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -394,8 +395,11 @@ header nav a:hover, header nav a.active {
 }
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
+}
+@media (max-width: 1100px) {
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
 }
 .skill-card {
   background: var(--surface);
@@ -468,8 +472,11 @@ header nav a:hover, header nav a.active {
 }
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
+}
+@media (max-width: 1100px) {
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* View all projects link */
@@ -496,6 +503,8 @@ header nav a:hover, header nav a.active {
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
   transition: transform 0.35s ease, box-shadow 0.35s ease, opacity 0.35s ease, border-color 0.35s ease;
 }
 .project-card:hover {
@@ -540,7 +549,7 @@ header nav a:hover, header nav a.active {
 }
 .overlay-btn:hover { background: rgba(0,212,255,0.15); }
 
-.project-body { padding: 22px; }
+.project-body { padding: 22px; display: flex; flex-direction: column; flex: 1; }
 .project-category-tag {
   display: inline-block; font-size: 0.7rem; font-weight: 700;
   text-transform: uppercase; letter-spacing: 0.1em;
@@ -553,7 +562,7 @@ header nav a:hover, header nav a.active {
 [data-theme="light"] .project-category-tag.nlp { color: #d97706; }
 
 .project-body h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; line-height: 1.4; }
-.project-body p { color: var(--text2); font-size: 0.875rem; line-height: 1.7; margin-bottom: 16px; }
+.project-body p { color: var(--text2); font-size: 0.875rem; line-height: 1.7; margin-bottom: 16px; flex: 1; }
 .tech-stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
 .tech-stack span {
   background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
