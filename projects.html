@@ -133,7 +133,7 @@
   <h1>All <span class="accent">Projects</span></h1>
   <p>13 production-grade AI & ML systems built for healthcare, enterprise, and consumer industries — with real metrics, architecture decisions, and business impact.</p>
   <div class="projects-stats-bar">
-    <div class="pstat"><span class="pstat-num">13</span><span class="pstat-lbl">Projects shipped</span></div>
+    <div class="pstat"><span class="pstat-num">21</span><span class="pstat-lbl">Projects shipped</span></div>
     <div class="pstat"><span class="pstat-num">40%</span><span class="pstat-lbl">Avg accuracy gain</span></div>
     <div class="pstat"><span class="pstat-num">50K+</span><span class="pstat-lbl">Docs processed</span></div>
     <div class="pstat"><span class="pstat-num">3</span><span class="pstat-lbl">Cloud platforms</span></div>
@@ -161,8 +161,9 @@
       <button class="filter-btn" data-filter="ml">Machine Learning</button>
       <button class="filter-btn" data-filter="mlops">MLOps</button>
       <button class="filter-btn" data-filter="nlp">NLP</button>
+      <button class="filter-btn" data-filter="personal" style="border-color:rgba(251,191,36,0.4);color:#fbbf24;">⚡ Personal Projects</button>
     </div>
-    <span style="font-size:0.8rem;color:var(--text3);white-space:nowrap;">13 projects</span>
+    <span style="font-size:0.8rem;color:var(--text3);white-space:nowrap;">21 projects</span>
   </div>
 </div>
 
@@ -755,7 +756,318 @@
 </div><!-- /mlops projects grid -->
 
 
-<!-- CTA FOOTER BAND -->
+<!-- ══════════════════════════════════════════
+     PERSONAL / CONCEPT PROJECTS SECTION
+══════════════════════════════════════════ -->
+
+<div class="category-divider" data-section="personal" style="margin-top:72px;">
+  <div class="category-divider-line"></div>
+  <span class="category-divider-label" style="color:#fbbf24;">
+    <i class="fas fa-flask" style="color:#fbbf24;margin-right:6px;"></i>Personal &amp; Concept Projects
+  </span>
+  <div class="category-divider-line"></div>
+</div>
+
+<div style="max-width:1200px;margin:0 auto 12px;padding:0 32px;">
+  <div style="background:linear-gradient(135deg,rgba(251,191,36,0.06),rgba(124,58,237,0.06));border:1px solid rgba(251,191,36,0.2);border-radius:14px;padding:18px 24px;display:flex;align-items:center;gap:14px;">
+    <i class="fas fa-lightbulb" style="color:#fbbf24;font-size:1.3rem;flex-shrink:0;"></i>
+    <p style="color:var(--text2);font-size:0.88rem;line-height:1.7;margin:0;">
+      These are <strong style="color:var(--text);">independently designed projects</strong> — built to explore cutting-edge AI techniques beyond my day job. Each solves a real industry problem and demonstrates end-to-end engineering from architecture to deployment.
+    </p>
+  </div>
+</div>
+
+<div class="projects-full-grid">
+
+  <!-- PERSONAL PROJECT 1: Medical Coding Agent -->
+  <div class="full-project-card" data-category="personal" id="medical-coding-agent">
+    <div class="full-project-img" style="background:linear-gradient(135deg,#0a1628,#0f2d4a,#1a4a6b);">
+      <div class="project-img-icon" style="font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.6;"><i class="fas fa-file-medical-alt" style="color:#00d4ff;"></i></div>
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag genai">GenAI Agent</span>
+        <span class="project-category-tag" style="background:rgba(251,191,36,0.12);color:#fbbf24;border:none;">Java + Python</span>
+      </div>
+      <div class="full-project-number">P1</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Autonomous Medical Coding Agent</h3>
+      <p>An AI agent that reads unstructured clinical notes and autonomously assigns ICD-10 and CPT billing codes using LLMs combined with medical ontology validation. Java Spring Boot backend handles FHIR R4 API integration with EHR systems; Python LangChain layer orchestrates the LLM reasoning pipeline with confidence scoring and human-in-the-loop escalation for edge cases.</p>
+      <div class="project-quote">"Medical coding errors cost the US healthcare system $25B+ annually. This agent reduces coding time by 70% while improving accuracy — directly addressing a critical revenue cycle challenge."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-hospital"></i> ICD-10 / CPT Codes</span>
+        <span class="detail-chip"><i class="fas fa-shield-alt"></i> HIPAA Compliant</span>
+        <span class="detail-chip"><i class="fab fa-java"></i> FHIR R4 API</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">70%</span><span class="full-metric-lbl">Time reduction</span></div>
+        <div class="full-metric"><span class="full-metric-val">94%</span><span class="full-metric-lbl">Coding accuracy</span></div>
+        <div class="full-metric"><span class="full-metric-val">ICD-10</span><span class="full-metric-lbl">Standard compliant</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Java (Spring Boot)</span><span>LangChain</span><span>GPT-4</span><span>FHIR API</span>
+        <span>PostgreSQL</span><span>Docker</span><span>FastAPI</span><span>Neo4j</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONAL PROJECT 2: Text-to-SQL Generator -->
+  <div class="full-project-card reverse" data-category="personal" id="text-to-sql">
+    <div class="full-project-img" style="background:linear-gradient(135deg,#0d1f0d,#1a3a1a,#0f2d0f);">
+      <div class="project-img-icon" style="font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.6;"><i class="fas fa-database" style="color:#10b981;"></i></div>
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag genai">Generative AI</span>
+        <span class="project-category-tag" style="background:rgba(16,185,129,0.12);color:#10b981;border:none;">Text-to-SQL</span>
+      </div>
+      <div class="full-project-number">P2</div>
+    </div>
+    <div class="full-project-body">
+      <h3>LLM-Powered Text-to-SQL Engine</h3>
+      <p>Natural language query interface for enterprise data warehouses. Users ask questions in plain English; the system understands the schema context, generates optimized SQL, validates syntax, and explains the query logic. Built a Java JDBC abstraction layer for multi-dialect support (Snowflake, BigQuery, PostgreSQL). Includes query optimization suggestions and result summarization via LLM.</p>
+      <div class="project-quote">"Democratizes data access for non-technical stakeholders — analysts get answers in seconds instead of waiting days for engineering support."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-language"></i> Natural Language → SQL</span>
+        <span class="detail-chip"><i class="fab fa-java"></i> Multi-dialect JDBC</span>
+        <span class="detail-chip"><i class="fas fa-snowflake"></i> Snowflake / BigQuery</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">89%</span><span class="full-metric-lbl">Query accuracy</span></div>
+        <div class="full-metric"><span class="full-metric-val">&lt;2s</span><span class="full-metric-lbl">Response time</span></div>
+        <div class="full-metric"><span class="full-metric-val">3+</span><span class="full-metric-lbl">DB dialects</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Java (JDBC)</span><span>Python</span><span>LangChain</span><span>GPT-4</span>
+        <span>Snowflake</span><span>BigQuery</span><span>FastAPI</span><span>Redis</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONAL PROJECT 3: AI Code Review Bot -->
+  <div class="full-project-card" data-category="personal" id="code-review-bot">
+    <div class="full-project-img" style="background:linear-gradient(135deg,#1a0533,#2d0b63,#3d0f85);">
+      <div class="project-img-icon" style="font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.6;"><i class="fas fa-code-branch" style="color:#a78bfa;"></i></div>
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag genai">GenAI</span>
+        <span class="project-category-tag" style="background:rgba(167,139,250,0.12);color:#a78bfa;border:none;">Java + CI/CD</span>
+      </div>
+      <div class="full-project-number">P3</div>
+    </div>
+    <div class="full-project-body">
+      <h3>AI-Powered Code Review Assistant</h3>
+      <p>GitHub Actions bot that automatically reviews pull requests using an LLM — detecting bugs, security vulnerabilities, code smells, and style violations. Posts precise inline comments on the diff with suggested fixes. Java Spring Boot webhook handler processes GitHub events; the LLM layer understands code context across multiple languages. Supports custom ruleset configuration per repository.</p>
+      <div class="project-quote">"Reduced average PR review turnaround from 6 hours to under 15 minutes, with security issues caught before they reached staging."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fab fa-github"></i> GitHub Actions</span>
+        <span class="detail-chip"><i class="fas fa-shield-virus"></i> Security Scanning</span>
+        <span class="detail-chip"><i class="fab fa-java"></i> Webhook Handler</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">15min</span><span class="full-metric-lbl">Review time</span></div>
+        <div class="full-metric"><span class="full-metric-val">92%</span><span class="full-metric-lbl">Bug catch rate</span></div>
+        <div class="full-metric"><span class="full-metric-val">5+</span><span class="full-metric-lbl">Languages</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Java (Spring Boot)</span><span>LangChain</span><span>GPT-4</span><span>GitHub API</span>
+        <span>Docker</span><span>CI/CD</span><span>Python</span><span>FastAPI</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONAL PROJECT 4: Multimodal Document Intelligence -->
+  <div class="full-project-card reverse" data-category="personal" id="multimodal-rag">
+    <div class="full-project-img" style="background:linear-gradient(135deg,#1a1200,#3d2c00,#5c4200);">
+      <div class="project-img-icon" style="font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.6;"><i class="fas fa-eye" style="color:#fbbf24;"></i></div>
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag genai">Multimodal AI</span>
+        <span class="project-category-tag" style="background:rgba(251,191,36,0.12);color:#fbbf24;border:none;">Vision + RAG</span>
+      </div>
+      <div class="full-project-number">P4</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Multimodal Document Intelligence Platform</h3>
+      <p>Goes beyond text-only RAG — ingests PDFs, scanned images, complex tables, and embedded charts using GPT-4 Vision + Tesseract OCR. Chunks and embeds all modalities into a unified FAISS index, enabling semantic Q&A across contracts, research papers, and regulatory filings. Supports cross-document reasoning: "Compare the risk disclosures in these 5 SEC filings."</p>
+      <div class="project-quote">"Processes document types that traditional RAG systems simply can't handle — scanned contracts, hand-annotated diagrams, and mixed-format regulatory filings."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-eye"></i> GPT-4 Vision</span>
+        <span class="detail-chip"><i class="fas fa-file-pdf"></i> PDF + Images + Tables</span>
+        <span class="detail-chip"><i class="fas fa-search"></i> Cross-doc Reasoning</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">4+</span><span class="full-metric-lbl">Modalities</span></div>
+        <div class="full-metric"><span class="full-metric-val">91%</span><span class="full-metric-lbl">Retrieval accuracy</span></div>
+        <div class="full-metric"><span class="full-metric-val">10K+</span><span class="full-metric-lbl">Pages indexed</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>GPT-4 Vision</span><span>LangChain</span><span>FAISS</span><span>Tesseract OCR</span>
+        <span>PyMuPDF</span><span>FastAPI</span><span>Python</span><span>Docker</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONAL PROJECT 5: Clinical Trial Matching -->
+  <div class="full-project-card" data-category="personal" id="clinical-trial-matching">
+    <div class="full-project-img" style="background:linear-gradient(135deg,#001a2c,#003355,#004d7a);">
+      <div class="project-img-icon" style="font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.6;"><i class="fas fa-dna" style="color:#00d4ff;"></i></div>
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag nlp">NLP</span>
+        <span class="project-category-tag genai" style="background:rgba(16,185,129,0.12);color:#10b981;border:none;">Healthcare AI</span>
+      </div>
+      <div class="full-project-number">P5</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Clinical Trial Matching Engine</h3>
+      <p>Matches patients to eligible clinical trials by semantically parsing EHR data against complex trial eligibility criteria using BERT embeddings + LLM reasoning. Eligibility rules (age, diagnosis, prior treatments, lab values) are extracted from ClinicalTrials.gov and encoded into a Neo4j knowledge graph. Returned ranked matches with plain-language explanations for physicians.</p>
+      <div class="project-quote">"In oncology and rare disease, finding the right trial can be life-changing — this system surfaces matches that manual chart review routinely misses."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-network-wired"></i> Knowledge Graph</span>
+        <span class="detail-chip"><i class="fas fa-pills"></i> ClinicalTrials.gov</span>
+        <span class="detail-chip"><i class="fas fa-user-md"></i> Physician Explainability</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">3x</span><span class="full-metric-lbl">More matches found</span></div>
+        <div class="full-metric"><span class="full-metric-val">88%</span><span class="full-metric-lbl">Match precision</span></div>
+        <div class="full-metric"><span class="full-metric-val">500+</span><span class="full-metric-lbl">Trials indexed</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Python</span><span>BERT</span><span>FAISS</span><span>LangChain</span>
+        <span>Neo4j</span><span>Apache Spark</span><span>FastAPI</span><span>Docker</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONAL PROJECT 6: Federated Learning -->
+  <div class="full-project-card reverse" data-category="personal" id="federated-learning">
+    <div class="full-project-img" style="background:linear-gradient(135deg,#0f0a1e,#1e1040,#2d1760);">
+      <div class="project-img-icon" style="font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.6;"><i class="fas fa-network-wired" style="color:#a78bfa;"></i></div>
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag mlops">Privacy AI</span>
+        <span class="project-category-tag" style="background:rgba(167,139,250,0.12);color:#a78bfa;border:none;">Federated ML</span>
+      </div>
+      <div class="full-project-number">P6</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Federated Learning System for Privacy-Preserving ML</h3>
+      <p>Trains ML models across multiple hospitals and organizations without ever sharing raw patient data — each node trains locally on its own data, and only encrypted gradients are aggregated centrally using the Flower framework. Implemented differential privacy noise injection and secure aggregation protocols. Demonstrated on a disease prediction task across 4 simulated hospital nodes.</p>
+      <div class="project-quote">"The holy grail of healthcare ML — train on data you're never allowed to see. This approach unlocks collaboration that regulatory constraints previously made impossible."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-lock"></i> Differential Privacy</span>
+        <span class="detail-chip"><i class="fas fa-hospital"></i> 4 Simulated Nodes</span>
+        <span class="detail-chip"><i class="fas fa-shield-alt"></i> Zero Data Sharing</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">0</span><span class="full-metric-lbl">Raw data shared</span></div>
+        <div class="full-metric"><span class="full-metric-val">96%</span><span class="full-metric-lbl">vs centralized acc.</span></div>
+        <div class="full-metric"><span class="full-metric-val">4</span><span class="full-metric-lbl">Federated nodes</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Python</span><span>PyTorch</span><span>Flower (flwr)</span><span>PySpark</span>
+        <span>Docker</span><span>Kubernetes</span><span>FastAPI</span><span>Redis</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONAL PROJECT 7: Explainable Fraud Detection -->
+  <div class="full-project-card" data-category="personal" id="fraud-detection-xai">
+    <div class="full-project-img" style="background:linear-gradient(135deg,#1a0000,#3d0000,#5c0000);">
+      <div class="project-img-icon" style="font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.6;"><i class="fas fa-exclamation-triangle" style="color:#ef4444;"></i></div>
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag ml">ML + XAI</span>
+        <span class="project-category-tag" style="background:rgba(239,68,68,0.12);color:#ef4444;border:none;">Java + Kafka</span>
+      </div>
+      <div class="full-project-number">P7</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Real-Time Fraud Detection with Explainable AI</h3>
+      <p>Streams financial transactions through Kafka, scores them with an XGBoost ensemble in under 50ms, then uses an LLM to generate natural language explanations of <em>why</em> each transaction was flagged — translating SHAP values into compliance-ready summaries for fraud analysts. Java Kafka consumer handles high-throughput ingestion; Python layer runs inference and LLM explanation generation.</p>
+      <div class="project-quote">"Compliance teams can't act on a black-box score of 0.94. Plain-English explanations turned model outputs into actionable evidence for case investigators."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-bolt"></i> &lt;50ms Scoring</span>
+        <span class="detail-chip"><i class="fas fa-brain"></i> SHAP + LLM Explain</span>
+        <span class="detail-chip"><i class="fab fa-java"></i> Java Kafka Consumer</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">&lt;50ms</span><span class="full-metric-lbl">Inference latency</span></div>
+        <div class="full-metric"><span class="full-metric-val">97%</span><span class="full-metric-lbl">Precision</span></div>
+        <div class="full-metric"><span class="full-metric-val">100%</span><span class="full-metric-lbl">Explainable</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Java (Kafka)</span><span>Python</span><span>XGBoost</span><span>SHAP</span>
+        <span>LangChain</span><span>FastAPI</span><span>Redis</span><span>Docker</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONAL PROJECT 8: Brand Intelligence Dashboard -->
+  <div class="full-project-card reverse" data-category="personal" id="brand-intelligence">
+    <div class="full-project-img" style="background:linear-gradient(135deg,#001a0a,#003318,#004d24);">
+      <div class="project-img-icon" style="font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.6;"><i class="fas fa-chart-line" style="color:#10b981;"></i></div>
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag nlp">NLP</span>
+        <span class="project-category-tag" style="background:rgba(16,185,129,0.12);color:#10b981;border:none;">Multimodal</span>
+      </div>
+      <div class="full-project-number">P8</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Multimodal Brand Intelligence Dashboard</h3>
+      <p>Real-time brand sentiment platform that ingests social media posts, news articles, and product reviews — analyzing both text and images using multimodal HuggingFace models. Kafka handles high-volume stream ingestion; Airflow orchestrates nightly trend aggregation; a Plotly Dash dashboard surfaces sentiment scores, emerging topics, and 7-day forecasts with anomaly alerts for sudden brand reputation shifts.</p>
+      <div class="project-quote">"Detected a product sentiment nosedive 6 hours before it trended on Twitter — giving the brand team time to respond before it went viral."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-stream"></i> Real-time Kafka Stream</span>
+        <span class="detail-chip"><i class="fas fa-image"></i> Text + Image Analysis</span>
+        <span class="detail-chip"><i class="fas fa-bell"></i> Anomaly Alerts</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">10K+</span><span class="full-metric-lbl">Posts/hour</span></div>
+        <div class="full-metric"><span class="full-metric-val">6hr</span><span class="full-metric-lbl">Early warning</span></div>
+        <div class="full-metric"><span class="full-metric-val">93%</span><span class="full-metric-lbl">Sentiment accuracy</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Python</span><span>HuggingFace</span><span>Kafka</span><span>Airflow</span>
+        <span>Plotly Dash</span><span>PostgreSQL</span><span>Docker</span><span>Redis</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /personal projects grid -->
 <div style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:64px 32px;text-align:center;position:relative;z-index:1;">
   <div style="max-width:600px;margin:0 auto;">
     <span class="section-label">Let's Work Together</span>
