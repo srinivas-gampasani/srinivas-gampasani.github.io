@@ -853,44 +853,132 @@ function appendTyping() {
   return div;
 }
 
-let chatHistory = [];
+// ── Smart Portfolio Chatbot (no API key needed) ──
+const QA = [
+  {
+    keys: ['rag','retrieval','knowledge retrieval','vector','faiss','embedding'],
+    ans: `Srinivas has built two major RAG systems:<br><br>
+🏥 <strong>Enterprise AI Knowledge Retrieval</strong> — Production RAG over 100K+ enterprise documents using LangChain, FAISS & Azure OpenAI. Achieved <strong>35% accuracy boost</strong> with sub-second latency.<br><br>
+🩺 <strong>Clinical RAG at Ascension Health</strong> — RAG pipelines for real-time clinical decision support across 50K+ patient records, improving answer relevance by <strong>40%</strong> with full HIPAA compliance.`
+  },
+  {
+    keys: ['healthcare','clinical','hospital','hipaa','ascension','patient','medical'],
+    ans: `At <strong>Ascension Via Christi Health</strong> (Sep 2024 – Present), Srinivas:<br><br>
+• Built production RAG pipelines improving clinical answer relevance by <strong>40%</strong><br>
+• Processed <strong>50,000+ clinical documents</strong> with Apache Spark & FAISS<br>
+• Designed NLP pipelines for text summarization reducing manual effort by <strong>30%</strong><br>
+• Ensured full <strong>HIPAA compliance</strong> across all OpenAI/Azure integrations<br>
+• Implemented MLOps with MLflow, cutting deployment errors by <strong>30%</strong>`
+  },
+  {
+    keys: ['stand out','unique','special','different','best','why hire','strengths','strong'],
+    ans: `What makes Srinivas stand out as a GenAI Engineer:<br><br>
+🚀 <strong>Production-first mindset</strong> — He doesn't just prototype; every system he builds runs at scale (100K+ docs, real-time latency).<br>
+🏥 <strong>Domain expertise</strong> — Rare combination of AI depth + healthcare compliance (HIPAA).<br>
+🔗 <strong>Full-stack AI</strong> — From data ingestion → RAG pipelines → MLOps → deployment. No handoffs needed.<br>
+📊 <strong>Measurable results</strong> — 40% accuracy boost, 60% cost reduction, 95%+ precision — all backed by real metrics.`
+  },
+  {
+    keys: ['remote','location','open to','available','where','st. louis','relocate'],
+    ans: `Yes! Srinivas is <strong>open to remote roles</strong>. He is currently based in <strong>St. Louis, MO</strong> and is actively seeking opportunities in Generative AI, Machine Learning, and Data Engineering. Feel free to reach out at <strong>srinivasgampasani7@gmail.com</strong> or connect on LinkedIn.`
+  },
+  {
+    keys: ['experience','work','job','career','colgate','maxton','history'],
+    ans: `Srinivas has <strong>3+ years</strong> of industry experience:<br><br>
+🏥 <strong>Ascension Via Christi Health</strong> (Sep 2024–Present) — GenAI Engineer & Data Scientist<br>
+🧴 <strong>Colgate-Palmolive</strong> (Dec 2023–Aug 2024) — ML Engineer & Data Engineer<br>
+💻 <strong>Maxton Technology</strong> (Aug 2022–Aug 2023) — ML Engineer (Bangalore, India)<br><br>
+Plus an <strong>M.S. in Artificial Intelligence</strong> from Saint Louis University (2023–2025).`
+  },
+  {
+    keys: ['skill','tech','language','python','langchain','pytorch','stack','tools','know'],
+    ans: `Srinivas's core tech stack:<br><br>
+🤖 <strong>GenAI:</strong> LangChain, LlamaIndex, RAG, LoRA/QLoRA, FAISS, OpenAI, Azure OpenAI<br>
+🧠 <strong>ML/DL:</strong> PyTorch, TensorFlow, XGBoost, Scikit-learn, BERT/GPT, Transformers<br>
+⚙️ <strong>MLOps:</strong> MLflow, Docker, Kubernetes, FastAPI, CI/CD<br>
+☁️ <strong>Cloud:</strong> AWS SageMaker, Azure ML, GCP Vertex AI, Pinecone, Redis<br>
+🐍 <strong>Languages:</strong> Python, SQL, PySpark, TypeScript`
+  },
+  {
+    keys: ['project','built','build','system','pipeline','portfolio','work done'],
+    ans: `Srinivas has <strong>13 production projects</strong>. Top highlights:<br><br>
+1. 🔍 Enterprise RAG System — 100K+ docs, 35% accuracy boost<br>
+2. 🏥 Clinical NLP Pipeline — 50K+ records, HIPAA-compliant<br>
+3. 🤖 Multi-Agent AI Framework — LangGraph, 5+ autonomous agents<br>
+4. ⚡ LLM Fine-Tuning (LoRA/QLoRA) — 60% compute cost reduction<br>
+5. 📈 Demand Forecasting — 20% accuracy gain (Colgate-Palmolive)<br>
+6. 🚨 Anomaly Detection — Kafka streaming, 95%+ precision<br><br>
+See all 13 on the <a href="projects.html" style="color:var(--accent)">Projects page</a>!`
+  },
+  {
+    keys: ['fine-tun','lora','qlora','peft','huggingface','finetun'],
+    ans: `Srinivas built an <strong>end-to-end LLM Fine-Tuning Pipeline</strong> using LoRA & QLoRA (PEFT techniques):<br><br>
+• Reduced compute cost by <strong>60%</strong> vs full fine-tuning<br>
+• Domain-adapted open-source LLMs while maintaining model quality<br>
+• Stack: LoRA, QLoRA, PEFT, PyTorch, HuggingFace Transformers`
+  },
+  {
+    keys: ['multi-agent','agent','langgraph','autonomous','orchestrat'],
+    ans: `Srinivas built a <strong>Multi-Agent AI Orchestration Framework</strong> using LangGraph:<br><br>
+• 5+ specialized AI agents working collaboratively<br>
+• Complex task decomposition & autonomous tool use<br>
+• Stack: LangGraph, LangChain, GPT-4, FastAPI, Redis<br><br>
+This is one of his most advanced GenAI projects — showing deep expertise beyond basic RAG.`
+  },
+  {
+    keys: ['education','degree','university','masters','ms','saint louis','certification','aws'],
+    ans: `🎓 <strong>M.S. in Artificial Intelligence</strong> — Saint Louis University, St. Louis MO (2023–2025)<br><br>
+Certifications:<br>
+• AWS Certified Data Analytics<br>
+• Future Skills Prime — AI, Data Science, NLP<br>
+• Coursera — Machine Learning`
+  },
+  {
+    keys: ['contact','email','hire','reach','connect','opportunity','role','job'],
+    ans: `Srinivas is actively looking for opportunities! 🎯<br><br>
+📧 <strong>Email:</strong> srinivasgampasani7@gmail.com<br>
+💼 <strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/srinivas-gampasani-85338b235/" target="_blank" style="color:var(--accent)">srinivas-gampasani</a><br>
+🐙 <strong>GitHub:</strong> <a href="https://github.com/srinivas-gampasani" target="_blank" style="color:var(--accent)">srinivas-gampasani</a><br><br>
+He typically responds within 24 hours!`
+  },
+  {
+    keys: ['mlops','deploy','docker','kubernetes','mlflow','ci/cd','devops','production'],
+    ans: `Srinivas has strong <strong>MLOps & deployment</strong> skills:<br><br>
+• Implemented MLflow pipelines reducing deployment errors by <strong>30%</strong><br>
+• Zero-downtime releases with Kubernetes<br>
+• Deployed ML models as REST APIs with FastAPI & Docker<br>
+• Automated retraining workflows cutting deployment time by <strong>20%</strong><br>
+• Tools: MLflow, Docker, Kubernetes, CI/CD, Jenkins, Prometheus, Grafana`
+  },
+  {
+    keys: ['salary','pay','compensation','rate'],
+    ans: `I don't have information on compensation expectations. For that, please reach out directly to Srinivas at <strong>srinivasgampasani7@gmail.com</strong> — he'd be happy to discuss!`
+  }
+];
 
-async function sendChat(question) {
+function getBotReply(q) {
+  const lower = q.toLowerCase();
+  for (const item of QA) {
+    if (item.keys.some(k => lower.includes(k))) return item.ans;
+  }
+  return `Great question! I'm not sure about that specific detail. For the best answer, reach out to Srinivas directly:<br><br>
+📧 <strong>srinivasgampasani7@gmail.com</strong><br>
+💼 <a href="https://www.linkedin.com/in/srinivas-gampasani-85338b235/" target="_blank" style="color:var(--accent)">LinkedIn</a><br><br>
+You can also try asking about: his <em>RAG systems</em>, <em>healthcare AI work</em>, <em>skills</em>, <em>projects</em>, or <em>experience</em>.`;
+}
+
+function sendChat(question) {
   const q = question || chatInput.value.trim();
   if (!q) return;
   chatInput.value = '';
-
   appendMsg('user', q);
-  const typingEl = appendTyping();
   document.getElementById('chat-send-btn').disabled = true;
-
-  chatHistory.push({ role: 'user', content: q });
-
-  try {
-    const res = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'anthropic-version': '2023-06-01',
-        'anthropic-dangerous-direct-browser-access': 'true'
-      },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-6',
-        max_tokens: 1000,
-        system: PORTFOLIO_CONTEXT,
-        messages: chatHistory
-      })
-    });
-    const data = await res.json();
-    const reply = data.content?.map(b => b.text || '').join('') || 'Sorry, I had trouble answering that. Please try again!';
-    chatHistory.push({ role: 'assistant', content: reply });
+  const typingEl = appendTyping();
+  setTimeout(() => {
     typingEl.remove();
-    appendMsg('assistant', reply);
-  } catch (e) {
-    typingEl.remove();
-    appendMsg('assistant', 'Oops, something went wrong. Feel free to reach out directly at srinivasgampasani7@gmail.com!');
-  }
-  document.getElementById('chat-send-btn').disabled = false;
+    appendMsg('assistant', getBotReply(q));
+    document.getElementById('chat-send-btn').disabled = false;
+  }, 700 + Math.random() * 400);
 }
 
 function askSuggestion(btn) {
