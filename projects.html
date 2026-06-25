@@ -8,294 +8,309 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    /* ===== REDESIGNED PROJECTS PAGE ===== */
+    /* ════ PROJECTS PAGE REDESIGN ════ */
 
-    /* ── Hero ── */
-    .proj-hero {
-      position: relative;
-      padding: 140px 32px 80px;
+    /* Back nav */
+    .back-nav {
+      display: inline-flex; align-items: center; gap: 8px;
+      color: var(--text2); text-decoration: none; font-size: 0.85rem; font-weight: 500;
+      padding: 8px 18px; border-radius: 100px; border: 1px solid var(--border);
+      background: rgba(255,255,255,0.04); backdrop-filter: blur(8px);
+      transition: all 0.25s;
+    }
+    .back-nav:hover { color: var(--accent); border-color: var(--accent); background: rgba(0,212,255,0.06); transform: translateX(-3px); }
+    [data-theme="light"] .back-nav:hover { background: rgba(0,119,182,0.06); }
+    .back-nav-wrap { position: absolute; top: 92px; left: 36px; z-index: 10; }
+    @media(max-width:600px){ .back-nav-wrap { left: 20px; top: 84px; } }
+
+    /* ── NEW HERO ── */
+    .projects-page-hero {
+      position: relative; z-index: 1;
+      padding: 160px 32px 0;
       text-align: center;
       overflow: hidden;
     }
-    .proj-hero::before {
-      content: '';
+    .hero-glow-ring {
       position: absolute;
-      inset: 0;
-      background: radial-gradient(ellipse 70% 60% at 50% 0%, rgba(0,212,255,0.10) 0%, transparent 70%);
+      top: -120px; left: 50%; transform: translateX(-50%);
+      width: 700px; height: 700px;
+      background: radial-gradient(ellipse, rgba(0,212,255,0.12) 0%, rgba(124,58,237,0.08) 40%, transparent 70%);
       pointer-events: none;
+      animation: glow-pulse 4s ease-in-out infinite;
     }
-    .proj-hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: 'Space Mono', monospace; font-size: 0.72rem; letter-spacing: 0.22em;
-      text-transform: uppercase; color: var(--accent);
-      border: 1px solid rgba(0,212,255,0.25); border-radius: 100px;
-      padding: 6px 18px; margin-bottom: 28px;
+    @keyframes glow-pulse {
+      0%,100% { transform: translateX(-50%) scale(1); opacity: 1; }
+      50% { transform: translateX(-50%) scale(1.08); opacity: 0.7; }
     }
-    .proj-hero h1 {
-      font-size: clamp(2.6rem, 6vw, 5rem); font-weight: 800;
-      letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 20px;
+    [data-theme="light"] .hero-glow-ring {
+      background: radial-gradient(ellipse, rgba(0,119,182,0.1) 0%, rgba(109,40,217,0.06) 40%, transparent 70%);
     }
-    .proj-hero p {
-      max-width: 640px; margin: 0 auto 48px;
-      font-size: 1.05rem; color: var(--text2); line-height: 1.8;
+    .projects-page-hero .section-label { margin-bottom: 18px; display: inline-block; }
+    .projects-page-hero h1 {
+      font-size: clamp(3rem, 6vw, 5rem);
+      font-weight: 800; line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
     }
-
-    /* ── Stat strip ── */
-    .stats-strip {
-      display: flex; justify-content: center; flex-wrap: wrap; gap: 0;
-      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-      background: var(--surface); margin-bottom: 0;
-    }
-    .stat-pill {
-      padding: 22px 36px; text-align: center;
-      border-right: 1px solid var(--border);
-      flex: 1; min-width: 130px;
-    }
-    .stat-pill:last-child { border-right: none; }
-    .stat-num {
-      display: block; font-size: 1.9rem; font-weight: 800;
-      color: var(--accent); line-height: 1; margin-bottom: 5px;
-    }
-    .stat-lbl {
-      display: block; font-size: 0.68rem; text-transform: uppercase;
-      letter-spacing: 0.14em; color: var(--text3);
+    .projects-page-hero > p {
+      color: var(--text2); font-size: 1.1rem; max-width: 620px;
+      margin: 0 auto 56px; line-height: 1.8;
     }
 
-    /* ── Filter bar ── */
-    .filter-wrap {
-      position: sticky; top: 70px; z-index: 50;
-      background: var(--bg); border-bottom: 1px solid var(--border);
-      padding: 14px 32px; display: flex; align-items: center;
-      justify-content: space-between; gap: 12px; flex-wrap: wrap;
-      backdrop-filter: blur(12px);
+    /* Glassmorphism stat cards row */
+    .hero-stat-cards {
+      display: flex; justify-content: center; gap: 16px;
+      flex-wrap: wrap; margin-bottom: 0;
     }
-    .filter-group { display: flex; gap: 8px; flex-wrap: wrap; }
-    .fp-btn {
-      font-size: 0.78rem; font-weight: 600; padding: 7px 16px;
-      border-radius: 100px; border: 1px solid var(--border);
-      background: transparent; color: var(--text2); cursor: pointer;
-      transition: all 0.2s; white-space: nowrap;
+    .hsc {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(16px);
+      border-radius: 16px;
+      padding: 20px 28px;
+      min-width: 130px;
+      text-align: center;
+      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      position: relative; overflow: hidden;
     }
-    .fp-btn:hover { color: var(--accent); border-color: rgba(0,212,255,0.4); }
-    .fp-btn.active { background: var(--accent); color: #000; border-color: var(--accent); }
-    .fp-btn.personal-btn { border-color: rgba(251,191,36,0.35); color: #fbbf24; }
-    .fp-btn.personal-btn.active { background: #fbbf24; color: #000; border-color: #fbbf24; }
-    .proj-count-badge {
-      font-family: 'Space Mono', monospace; font-size: 0.72rem;
-      color: var(--text3); white-space: nowrap;
+    .hsc::before {
+      content:''; position:absolute; inset:0;
+      background: linear-gradient(135deg, rgba(0,212,255,0.05), transparent);
+      opacity: 0; transition: opacity 0.3s;
     }
+    .hsc:hover { transform: translateY(-6px); border-color: rgba(0,212,255,0.3); box-shadow: 0 16px 40px rgba(0,212,255,0.1); }
+    .hsc:hover::before { opacity: 1; }
+    [data-theme="light"] .hsc { background: rgba(255,255,255,0.7); }
+    [data-theme="light"] .hsc:hover { box-shadow: 0 16px 40px rgba(0,119,182,0.12); border-color: rgba(0,119,182,0.35); }
+    .hsc-icon { font-size: 1.3rem; margin-bottom: 8px; color: var(--accent); }
+    .hsc-num { font-size: 1.9rem; font-weight: 800; color: var(--text); line-height: 1; display: block; }
+    .hsc-lbl { font-size: 0.68rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.12em; margin-top: 4px; display: block; }
 
-    /* ── Section heading ── */
-    .proj-section-head {
-      max-width: 1280px; margin: 64px auto 0; padding: 0 32px;
-      display: flex; align-items: center; gap: 20px;
+    /* Wave divider */
+    .wave-divider {
+      width: 100%; overflow: hidden; line-height: 0;
+      margin-top: 56px; position: relative; z-index: 1;
     }
-    .proj-section-head-line { flex: 1; height: 1px; background: var(--border); }
-    .proj-section-head-label {
-      display: flex; align-items: center; gap: 10px;
-      font-family: 'Space Mono', monospace; font-size: 0.72rem;
-      letter-spacing: 0.2em; text-transform: uppercase; color: var(--text3);
+    .wave-divider svg { display: block; width: 100%; }
+
+    /* ── FILTER BAR REDESIGN ── */
+    .projects-filter-section {
+      position: sticky; top: 72px; z-index: 50;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border);
+      padding: 0 32px;
+      backdrop-filter: blur(16px);
+    }
+    [data-theme="light"] .projects-filter-section { background: rgba(240,244,255,0.95); }
+    .projects-filter-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; flex-wrap: wrap; padding: 14px 0;
+    }
+    .filter-bar { display: flex; gap: 6px; flex-wrap: wrap; }
+    .filter-btn {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.82rem; font-weight: 600;
+      padding: 7px 18px; border-radius: 100px;
+      border: 1px solid var(--border);
+      background: transparent; color: var(--text2);
+      cursor: pointer; transition: all 0.22s;
+      letter-spacing: 0.01em;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--accent); background: rgba(0,212,255,0.06); }
+    .filter-btn.active { background: var(--accent); color: #06080f; border-color: var(--accent); }
+    [data-theme="light"] .filter-btn.active { color: #fff; }
+    .filter-count-badge {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: 100px; padding: 4px 14px;
+      font-size: 0.75rem; color: var(--text3);
+      font-family: 'Space Mono', monospace;
       white-space: nowrap;
     }
 
-    /* ── Bento grid ── */
-    .bento-grid {
-      max-width: 1280px; margin: 32px auto; padding: 0 32px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+    /* ── SECTION DIVIDERS ── */
+    .category-divider {
+      display: flex; align-items: center; gap: 20px;
+      max-width: 1200px; margin: 72px auto 36px; padding: 0 32px;
     }
-    @media(max-width: 1024px) { .bento-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media(max-width: 640px) { .bento-grid { grid-template-columns: 1fr; } }
+    .category-divider-line { flex: 1; height: 1px; background: var(--border); }
+    .category-divider-pill {
+      display: inline-flex; align-items: center; gap: 9px;
+      font-family: 'Outfit', sans-serif; font-size: 0.8rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 7px 20px; border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      white-space: nowrap;
+    }
+    @media(max-width:600px){ .category-divider { padding: 0 20px; margin: 48px auto 24px; } }
 
-    /* ── Project card ── */
-    .pc {
+    /* ── PROJECT CARDS REDESIGN ── */
+    .projects-full-grid { display: flex; flex-direction: column; gap: 28px; max-width: 1200px; margin: 0 auto; padding: 0 32px 24px; }
+
+    .full-project-card {
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 20px;
       overflow: hidden;
-      transition: transform 0.3s cubic-bezier(.22,.68,0,1.2), border-color 0.3s, box-shadow 0.3s;
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      transition: transform 0.35s cubic-bezier(.2,.8,.2,1), box-shadow 0.35s, border-color 0.35s;
       position: relative;
-      display: flex; flex-direction: column;
-      opacity: 0; transform: translateY(24px);
     }
-    .pc.visible { opacity: 1; transform: translateY(0); }
-    .pc:hover {
-      transform: translateY(-6px);
-      border-color: rgba(0,212,255,0.35);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(0,212,255,0.12);
+    .full-project-card::after {
+      content: ''; position: absolute; inset: 0; border-radius: 20px;
+      background: linear-gradient(135deg, rgba(0,212,255,0.03), transparent 60%);
+      opacity: 0; transition: opacity 0.35s; pointer-events: none;
+    }
+    .full-project-card:hover { transform: translateY(-5px); box-shadow: 0 28px 72px rgba(0,0,0,0.45); border-color: rgba(0,212,255,0.22); }
+    .full-project-card:hover::after { opacity: 1; }
+    [data-theme="light"] .full-project-card:hover { box-shadow: 0 28px 72px rgba(0,0,0,0.1); border-color: rgba(0,119,182,0.28); }
+    .full-project-card.reverse { grid-template-columns: 1fr 420px; }
+    .full-project-card.reverse .full-project-img { order: 2; }
+    .full-project-card.reverse .full-project-body { order: 1; }
+
+    @media(max-width:960px){
+      .full-project-card, .full-project-card.reverse { grid-template-columns: 1fr; }
+      .full-project-card.reverse .full-project-img, .full-project-card.reverse .full-project-body { order: unset; }
+      .projects-full-grid { padding: 0 20px 24px; }
     }
 
-    /* Featured (wide) card */
-    .pc.featured {
-      grid-column: span 2;
-      flex-direction: row;
-    }
-    @media(max-width: 1024px) { .pc.featured { grid-column: span 2; } }
-    @media(max-width: 640px) { .pc.featured { grid-column: span 1; flex-direction: column; } }
-
-    /* ── Card image panel ── */
-    .pc-img {
-      position: relative; overflow: hidden;
-      flex-shrink: 0;
-    }
-    .pc:not(.featured) .pc-img { height: 200px; }
-    .pc.featured .pc-img { width: 42%; min-height: 320px; }
-    @media(max-width: 640px) { .pc.featured .pc-img { width: 100%; min-height: 200px; } }
-
-    .pc-img img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.6s ease;
-    }
-    .pc:hover .pc-img img { transform: scale(1.06); }
-
-    .pc-img-overlay {
+    .full-project-img { position: relative; overflow: hidden; min-height: 320px; }
+    .full-project-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(.2,.8,.2,1); }
+    .full-project-card:hover .full-project-img img { transform: scale(1.05); }
+    .full-project-img-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to bottom, transparent 30%, rgba(0,0,0,0.6) 100%);
+      background: linear-gradient(160deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.55) 100%);
+      z-index: 1;
     }
-    .pc-img-gradient {
-      position: absolute; inset: 0;
+    .full-project-img-badge { position: absolute; top: 18px; left: 18px; z-index: 2; display: flex; gap: 8px; flex-wrap: wrap; }
+    .full-project-number {
+      position: absolute; bottom: 18px; right: 22px; z-index: 2;
+      font-family: 'Space Mono', monospace; font-size: 3.5rem; font-weight: 700;
+      color: rgba(255,255,255,0.1); line-height: 1; pointer-events: none;
+      letter-spacing: -0.04em;
     }
+    /* icon fallback for gradient bg cards */
+    .proj-icon-fallback {
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%,-50%);
+      font-size: 3.5rem; opacity: 0.45;
+      transition: transform 0.4s, opacity 0.4s;
+      z-index: 1;
+    }
+    .full-project-card:hover .proj-icon-fallback { transform: translate(-50%,-55%) scale(1.1); opacity: 0.6; }
 
-    .pc-number {
-      position: absolute; top: 16px; right: 16px;
-      font-family: 'Space Mono', monospace; font-size: 2rem; font-weight: 700;
-      color: rgba(255,255,255,0.12); line-height: 1; pointer-events: none;
-      user-select: none;
+    .full-project-body {
+      padding: 38px 40px;
+      display: flex; flex-direction: column; justify-content: center;
+      gap: 0;
     }
+    @media(max-width:600px){ .full-project-body { padding: 24px 20px; } }
 
-    .pc-tags {
-      position: absolute; bottom: 14px; left: 14px;
-      display: flex; gap: 6px; flex-wrap: wrap;
+    .full-project-body h3 {
+      font-size: 1.45rem; font-weight: 800; margin-bottom: 12px;
+      line-height: 1.25; letter-spacing: -0.02em;
     }
-    .pc-tag {
-      font-size: 0.67rem; font-weight: 700; padding: 3px 10px;
-      border-radius: 100px; letter-spacing: 0.06em; text-transform: uppercase;
-    }
-    .pc-tag.genai { background: rgba(0,212,255,0.15); color: #00d4ff; border: 1px solid rgba(0,212,255,0.25); }
-    .pc-tag.nlp { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.25); }
-    .pc-tag.ml { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.25); }
-    .pc-tag.mlops { background: rgba(167,139,250,0.15); color: #a78bfa; border: 1px solid rgba(167,139,250,0.25); }
-    .pc-tag.personal { background: rgba(251,191,36,0.12); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); }
-    .pc-tag.prod { background: rgba(16,185,129,0.12); color: #10b981; border: 1px solid rgba(16,185,129,0.2); }
-    .pc-tag.red { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
-    .pc-tag.purple { background: rgba(167,139,250,0.12); color: #a78bfa; border: 1px solid rgba(167,139,250,0.2); }
-
-    /* ── Card body ── */
-    .pc-body {
-      padding: 24px; display: flex; flex-direction: column; flex: 1;
-    }
-
-    .pc h3 {
-      font-size: 1.05rem; font-weight: 700; margin: 0 0 10px;
-      color: var(--text); line-height: 1.3;
-    }
-    .pc.featured h3 { font-size: 1.3rem; }
-
-    .pc-desc {
-      font-size: 0.875rem; color: var(--text2); line-height: 1.7;
-      margin-bottom: 16px; flex: 1;
-    }
-
-    /* Quote highlight */
-    .pc-quote {
-      font-size: 0.82rem; font-style: italic; color: var(--text2);
-      border-left: 2px solid var(--accent); padding: 8px 14px;
-      background: rgba(0,212,255,0.04); border-radius: 0 8px 8px 0;
-      margin-bottom: 16px; line-height: 1.65;
-    }
-    [data-theme="light"] .pc-quote { background: rgba(0,119,182,0.05); }
+    .full-project-body > p { color: var(--text2); font-size: 0.92rem; line-height: 1.85; margin-bottom: 16px; }
 
     /* Metrics row */
-    .pc-metrics {
-      display: flex; gap: 0; margin-bottom: 16px;
-      border: 1px solid var(--border); border-radius: 12px; overflow: hidden;
+    .full-metrics {
+      display: grid; grid-template-columns: repeat(3,1fr);
+      gap: 10px; margin-bottom: 18px;
     }
-    .pc-metric {
-      flex: 1; padding: 10px 8px; text-align: center;
-      border-right: 1px solid var(--border);
+    .full-metric {
+      background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 12px; padding: 12px 10px; text-align: center;
+      transition: border-color 0.2s;
     }
-    .pc-metric:last-child { border-right: none; }
-    .pc-metric-val {
-      display: block; font-size: 1.1rem; font-weight: 800;
-      color: var(--accent); line-height: 1;
-    }
-    .pc-metric-lbl {
-      display: block; font-size: 0.62rem; color: var(--text3);
-      text-transform: uppercase; letter-spacing: 0.1em; margin-top: 3px;
-    }
+    .full-project-card:hover .full-metric { border-color: rgba(0,212,255,0.15); }
+    .full-metric-val { font-size: 1.25rem; font-weight: 800; color: var(--accent); line-height: 1; display: block; margin-bottom: 4px; }
+    .full-metric-lbl { font-size: 0.66rem; color: var(--text3); text-transform: uppercase; letter-spacing: 0.08em; }
 
     /* Tech stack pills */
-    .pc-stack {
-      display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px;
+    .full-tech-stack { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 20px; }
+    .full-tech-stack span {
+      background: rgba(0,212,255,0.05); border: 1px solid rgba(0,212,255,0.12);
+      color: var(--text2); font-size: 0.73rem; padding: 3px 11px;
+      border-radius: 100px; font-family: 'Space Mono', monospace;
+      transition: border-color 0.2s, color 0.2s;
     }
-    .pc-stack span {
-      font-size: 0.7rem; font-weight: 600;
-      padding: 3px 10px; border-radius: 6px;
-      background: var(--bg2); color: var(--text3);
-      border: 1px solid var(--border);
-    }
+    .full-project-card:hover .full-tech-stack span { border-color: rgba(0,212,255,0.2); }
+    [data-theme="light"] .full-tech-stack span { background: rgba(0,119,182,0.05); border-color: rgba(0,119,182,0.14); }
 
-    /* Action links */
-    .pc-links {
-      display: flex; gap: 10px; margin-top: auto;
-    }
-    .pc-link-gh {
+    /* Project links */
+    .full-project-links { display: flex; gap: 10px; flex-wrap: wrap; }
+    .full-project-links a {
       display: inline-flex; align-items: center; gap: 7px;
-      font-size: 0.78rem; font-weight: 700; padding: 8px 16px;
-      border-radius: 8px; border: 1px solid var(--border);
-      color: var(--text2); text-decoration: none;
-      transition: all 0.2s; background: var(--bg2);
+      padding: 9px 20px; border-radius: 10px;
+      font-size: 0.83rem; font-weight: 600; text-decoration: none;
+      transition: all 0.22s;
     }
-    .pc-link-gh:hover { color: var(--text); border-color: rgba(0,212,255,0.4); }
-    .pc-link-discuss {
-      display: inline-flex; align-items: center; gap: 7px;
-      font-size: 0.78rem; font-weight: 700; padding: 8px 16px;
-      border-radius: 8px; background: rgba(0,212,255,0.1);
-      border: 1px solid rgba(0,212,255,0.25); color: var(--accent);
-      text-decoration: none; transition: all 0.2s;
-    }
-    .pc-link-discuss:hover { background: rgba(0,212,255,0.18); }
+    .link-github { background: transparent; color: var(--text2); border: 1px solid var(--border); }
+    .link-github:hover { color: var(--accent); border-color: var(--accent); background: rgba(0,212,255,0.05); }
+    .link-demo { background: var(--accent); color: #06080f; border: 1px solid var(--accent); font-weight: 700; }
+    [data-theme="light"] .link-demo { color: #fff; }
+    .link-demo:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,212,255,0.25); }
 
-    /* Personal section notice */
-    .personal-notice {
-      max-width: 1280px; margin: 0 auto 8px; padding: 0 32px;
+    /* Detail chips */
+    .detail-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 14px; }
+    .detail-chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 0.72rem; font-weight: 600; padding: 4px 12px;
+      border-radius: 100px; border: 1px solid var(--border);
+      color: var(--text2); background: var(--bg2);
     }
-    .personal-notice-inner {
-      background: linear-gradient(135deg,rgba(251,191,36,0.06),rgba(124,58,237,0.06));
-      border: 1px solid rgba(251,191,36,0.2); border-radius: 14px;
-      padding: 16px 22px; display: flex; align-items: center; gap: 12px;
-    }
-    .personal-notice-inner p { margin:0; font-size:0.87rem; color:var(--text2); line-height:1.7; }
+    .detail-chip i { font-size: 0.62rem; color: var(--accent); }
 
-    /* CTA section */
-    .proj-cta {
-      background: var(--bg2);
-      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-      padding: 72px 32px; text-align: center; position: relative; z-index: 1;
-      margin-top: 72px;
+    /* Quote block */
+    .project-quote {
+      border-left: 3px solid var(--accent);
+      padding: 10px 16px; margin: 12px 0;
+      background: rgba(0,212,255,0.04); border-radius: 0 10px 10px 0;
+      font-size: 0.84rem; color: var(--text2); font-style: italic; line-height: 1.75;
     }
-    .proj-cta h2 { font-size: clamp(1.8rem,3.5vw,2.4rem); font-weight: 800; margin: 16px 0; }
-    .proj-cta p { color:var(--text2); font-size:1.05rem; margin-bottom:32px; line-height:1.8; max-width:560px; margin-left:auto; margin-right:auto; }
-    .cta-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+    [data-theme="light"] .project-quote { background: rgba(0,119,182,0.05); }
 
-    /* Back nav */
-    .back-nav-wrap { position: absolute; top: 88px; left: 32px; z-index: 10; }
-    .back-nav {
-      display: inline-flex; align-items: center; gap: 8px;
-      color: var(--text2); text-decoration: none; font-size: 0.85rem;
-      padding: 8px 16px; border-radius: 8px; border: 1px solid var(--border);
-      background: var(--surface); transition: all 0.2s;
+    /* ── CTA BAND REDESIGN ── */
+    .projects-cta-band {
+      position: relative; z-index: 1;
+      margin: 72px 0 0;
+      padding: 80px 32px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(0,212,255,0.06) 0%, rgba(124,58,237,0.06) 100%);
+      border-top: 1px solid var(--border);
+      overflow: hidden;
     }
-    .back-nav:hover { color: var(--accent); border-color: var(--accent); }
-    @media(max-width:600px){ .back-nav-wrap { left: 20px; top: 84px; } }
+    .projects-cta-band::before {
+      content: '';
+      position: absolute; top: -100px; left: 50%; transform: translateX(-50%);
+      width: 500px; height: 300px;
+      background: radial-gradient(ellipse, rgba(0,212,255,0.1), transparent 70%);
+      pointer-events: none;
+    }
+    .projects-cta-band h2 { font-size: clamp(1.8rem,3.5vw,2.8rem); font-weight: 800; margin: 16px 0; letter-spacing: -0.02em; }
+    .projects-cta-band p { color: var(--text2); font-size: 1rem; max-width: 520px; margin: 0 auto 36px; line-height: 1.8; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
-    @media(max-width:640px){
-      .proj-hero { padding: 130px 20px 60px; }
-      .filter-wrap { padding: 12px 16px; }
-      .bento-grid { padding: 0 16px; }
-      .proj-section-head { padding: 0 16px; }
-      .stat-pill { padding: 16px 20px; min-width: 80px; }
+    /* Project category tags */
+    .project-category-tag {
+      display: inline-flex; align-items: center;
+      font-family: 'Space Mono', monospace; font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.06em; text-transform: uppercase;
+      padding: 4px 12px; border-radius: 100px;
+    }
+    .project-category-tag.genai { background: rgba(0,212,255,0.15); color: #00d4ff; }
+    .project-category-tag.nlp { background: rgba(251,191,36,0.15); color: #fbbf24; }
+    .project-category-tag.ml { background: rgba(16,185,129,0.15); color: #10b981; }
+    .project-category-tag.mlops { background: rgba(167,139,250,0.15); color: #a78bfa; }
+
+    /* Scroll progress bar */
+    #scroll-progress {
+      position: fixed; top: 0; left: 0; z-index: 9999;
+      height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--accent), var(--accent2));
+      transition: width 0.1s linear;
     }
   </style>
 </head>
@@ -330,634 +345,1009 @@
   </div>
 </header>
 
+<!-- SCROLL PROGRESS -->
+<div id="scroll-progress"></div>
+
 <!-- HERO -->
-<section class="proj-hero" style="position:relative;">
+<section class="projects-page-hero" style="position:relative;">
+  <div class="hero-glow-ring"></div>
   <div class="back-nav-wrap">
     <a href="index.html" class="back-nav"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
   </div>
-  <div class="proj-hero-eyebrow"><i class="fas fa-layer-group"></i> Production-Grade Case Studies</div>
+  <span class="section-label">Industry Case Studies</span>
   <h1>All <span class="accent">Projects</span></h1>
-  <p>21 AI & ML systems built for healthcare, enterprise, and consumer domains — with real metrics, architecture decisions, and measurable business impact.</p>
+  <p>21 production-grade AI & ML systems built for healthcare, enterprise, and consumer industries — real metrics, architecture decisions, and measurable business impact.</p>
+
+  <div class="hero-stat-cards">
+    <div class="hsc">
+      <div class="hsc-icon"><i class="fas fa-cubes"></i></div>
+      <span class="hsc-num">21</span>
+      <span class="hsc-lbl">Projects Shipped</span>
+    </div>
+    <div class="hsc">
+      <div class="hsc-icon"><i class="fas fa-chart-line"></i></div>
+      <span class="hsc-num">40%</span>
+      <span class="hsc-lbl">Avg Accuracy Gain</span>
+    </div>
+    <div class="hsc">
+      <div class="hsc-icon"><i class="fas fa-file-medical"></i></div>
+      <span class="hsc-num">50K+</span>
+      <span class="hsc-lbl">Docs Processed</span>
+    </div>
+    <div class="hsc">
+      <div class="hsc-icon"><i class="fas fa-cloud"></i></div>
+      <span class="hsc-num">3</span>
+      <span class="hsc-lbl">Cloud Platforms</span>
+    </div>
+    <div class="hsc">
+      <div class="hsc-icon"><i class="fas fa-dollar-sign"></i></div>
+      <span class="hsc-num">$2M+</span>
+      <span class="hsc-lbl">Cost Savings</span>
+    </div>
+    <div class="hsc">
+      <div class="hsc-icon"><i class="fas fa-shield-alt"></i></div>
+      <span class="hsc-num">HIPAA</span>
+      <span class="hsc-lbl">Compliant</span>
+    </div>
+  </div>
+
+  <!-- Wave -->
+  <div class="wave-divider">
+    <svg viewBox="0 0 1440 60" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="height:60px;">
+      <path d="M0,30 C360,60 1080,0 1440,30 L1440,60 L0,60 Z" fill="var(--surface)" opacity="0.4"/>
+    </svg>
+  </div>
 </section>
 
-<!-- STATS STRIP -->
-<div class="stats-strip">
-  <div class="stat-pill"><span class="stat-num">21</span><span class="stat-lbl">Projects Shipped</span></div>
-  <div class="stat-pill"><span class="stat-num">40%</span><span class="stat-lbl">Avg Accuracy Gain</span></div>
-  <div class="stat-pill"><span class="stat-num">50K+</span><span class="stat-lbl">Docs Processed</span></div>
-  <div class="stat-pill"><span class="stat-num">$2M+</span><span class="stat-lbl">Cost Savings</span></div>
-  <div class="stat-pill"><span class="stat-num">HIPAA</span><span class="stat-lbl">Compliance</span></div>
-  <div class="stat-pill"><span class="stat-num">&lt;100ms</span><span class="stat-lbl">Best Latency</span></div>
-</div>
-
-<!-- FILTER BAR -->
-<div class="filter-wrap">
-  <div class="filter-group">
-    <button class="fp-btn active" data-filter="all">All Projects</button>
-    <button class="fp-btn" data-filter="genai">Generative AI</button>
-    <button class="fp-btn" data-filter="ml">Machine Learning</button>
-    <button class="fp-btn" data-filter="mlops">MLOps</button>
-    <button class="fp-btn" data-filter="nlp">NLP</button>
-    <button class="fp-btn personal-btn" data-filter="personal">⚡ Personal</button>
-  </div>
-  <span class="proj-count-badge" id="proj-count">21 projects</span>
-</div>
-
-
-<!-- ═══════════════════════════════════════
-     GENERATIVE AI
-═══════════════════════════════════════ -->
-<div class="proj-section-head" data-section-head="genai">
-  <div class="proj-section-head-line"></div>
-  <span class="proj-section-head-label"><i class="fas fa-robot" style="color:var(--accent)"></i> Generative AI</span>
-  <div class="proj-section-head-line"></div>
-</div>
-<div class="bento-grid" data-grid="genai">
-
-  <!-- 01 RAG System — featured -->
-  <div class="pc featured" data-category="genai" id="rag">
-    <div class="pc-img">
-      <img src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=900&q=80" alt="Enterprise RAG System" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0f2027,#203a43,#2c5364)';">
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">01</div>
-      <div class="pc-tags">
-        <span class="pc-tag genai">Generative AI</span>
-        <span class="pc-tag prod">Production</span>
-      </div>
+<!-- IMPACT TICKER BAR -->
+<div style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:0;overflow:hidden;position:relative;z-index:1;">
+  <div style="display:flex;gap:0;animation:ticker 28s linear infinite;width:max-content;">
+    <div style="display:flex;gap:0;padding:18px 0;">
+      <span style="padding:0 36px;font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--text3);letter-spacing:0.1em;border-right:1px solid var(--border);">⚡ &lt;100ms inference latency</span>
+      <span style="padding:0 36px;font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--accent);letter-spacing:0.1em;border-right:1px solid var(--border);">🎯 98% highest model accuracy</span>
+      <span style="padding:0 36px;font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--text3);letter-spacing:0.1em;border-right:1px solid var(--border);">💰 60% max compute cost cut</span>
+      <span style="padding:0 36px;font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--accent);letter-spacing:0.1em;border-right:1px solid var(--border);">🏥 HIPAA compliance achieved</span>
+      <span style="padding:0 36px;font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--text3);letter-spacing:0.1em;border-right:1px solid var(--border);">🤖 5+ autonomous AI agents</span>
+      <span style="padding:0 36px;font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--accent);letter-spacing:0.1em;border-right:1px solid var(--border);">📊 3 major cloud platforms</span>
+      <span style="padding:0 36px;font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--text3);letter-spacing:0.1em;border-right:1px solid var(--border);">🌐 Production RAG at scale</span>
     </div>
-    <div class="pc-body">
+    <div style="display:flex;gap:0;padding:18px 0;" aria-hidden="true">
+      <span style="padding:0 36px;font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--text3);letter-spacing:0.1em;border-right:1px solid var(--border);">⚡ &lt;100ms inference latency</span>
+      <span style="padding:0 36px;font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--accent);letter-spacing:0.1em;border-right:1px solid var(--border);">🎯 98% highest model accuracy</span>
+      <span style="padding:0 36px;font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--text3);letter-spacing:0.1em;border-right:1px solid var(--border);">💰 60% max compute cost cut</span>
+      <span style="padding:0 36px;font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--accent);letter-spacing:0.1em;border-right:1px solid var(--border);">🏥 HIPAA compliance achieved</span>
+      <span style="padding:0 36px;font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--text3);letter-spacing:0.1em;border-right:1px solid var(--border);">🤖 5+ autonomous AI agents</span>
+      <span style="padding:0 36px;font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--accent);letter-spacing:0.1em;border-right:1px solid var(--border);">📊 3 major cloud platforms</span>
+      <span style="padding:0 36px;font-family:'Space Mono',monospace;font-size:0.75rem;color:var(--text3);letter-spacing:0.1em;">🌐 Production RAG at scale</span>
+    </div>
+  </div>
+</div>
+
+<!-- STICKY FILTER -->
+<div class="projects-filter-section">
+  <div class="projects-filter-inner">
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All Projects</button>
+      <button class="filter-btn" data-filter="genai"><i class="fas fa-robot" style="font-size:0.75rem;margin-right:5px;"></i>Generative AI</button>
+      <button class="filter-btn" data-filter="ml"><i class="fas fa-brain" style="font-size:0.75rem;margin-right:5px;"></i>Machine Learning</button>
+      <button class="filter-btn" data-filter="mlops"><i class="fas fa-cogs" style="font-size:0.75rem;margin-right:5px;"></i>MLOps</button>
+      <button class="filter-btn" data-filter="nlp"><i class="fas fa-language" style="font-size:0.75rem;margin-right:5px;"></i>NLP</button>
+      <button class="filter-btn" data-filter="personal" style="border-color:rgba(251,191,36,0.35);color:#fbbf24;"><i class="fas fa-flask" style="font-size:0.75rem;margin-right:5px;"></i>Personal</button>
+    </div>
+    <span class="filter-count-badge" id="filter-count">21 projects</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     GENERATIVE AI SECTION
+══════════════════════════════════════ -->
+<div class="category-divider" data-section="genai">
+  <div class="category-divider-line"></div>
+  <span class="category-divider-pill" style="color:var(--accent);border-color:rgba(0,212,255,0.2);"><i class="fas fa-robot"></i> Generative AI</span>
+  <div class="category-divider-line"></div>
+</div>
+
+<div class="projects-full-grid">
+
+  <!-- PROJECT 1: RAG System -->
+  <div class="full-project-card" data-category="genai" id="rag">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=760&q=80"
+        alt="Enterprise RAG System — AI knowledge retrieval interface"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0f2027,#203a43,#2c5364)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag genai">Generative AI</span>
+        <span class="project-category-tag mlops" style="background:rgba(16,185,129,0.15);color:#10b981;">Production</span>
+      </div>
+      <div class="full-project-number">01</div>
+    </div>
+    <div class="full-project-body">
       <h3>Enterprise AI Knowledge Retrieval (RAG)</h3>
-      <p class="pc-desc">Designed and deployed a production-grade RAG system at Ascension Via Christi Health, enabling clinical teams to query 100K+ enterprise documents in natural language with real-time, citation-grounded answers.</p>
-      <div class="pc-quote">"Reduced average time-to-answer for clinical staff from 8 minutes to under 40 seconds — enabling faster care decisions at the bedside."</div>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">35%</span><span class="pc-metric-lbl">Accuracy boost</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">&lt;1s</span><span class="pc-metric-lbl">Query latency</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">100K+</span><span class="pc-metric-lbl">Docs indexed</span></div>
+      <p>Designed and deployed a production-grade Retrieval-Augmented Generation system at Ascension Via Christi Health, enabling clinical teams to query 100K+ enterprise documents in natural language with real-time, citation-grounded answers.</p>
+      <div class="project-quote">"Reduced average time-to-answer for clinical staff from 8 minutes to under 40 seconds — enabling faster care decisions at the bedside."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-building"></i> Ascension Via Christi Health</span>
+        <span class="detail-chip"><i class="fas fa-calendar"></i> Sep 2024 – Present</span>
+        <span class="detail-chip"><i class="fas fa-lock"></i> HIPAA Compliant</span>
       </div>
-      <div class="pc-stack"><span>LangChain</span><span>FAISS</span><span>Azure OpenAI</span><span>FastAPI</span><span>Docker</span><span>Pinecone</span><span>Redis</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani/Enterprise-AI-Knowledge-RAG" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">35%</span><span class="full-metric-lbl">Accuracy boost</span></div>
+        <div class="full-metric"><span class="full-metric-val">&lt;1s</span><span class="full-metric-lbl">Query latency</span></div>
+        <div class="full-metric"><span class="full-metric-val">100K+</span><span class="full-metric-lbl">Docs indexed</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>LangChain</span><span>FAISS</span><span>Azure OpenAI</span><span>FastAPI</span>
+        <span>Docker</span><span>Pinecone</span><span>Python</span><span>Redis</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani/Enterprise-AI-Knowledge-RAG" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
       </div>
     </div>
   </div>
 
-  <!-- 02 Multi-Agent -->
-  <div class="pc" data-category="genai" id="multi-agent">
-    <div class="pc-img">
-      <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=760&q=80" alt="Multi-Agent AI" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0d0d0d,#1a0533,#2d0b63)';">
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">02</div>
-      <div class="pc-tags">
-        <span class="pc-tag genai">Generative AI</span>
-        <span class="pc-tag purple">Agentic AI</span>
+  <!-- PROJECT 2: Multi-Agent -->
+  <div class="full-project-card reverse" data-category="genai" id="multi-agent">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=760&q=80"
+        alt="Multi-Agent AI Orchestration — neural network visualization"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0d0d0d,#1a0533,#2d0b63)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag genai">Generative AI</span>
+        <span class="project-category-tag mlops" style="background:rgba(124,58,237,0.15);color:#a78bfa;">Agentic AI</span>
       </div>
+      <div class="full-project-number">02</div>
     </div>
-    <div class="pc-body">
+    <div class="full-project-body">
       <h3>Multi-Agent AI Orchestration Framework</h3>
-      <p class="pc-desc">LangGraph-powered multi-agent system where 5 specialized AI agents autonomously decompose complex clinical and enterprise tasks, delegate subtasks, use tools, and produce verified outputs.</p>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">5+</span><span class="pc-metric-lbl">AI agents</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">65%</span><span class="pc-metric-lbl">Faster resolution</span></div>
+      <p>Built a LangGraph-powered multi-agent orchestration system where specialized AI agents autonomously decompose complex clinical and enterprise tasks, delegate subtasks, use tools (web search, code execution, database queries), and produce verified outputs — mimicking a high-performing analyst team.</p>
+      <div class="project-quote">"5 specialized agents collaborating in real-time reduced task resolution time by 65% on complex multi-step workflows compared to single-agent approaches."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-robot"></i> 5 Specialized Agents</span>
+        <span class="detail-chip"><i class="fas fa-code-branch"></i> LangGraph DAG</span>
+        <span class="detail-chip"><i class="fas fa-tools"></i> Tool Use + RAG</span>
       </div>
-      <div class="pc-stack"><span>LangGraph</span><span>LangChain</span><span>GPT-4</span><span>FastAPI</span><span>Kubernetes</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani/Multi-Agent-AI-Orchestration-Framework" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">5+</span><span class="full-metric-lbl">AI agents</span></div>
+        <div class="full-metric"><span class="full-metric-val">65%</span><span class="full-metric-lbl">Faster resolution</span></div>
+        <div class="full-metric"><span class="full-metric-val">∞</span><span class="full-metric-lbl">Task types</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>LangGraph</span><span>LangChain</span><span>GPT-4</span><span>FastAPI</span>
+        <span>Redis</span><span>Docker</span><span>Kubernetes</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani/Multi-Agent-AI-Orchestration-Framework" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
       </div>
     </div>
   </div>
 
-  <!-- 03 LLM Fine-Tuning -->
-  <div class="pc" data-category="genai" id="lora">
-    <div class="pc-img">
-      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=760&q=80" alt="LLM Fine-Tuning" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0a2342,#126872,#0d4e4e)';">
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">03</div>
-      <div class="pc-tags">
-        <span class="pc-tag genai">Generative AI</span>
-        <span class="pc-tag ml">Fine-Tuning</span>
+  <!-- PROJECT 3: LLM Fine-Tuning -->
+  <div class="full-project-card" data-category="genai" id="lora">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=760&q=80"
+        alt="LLM Fine-Tuning Pipeline — model training visualization"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0a2342,#126872,#0d4e4e)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag genai">Generative AI</span>
+        <span class="project-category-tag ml" style="background:rgba(16,185,129,0.12);color:#10b981;">Fine-Tuning</span>
       </div>
+      <div class="full-project-number">03</div>
     </div>
-    <div class="pc-body">
+    <div class="full-project-body">
       <h3>LLM Fine-Tuning Pipeline (LoRA / QLoRA)</h3>
-      <p class="pc-desc">End-to-end fine-tuning pipeline for domain adaptation of Llama 2 & Mistral using PEFT techniques — 4-bit QLoRA quantization with automated HuggingFace Hub publishing.</p>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">60%</span><span class="pc-metric-lbl">GPU cost cut</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">96%</span><span class="pc-metric-lbl">Benchmark score</span></div>
+      <p>Engineered a reusable end-to-end fine-tuning pipeline for domain adaptation of open-source LLMs (Llama 2, Mistral) using PEFT techniques. The pipeline handles data curation, quantization, LoRA adapter training, evaluation with ROUGE/BLEU, and automated publishing to HuggingFace Hub.</p>
+      <div class="project-quote">"Achieved 60% GPU memory reduction using 4-bit QLoRA quantization while maintaining 96% of full fine-tune benchmark scores — making domain LLMs accessible on a single A100."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-microchip"></i> QLoRA 4-bit Quantization</span>
+        <span class="detail-chip"><i class="fas fa-database"></i> Custom Domain Datasets</span>
+        <span class="detail-chip"><i class="fas fa-chart-bar"></i> ROUGE / BLEU Eval</span>
       </div>
-      <div class="pc-stack"><span>LoRA</span><span>QLoRA</span><span>PEFT</span><span>PyTorch</span><span>HuggingFace</span><span>W&B</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani/LLM-Fine-Tuning-Pipeline" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">60%</span><span class="full-metric-lbl">Cost reduction</span></div>
+        <div class="full-metric"><span class="full-metric-val">96%</span><span class="full-metric-lbl">Benchmark score</span></div>
+        <div class="full-metric"><span class="full-metric-val">4-bit</span><span class="full-metric-lbl">Quantization</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>LoRA</span><span>QLoRA</span><span>PEFT</span><span>PyTorch</span>
+        <span>HuggingFace</span><span>Llama 2</span><span>Mistral</span><span>W&B</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani/LLM-Fine-Tuning-Pipeline" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
       </div>
     </div>
   </div>
 
-  <!-- 04 Healthcare AI Assistant — featured -->
-  <div class="pc featured" data-category="genai" id="healthcare-ai">
-    <div class="pc-img">
-      <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80" alt="Healthcare AI Assistant" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#002b36,#004d66,#006080)';">
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">04</div>
-      <div class="pc-tags">
-        <span class="pc-tag genai">Generative AI</span>
-        <span class="pc-tag red">Healthcare</span>
+  <!-- PROJECT 4: Healthcare AI Assistant -->
+  <div class="full-project-card reverse" data-category="genai" id="healthcare-ai">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=760&q=80"
+        alt="Healthcare AI Diagnostic Assistant — clinical AI interface"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#002b36,#004d66,#006080)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag genai">Generative AI</span>
+        <span class="project-category-tag" style="background:rgba(239,68,68,0.12);color:#f87171;border:none;">Healthcare</span>
       </div>
+      <div class="full-project-number">04</div>
     </div>
-    <div class="pc-body">
+    <div class="full-project-body">
       <h3>Healthcare AI Diagnostic Assistant</h3>
-      <p class="pc-desc">HIPAA-compliant conversational AI for clinical teams at Ascension. Combines GPT-4 with a RAG layer over structured EHR data and clinical guidelines, enabling care teams to query patient history and generate draft clinical summaries in real time.</p>
-      <div class="pc-quote">"Reduced documentation time for nursing staff by 28% during pilot — flagged for enterprise-wide rollout across 3 hospital networks."</div>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">28%</span><span class="pc-metric-lbl">Less doc time</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">3</span><span class="pc-metric-lbl">Hospital networks</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">99.9%</span><span class="pc-metric-lbl">Uptime SLA</span></div>
+      <p>Built a HIPAA-compliant conversational AI assistant for clinical teams at Ascension. Combines GPT-4 with a RAG layer over structured EHR data and clinical guidelines, enabling care teams to query patient history, surface relevant protocols, and generate draft clinical summaries in real time.</p>
+      <div class="project-quote">"Reduced documentation time for nursing staff by 28% during pilot — flagged for enterprise-wide rollout across 3 hospital networks."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-lock"></i> HIPAA Compliant</span>
+        <span class="detail-chip"><i class="fas fa-hospital"></i> EHR Integration</span>
+        <span class="detail-chip"><i class="fas fa-user-md"></i> Clinical Workflows</span>
       </div>
-      <div class="pc-stack"><span>GPT-4</span><span>LangChain</span><span>FAISS</span><span>Azure</span><span>FastAPI</span><span>PostgreSQL</span><span>HL7 FHIR</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani/Healthcare-AI-Diagnostic-Assistant" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">28%</span><span class="full-metric-lbl">Less doc time</span></div>
+        <div class="full-metric"><span class="full-metric-val">3</span><span class="full-metric-lbl">Hospital networks</span></div>
+        <div class="full-metric"><span class="full-metric-val">99.9%</span><span class="full-metric-lbl">Uptime SLA</span></div>
       </div>
-    </div>
-  </div>
-
-</div><!-- /genai grid -->
-
-
-<!-- ═══════════════════════════════════════
-     NLP & LANGUAGE INTELLIGENCE
-═══════════════════════════════════════ -->
-<div class="proj-section-head" data-section-head="nlp">
-  <div class="proj-section-head-line"></div>
-  <span class="proj-section-head-label"><i class="fas fa-language" style="color:#fbbf24"></i> NLP & Language Intelligence</span>
-  <div class="proj-section-head-line"></div>
-</div>
-<div class="bento-grid" data-grid="nlp">
-
-  <!-- 05 Clinical NLP -->
-  <div class="pc" data-category="nlp" id="clinical-nlp">
-    <div class="pc-img">
-      <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=760&q=80" alt="Clinical NLP" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0a1a2e,#1a3a5c,#0d2a4a)';">
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">05</div>
-      <div class="pc-tags"><span class="pc-tag nlp">NLP</span><span class="pc-tag red">Healthcare</span></div>
-    </div>
-    <div class="pc-body">
-      <h3>Clinical NLP Entity Extraction</h3>
-      <p class="pc-desc">BioBERT-based NLP pipeline extracting diagnoses, medications, and procedures from unstructured clinical notes, reducing manual chart review time by 45%.</p>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">94%</span><span class="pc-metric-lbl">F1 score</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">45%</span><span class="pc-metric-lbl">Time saved</span></div>
+      <div class="full-tech-stack">
+        <span>GPT-4</span><span>LangChain</span><span>FAISS</span><span>Azure</span>
+        <span>FastAPI</span><span>PostgreSQL</span><span>HL7 FHIR</span>
       </div>
-      <div class="pc-stack"><span>BioBERT</span><span>spaCy</span><span>Python</span><span>FastAPI</span><span>Docker</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani/Clinical-NLP-Entity-Extraction" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani/Healthcare-AI-Diagnostic-Assistant" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
       </div>
     </div>
   </div>
 
-  <!-- 06 Semantic Search — featured -->
-  <div class="pc featured" data-category="nlp" id="semantic-search">
-    <div class="pc-img">
-      <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?w=900&q=80" alt="Semantic Search" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a1200,#3d2c00,#5c4200)';">
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">06</div>
-      <div class="pc-tags"><span class="pc-tag nlp">NLP</span><span class="pc-tag prod">Production</span></div>
-    </div>
-    <div class="pc-body">
-      <h3>Semantic Search & Recommendation Engine</h3>
-      <p class="pc-desc">Transformer-based semantic search replacing keyword matching. BERT embeddings + Pinecone ANN search deliver intent-aware results across 500K+ product catalog entries, significantly boosting discovery and revenue.</p>
-      <div class="pc-quote">"Semantic understanding of queries unlocked 31% higher click-through and a measurable lift in conversion — keyword search couldn't surface these connections."</div>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">31%</span><span class="pc-metric-lbl">CTR increase</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">500K+</span><span class="pc-metric-lbl">Items indexed</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">&lt;50ms</span><span class="pc-metric-lbl">Query time</span></div>
-      </div>
-      <div class="pc-stack"><span>BERT</span><span>Pinecone</span><span>FastAPI</span><span>Python</span><span>Docker</span><span>Redis</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani/Semantic-Search-Recommendation-Engine" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- 07 Knowledge Graph -->
-  <div class="pc" data-category="nlp" id="knowledge-graph">
-    <div class="pc-img">
-      <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=760&q=80" alt="Knowledge Graph" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0d0d2b,#1a1a55,#26267a)';">
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">07</div>
-      <div class="pc-tags"><span class="pc-tag nlp">NLP</span><span class="pc-tag purple">Knowledge Graph</span></div>
-    </div>
-    <div class="pc-body">
-      <h3>Medical Knowledge Graph + QA System</h3>
-      <p class="pc-desc">Extracts medical relationships from PubMed abstracts using custom NER & relation extraction, builds a Neo4j knowledge graph, then answers complex clinical queries via graph traversal + LLM synthesis.</p>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">50K+</span><span class="pc-metric-lbl">Relations</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">87%</span><span class="pc-metric-lbl">QA accuracy</span></div>
-      </div>
-      <div class="pc-stack"><span>spaCy</span><span>Neo4j</span><span>BERT</span><span>LangChain</span><span>FastAPI</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani/Medical-Knowledge-Graph-QA" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /nlp grid -->
+</div><!-- /genai projects grid -->
 
 
-<!-- ═══════════════════════════════════════
-     MACHINE LEARNING
-═══════════════════════════════════════ -->
-<div class="proj-section-head" data-section-head="ml">
-  <div class="proj-section-head-line"></div>
-  <span class="proj-section-head-label"><i class="fas fa-brain" style="color:#10b981"></i> Machine Learning</span>
-  <div class="proj-section-head-line"></div>
-</div>
-<div class="bento-grid" data-grid="ml">
-
-  <!-- 08 Demand Forecasting -->
-  <div class="pc" data-category="ml" id="demand-forecast">
-    <div class="pc-img">
-      <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=760&q=80" alt="Demand Forecasting" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0f1923,#1a2f42,#1e3a52)';">
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">08</div>
-      <div class="pc-tags"><span class="pc-tag ml">Machine Learning</span><span class="pc-tag prod">Production</span></div>
-    </div>
-    <div class="pc-body">
-      <h3>Demand Forecasting with Ensemble ML</h3>
-      <p class="pc-desc">XGBoost + LSTM ensemble for multi-horizon demand forecasting across 10K+ SKUs. Reduced forecast error by 28% vs baseline, enabling $500K in inventory savings.</p>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">28%</span><span class="pc-metric-lbl">Error reduction</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">$500K</span><span class="pc-metric-lbl">Savings</span></div>
-      </div>
-      <div class="pc-stack"><span>XGBoost</span><span>LSTM</span><span>PyTorch</span><span>Airflow</span><span>Snowflake</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani/Demand-Forecasting-ML" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- 09 Anomaly Detection — featured -->
-  <div class="pc featured" data-category="ml" id="anomaly-detection">
-    <div class="pc-img">
-      <img src="https://images.unsplash.com/photo-1518186285589-2f7649de83e0?w=900&q=80" alt="Anomaly Detection" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a0000,#3d0000,#5c1a1a)';">
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">09</div>
-      <div class="pc-tags"><span class="pc-tag ml">Machine Learning</span><span class="pc-tag red">Healthcare</span></div>
-    </div>
-    <div class="pc-body">
-      <h3>Patient Vital Signs Anomaly Detection</h3>
-      <p class="pc-desc">Real-time anomaly detection on streaming ICU vital-sign data using LSTM Autoencoders and Isolation Forest. Triggers early-warning alerts for clinical deterioration, achieving 98% sensitivity with only 3% false-positive rate.</p>
-      <div class="pc-quote">"Early deterioration detection in ICU patients can be the difference between intervention and a code — 98% sensitivity with this system gives clinicians real confidence."</div>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">98%</span><span class="pc-metric-lbl">Sensitivity</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">3%</span><span class="pc-metric-lbl">False positive rate</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">&lt;2s</span><span class="pc-metric-lbl">Alert latency</span></div>
-      </div>
-      <div class="pc-stack"><span>LSTM Autoencoder</span><span>Isolation Forest</span><span>Kafka</span><span>PyTorch</span><span>InfluxDB</span><span>Grafana</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani/Patient-Vital-Anomaly-Detection" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- 10 Computer Vision OCR -->
-  <div class="pc" data-category="ml" id="cv-ocr">
-    <div class="pc-img">
-      <img src="https://images.unsplash.com/photo-1576400883215-7083980b6674?w=760&q=80" alt="Computer Vision OCR" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0d1f0d,#1a3a1a,#243324)';">
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">10</div>
-      <div class="pc-tags"><span class="pc-tag ml">Computer Vision</span></div>
-    </div>
-    <div class="pc-body">
-      <h3>Medical Document OCR & Classification</h3>
-      <p class="pc-desc">EfficientNet + Tesseract OCR pipeline classifying and extracting structured data from scanned medical forms with 96% accuracy, processing 10K+ documents daily.</p>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">96%</span><span class="pc-metric-lbl">Accuracy</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">10K+</span><span class="pc-metric-lbl">Docs/day</span></div>
-      </div>
-      <div class="pc-stack"><span>EfficientNet</span><span>Tesseract</span><span>OpenCV</span><span>FastAPI</span><span>AWS S3</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani/Medical-Document-OCR-Classification" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /ml grid -->
-
-
-<!-- ═══════════════════════════════════════
-     MLOps & INFRASTRUCTURE
-═══════════════════════════════════════ -->
-<div class="proj-section-head" data-section-head="mlops">
-  <div class="proj-section-head-line"></div>
-  <span class="proj-section-head-label"><i class="fas fa-cogs" style="color:#a78bfa"></i> MLOps & Infrastructure</span>
-  <div class="proj-section-head-line"></div>
-</div>
-<div class="bento-grid" data-grid="mlops">
-
-  <!-- 11 MLOps Pipeline — featured -->
-  <div class="pc featured" data-category="mlops" id="mlops-pipeline">
-    <div class="pc-img">
-      <img src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=900&q=80" alt="MLOps Pipeline" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0f0a1e,#1e1040,#2d1760)';">
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">11</div>
-      <div class="pc-tags"><span class="pc-tag mlops">MLOps</span><span class="pc-tag prod">Production</span></div>
-    </div>
-    <div class="pc-body">
-      <h3>End-to-End MLOps Pipeline on Azure</h3>
-      <p class="pc-desc">Automated ML lifecycle from data ingestion to deployment: feature engineering via Azure Data Factory, model training tracked with MLflow, containerized with Docker, CI/CD via Azure DevOps, and monitored with Grafana + data drift detection.</p>
-      <div class="pc-quote">"Full retraining cycle went from 3 days of manual effort to a fully automated 4-hour pipeline — and models now get re-deployed the moment drift is detected."</div>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">4hr</span><span class="pc-metric-lbl">Retrain cycle</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">100%</span><span class="pc-metric-lbl">Automated CI/CD</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">0</span><span class="pc-metric-lbl">Manual deploys</span></div>
-      </div>
-      <div class="pc-stack"><span>Azure ML</span><span>MLflow</span><span>Docker</span><span>Kubernetes</span><span>Grafana</span><span>Airflow</span><span>Terraform</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani/MLOps-Pipeline-Azure" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- 12 Streaming Prediction -->
-  <div class="pc" data-category="mlops" id="streaming-prediction">
-    <div class="pc-img">
-      <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=760&q=80" alt="Streaming Prediction" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#001a2c,#003355,#004d7a)';">
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">12</div>
-      <div class="pc-tags"><span class="pc-tag mlops">MLOps</span><span class="pc-tag genai">Real-time</span></div>
-    </div>
-    <div class="pc-body">
-      <h3>Real-Time ML Inference at Scale</h3>
-      <p class="pc-desc">Kafka Streams + FastAPI serving architecture delivering sub-100ms ML inference at 50K+ req/sec with auto-scaling, circuit breakers, and A/B model routing.</p>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">&lt;100ms</span><span class="pc-metric-lbl">P99 latency</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">50K+</span><span class="pc-metric-lbl">Req/sec</span></div>
-      </div>
-      <div class="pc-stack"><span>Kafka Streams</span><span>FastAPI</span><span>Docker</span><span>K8s</span><span>Redis</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani/Realtime-ML-Inference-Pipeline" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
-      </div>
-    </div>
-  </div>
-
-  <!-- 13 ETL Data Platform -->
-  <div class="pc" data-category="mlops" id="etl-platform">
-    <div class="pc-img">
-      <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=760&q=80" alt="ETL Platform" loading="lazy" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#001a00,#003300,#004d00)';">
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">13</div>
-      <div class="pc-tags"><span class="pc-tag mlops">MLOps</span><span class="pc-tag ml">Data Engineering</span></div>
-    </div>
-    <div class="pc-body">
-      <h3>Healthcare ETL Data Platform</h3>
-      <p class="pc-desc">HIPAA-compliant ETL processing 2M+ records/day from HL7/FHIR sources into a Snowflake data warehouse, with dbt transformations and automated data quality checks.</p>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">2M+</span><span class="pc-metric-lbl">Records/day</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">99.8%</span><span class="pc-metric-lbl">Data quality</span></div>
-      </div>
-      <div class="pc-stack"><span>PySpark</span><span>Snowflake</span><span>dbt</span><span>Airflow</span><span>HL7 FHIR</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani/Healthcare-ETL-Platform" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /mlops grid -->
-
-
-<!-- ═══════════════════════════════════════
-     PERSONAL & CONCEPT PROJECTS
-═══════════════════════════════════════ -->
-<div class="proj-section-head" data-section-head="personal" style="margin-top:72px;">
-  <div class="proj-section-head-line"></div>
-  <span class="proj-section-head-label" style="color:#fbbf24;"><i class="fas fa-flask" style="color:#fbbf24"></i> Personal & Concept Projects</span>
-  <div class="proj-section-head-line"></div>
+<!-- ══════════════════════════════════════
+     NLP SECTION
+══════════════════════════════════════ -->
+<div class="category-divider" data-section="nlp">
+  <div class="category-divider-line"></div>
+  <span class="category-divider-pill" style="color:#fbbf24;border-color:rgba(251,191,36,0.2);"><i class="fas fa-language"></i> NLP & Language Intelligence</span>
+  <div class="category-divider-line"></div>
 </div>
 
-<div class="personal-notice">
-  <div class="personal-notice-inner">
-    <i class="fas fa-lightbulb" style="color:#fbbf24;font-size:1.2rem;flex-shrink:0;"></i>
-    <p><strong style="color:var(--text);">Independently designed projects</strong> — built to explore cutting-edge AI techniques beyond my day job. Each solves a real industry problem and demonstrates end-to-end engineering from architecture to deployment.</p>
+<div class="projects-full-grid">
+
+  <!-- PROJECT 5: Clinical NLP -->
+  <div class="full-project-card" data-category="nlp" id="clinical-nlp">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=760&q=80"
+        alt="Clinical NLP Document Intelligence — medical records processing"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag nlp">NLP</span>
+        <span class="project-category-tag" style="background:rgba(239,68,68,0.12);color:#f87171;border:none;">Healthcare</span>
+      </div>
+      <div class="full-project-number">05</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Clinical NLP Document Intelligence</h3>
+      <p>Engineered a HIPAA-compliant NLP pipeline that ingests unstructured clinical notes, discharge summaries, and radiology reports, then extracts structured entities (diagnoses, medications, procedures) and generates concise summaries. Deployed on Apache Spark for hospital-scale throughput.</p>
+      <div class="project-quote">"Processed 50,000+ patient documents in the first production run — reducing manual chart review effort by 30% across the care coordination team."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-file-medical"></i> 50K+ Records</span>
+        <span class="detail-chip"><i class="fas fa-tags"></i> NER + Summarization</span>
+        <span class="detail-chip"><i class="fas fa-fire"></i> Spark Distributed</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">30%</span><span class="full-metric-lbl">Manual effort saved</span></div>
+        <div class="full-metric"><span class="full-metric-val">50K+</span><span class="full-metric-lbl">Docs processed</span></div>
+        <div class="full-metric"><span class="full-metric-val">F1 0.91</span><span class="full-metric-lbl">NER accuracy</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>BERT</span><span>Transformers</span><span>spaCy</span><span>Apache Spark</span>
+        <span>Python</span><span>Hugging Face</span><span>MLflow</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani/Clinical-NLP-Document-Intelligence" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 6: Semantic Search -->
+  <div class="full-project-card reverse" data-category="nlp" id="semantic-search">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=760&q=80"
+        alt="Semantic Search Engine — vector search visualization"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0c1445,#1a237e,#283593)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag nlp">NLP</span>
+        <span class="project-category-tag mlops" style="background:rgba(16,185,129,0.12);color:#10b981;border:none;">Vector Search</span>
+      </div>
+      <div class="full-project-number">06</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Hybrid Semantic Search Engine</h3>
+      <p>Built a production semantic search platform combining dense bi-encoder embeddings (Sentence Transformers) with BM25 sparse retrieval using Reciprocal Rank Fusion. Deployed on Pinecone and Weaviate with an A/B testing framework that continuously improves ranking models using implicit user feedback signals.</p>
+      <div class="project-quote">"Improved search relevance MRR@10 from 0.54 to 0.81 — a 50% uplift — by combining dense + sparse signals with cross-encoder reranking."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-search"></i> Hybrid Dense + BM25</span>
+        <span class="detail-chip"><i class="fas fa-flask"></i> A/B Testing</span>
+        <span class="detail-chip"><i class="fas fa-clock"></i> &lt;100ms Latency</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">50%</span><span class="full-metric-lbl">MRR uplift</span></div>
+        <div class="full-metric"><span class="full-metric-val">&lt;100ms</span><span class="full-metric-lbl">P99 latency</span></div>
+        <div class="full-metric"><span class="full-metric-val">1M+</span><span class="full-metric-lbl">Vectors indexed</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Sentence Transformers</span><span>Pinecone</span><span>Weaviate</span>
+        <span>FastAPI</span><span>BM25</span><span>Cross-Encoder</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani/Hybrid-Semantic-Search-Engine" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 7: Knowledge Graph -->
+  <div class="full-project-card" data-category="nlp" id="knowledge-graph">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=760&q=80"
+        alt="Knowledge Graph AI System — graph database visualization"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a0033,#3d0080,#4a0096)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag nlp">NLP</span>
+        <span class="project-category-tag genai">Graph AI</span>
+      </div>
+      <div class="full-project-number">07</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Knowledge Graph AI System</h3>
+      <p>Designed an AI-powered knowledge graph platform that ingests documents, extracts entities and relationships using BERT-based NER, builds a Neo4j graph, and exposes a GraphQL API enabling LLMs to reason over structured enterprise knowledge — bridging unstructured text and graph traversal.</p>
+      <div class="project-quote">"Enabled analysts to answer multi-hop questions across 200K+ entity relationships that previously required 3 separate database queries and manual joining."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-project-diagram"></i> Neo4j Graph DB</span>
+        <span class="detail-chip"><i class="fas fa-link"></i> Entity Linking</span>
+        <span class="detail-chip"><i class="fas fa-code"></i> GraphQL API</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">200K+</span><span class="full-metric-lbl">Entities mapped</span></div>
+        <div class="full-metric"><span class="full-metric-val">F1 0.88</span><span class="full-metric-lbl">Relation extract</span></div>
+        <div class="full-metric"><span class="full-metric-val">3x</span><span class="full-metric-lbl">Query speed</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Neo4j</span><span>LlamaIndex</span><span>NER</span><span>BERT</span>
+        <span>GraphQL</span><span>Python</span><span>spaCy</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani/Knowledge-Graph-AI-System" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /nlp projects grid -->
+
+
+<!-- ══════════════════════════════════════
+     MACHINE LEARNING SECTION
+══════════════════════════════════════ -->
+<div class="category-divider" data-section="ml">
+  <div class="category-divider-line"></div>
+  <span class="category-divider-pill" style="color:#10b981;border-color:rgba(16,185,129,0.2);"><i class="fas fa-brain"></i> Machine Learning</span>
+  <div class="category-divider-line"></div>
+</div>
+
+<div class="projects-full-grid">
+
+  <!-- PROJECT 8: Demand Forecasting -->
+  <div class="full-project-card" data-category="ml" id="demand-forecast">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=760&q=80"
+        alt="Demand Forecasting ML System — analytics dashboard"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1e3c0f,#2d5a17,#1a4a0a)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag ml">Machine Learning</span>
+        <span class="project-category-tag" style="background:rgba(251,191,36,0.12);color:#fbbf24;border:none;">Colgate-Palmolive</span>
+      </div>
+      <div class="full-project-number">08</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Demand Forecasting ML System</h3>
+      <p>Built an enterprise demand forecasting platform for Colgate-Palmolive covering 5,000+ SKUs across 12 global markets. Ensemble of XGBoost, LightGBM, and LSTM with automated feature engineering (lag features, rolling statistics, calendar events) and Airflow-orchestrated weekly retraining cycles.</p>
+      <div class="project-quote">"20% improvement in forecast MAPE over the legacy statistical model — translating to ~$1.4M in reduced overstock and stockout costs annually."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-building"></i> Colgate-Palmolive</span>
+        <span class="detail-chip"><i class="fas fa-boxes"></i> 5K+ SKUs</span>
+        <span class="detail-chip"><i class="fas fa-globe"></i> 12 Markets</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">20%</span><span class="full-metric-lbl">MAPE reduction</span></div>
+        <div class="full-metric"><span class="full-metric-val">$1.4M</span><span class="full-metric-lbl">Annual savings</span></div>
+        <div class="full-metric"><span class="full-metric-val">5K+</span><span class="full-metric-lbl">SKUs covered</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>XGBoost</span><span>LightGBM</span><span>TensorFlow</span><span>Airflow</span>
+        <span>MLflow</span><span>PySpark</span><span>Snowflake</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani/Demand-Forecasting-ML-System" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 9: Anomaly Detection -->
+  <div class="full-project-card reverse" data-category="ml" id="anomaly">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=760&q=80"
+        alt="Real-Time Anomaly Detection — monitoring dashboard"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#3b0000,#660000,#8b0000)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag ml">Machine Learning</span>
+        <span class="project-category-tag mlops" style="background:rgba(239,68,68,0.12);color:#f87171;border:none;">Real-Time</span>
+      </div>
+      <div class="full-project-number">09</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Real-Time Anomaly Detection System</h3>
+      <p>Engineered a streaming anomaly detection platform processing Kafka event streams at 50K events/sec. Ensemble of Isolation Forest, Autoencoder, and statistical control charts with adaptive thresholds — triggers automated Slack/PagerDuty alerts and writes flagged events to a Delta Lake audit table.</p>
+      <div class="project-quote">"Caught a data pipeline failure within 4 seconds of onset — previously undetected failures caused 6-hour data gaps impacting downstream analytics."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-stream"></i> 50K Events/sec</span>
+        <span class="detail-chip"><i class="fas fa-bell"></i> PagerDuty Alerts</span>
+        <span class="detail-chip"><i class="fas fa-shield-alt"></i> Adaptive Thresholds</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">95%+</span><span class="full-metric-lbl">Precision</span></div>
+        <div class="full-metric"><span class="full-metric-val">50K/s</span><span class="full-metric-lbl">Event throughput</span></div>
+        <div class="full-metric"><span class="full-metric-val">4s</span><span class="full-metric-lbl">Detection lag</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Kafka</span><span>Isolation Forest</span><span>PyTorch Autoencoder</span>
+        <span>Scikit-learn</span><span>FastAPI</span><span>Delta Lake</span><span>Docker</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani/Real-Time-Anomaly-Detection-System" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 10: Computer Vision OCR -->
+  <div class="full-project-card" data-category="ml" id="ocr">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1666112835156-c65bb806b71e?w=760&q=80"
+        alt="Computer Vision OCR Pipeline — document scanning AI"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1a1a0d,#3d3d00,#595900)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag ml">Machine Learning</span>
+        <span class="project-category-tag genai" style="background:rgba(59,130,246,0.12);color:#60a5fa;border:none;">Computer Vision</span>
+      </div>
+      <div class="full-project-number">10</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Computer Vision OCR Pipeline</h3>
+      <p>Developed an automated document digitization system combining Vision Transformers (ViT) for document layout understanding with Tesseract + PaddleOCR for character recognition. Handles handwritten forms, multi-column medical PDFs, and low-quality scans — extracting structured JSON output for downstream systems.</p>
+      <div class="project-quote">"Reduced manual data entry for clinical forms from 4 minutes per document to 8 seconds — enabling same-day processing of incoming patient paperwork."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-file-image"></i> Multi-format Docs</span>
+        <span class="detail-chip"><i class="fas fa-pen"></i> Handwriting Support</span>
+        <span class="detail-chip"><i class="fas fa-code"></i> JSON Output API</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">98%</span><span class="full-metric-lbl">OCR accuracy</span></div>
+        <div class="full-metric"><span class="full-metric-val">30x</span><span class="full-metric-lbl">Faster than manual</span></div>
+        <div class="full-metric"><span class="full-metric-val">8s</span><span class="full-metric-lbl">Per document</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>ViT</span><span>CLIP</span><span>OpenCV</span><span>Tesseract</span>
+        <span>PaddleOCR</span><span>PyTorch</span><span>FastAPI</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani/Computer-Vision-OCR-Pipeline" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /ml projects grid -->
+
+
+<!-- ══════════════════════════════════════
+     MLOPS SECTION
+══════════════════════════════════════ -->
+<div class="category-divider" data-section="mlops">
+  <div class="category-divider-line"></div>
+  <span class="category-divider-pill" style="color:#a78bfa;border-color:rgba(167,139,250,0.2);"><i class="fas fa-cogs"></i> MLOps & Infrastructure</span>
+  <div class="category-divider-line"></div>
+</div>
+
+<div class="projects-full-grid">
+
+  <!-- PROJECT 11: MLOps Pipeline -->
+  <div class="full-project-card" data-category="mlops" id="mlops-pipeline">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1667372393119-3d4c48d07fc9?w=760&q=80"
+        alt="End-to-End MLOps Pipeline — Kubernetes deployment infrastructure"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#1c1c1c,#2e2e2e,#3a3a3a)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag mlops">MLOps</span>
+        <span class="project-category-tag" style="background:rgba(16,185,129,0.12);color:#10b981;border:none;">Zero Downtime</span>
+      </div>
+      <div class="full-project-number">11</div>
+    </div>
+    <div class="full-project-body">
+      <h3>End-to-End MLOps Platform</h3>
+      <p>Architected a complete ML lifecycle management platform — from experiment tracking (MLflow) and model registry to canary deployments on Kubernetes, automated drift detection (evidently.ai), and a Grafana observability stack. Standardized the path from notebook to production across 3 engineering teams.</p>
+      <div class="project-quote">"Reduced model deployment time from 3 days to 45 minutes — with 30% fewer post-deployment incidents thanks to automated drift alerting."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-ship"></i> Kubernetes Canary</span>
+        <span class="detail-chip"><i class="fas fa-chart-area"></i> Drift Detection</span>
+        <span class="detail-chip"><i class="fas fa-users"></i> 3 Teams Onboarded</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">45min</span><span class="full-metric-lbl">Deploy time</span></div>
+        <div class="full-metric"><span class="full-metric-val">30%</span><span class="full-metric-lbl">Fewer incidents</span></div>
+        <div class="full-metric"><span class="full-metric-val">100%</span><span class="full-metric-lbl">Zero-downtime</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>MLflow</span><span>Kubernetes</span><span>Prometheus</span><span>Grafana</span>
+        <span>CI/CD</span><span>Jenkins</span><span>evidently.ai</span><span>Docker</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani/End-to-End-MLOps-Platform" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 12: Streaming Prediction -->
+  <div class="full-project-card reverse" data-category="mlops" id="streaming">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=760&q=80"
+        alt="Real-Time Streaming Prediction System — server infrastructure"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0d1b2a,#1b263b,#415a77)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag mlops">MLOps</span>
+        <span class="project-category-tag genai" style="background:rgba(251,191,36,0.12);color:#fbbf24;border:none;">AWS</span>
+      </div>
+      <div class="full-project-number">12</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Real-Time Streaming Prediction System</h3>
+      <p>Built an event-driven ML inference platform on AWS where Kafka topics trigger real-time model scoring via SageMaker endpoints. Features horizontal autoscaling (response to traffic spikes in &lt;90s), live Grafana dashboards, and a shadow-mode framework for safely validating new model versions before full cutover.</p>
+      <div class="project-quote">"System handled 3x traffic spike during product launch (Black Friday equivalent) with zero degradation — inference latency stayed under 85ms at peak."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-bolt"></i> &lt;85ms Inference</span>
+        <span class="detail-chip"><i class="fas fa-expand-arrows-alt"></i> Auto-scaling &lt;90s</span>
+        <span class="detail-chip"><i class="fab fa-aws"></i> AWS SageMaker</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">&lt;85ms</span><span class="full-metric-lbl">P99 latency</span></div>
+        <div class="full-metric"><span class="full-metric-val">3x</span><span class="full-metric-lbl">Traffic spike handled</span></div>
+        <div class="full-metric"><span class="full-metric-val">99.95%</span><span class="full-metric-lbl">Availability</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Kafka</span><span>TensorFlow</span><span>AWS SageMaker</span><span>Databricks</span>
+        <span>Grafana</span><span>Terraform</span><span>Docker</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani/Real-Time-Streaming-Prediction-System" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECT 13: ETL Data Platform -->
+  <div class="full-project-card" data-category="mlops" id="etl-platform">
+    <div class="full-project-img">
+      <img
+        src="https://images.unsplash.com/photo-1599658880436-c61792e70672?w=760&q=80"
+        alt="Scalable ETL Data Platform — data pipeline architecture"
+        loading="lazy"
+        onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#0a1628,#0d2137,#102a47)';"
+      >
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag mlops">MLOps</span>
+        <span class="project-category-tag" style="background:rgba(6,182,212,0.12);color:#22d3ee;border:none;">Data Engineering</span>
+      </div>
+      <div class="full-project-number">13</div>
+    </div>
+    <div class="full-project-body">
+      <h3>Scalable Clinical Data ETL Platform</h3>
+      <p>Designed a fault-tolerant ETL platform ingesting data from 8 source systems (EHR, lab systems, billing, scheduling) into a unified Snowflake data warehouse. Built with dbt for transformation lineage, Apache Airflow for orchestration, and great_expectations for automated data quality gates — serving as the foundation for all downstream ML models.</p>
+      <div class="project-quote">"Reduced data pipeline latency from 6 hours to 22 minutes — enabling near-real-time clinical dashboards that inform daily bed management decisions."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-database"></i> 8 Source Systems</span>
+        <span class="detail-chip"><i class="fas fa-check-circle"></i> Data Quality Gates</span>
+        <span class="detail-chip"><i class="fas fa-clock"></i> 22min Latency</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">94%</span><span class="full-metric-lbl">Latency reduction</span></div>
+        <div class="full-metric"><span class="full-metric-val">8</span><span class="full-metric-lbl">Source systems</span></div>
+        <div class="full-metric"><span class="full-metric-val">99.8%</span><span class="full-metric-lbl">Data quality score</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Apache Spark</span><span>Airflow</span><span>dbt</span><span>Snowflake</span>
+        <span>Delta Lake</span><span>great_expectations</span><span>Python</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani/Scalable-Clinical-Data-ETL-Platform" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /mlops projects grid -->
+
+
+<!-- ══════════════════════════════════════════
+     PERSONAL / CONCEPT PROJECTS SECTION
+══════════════════════════════════════════ -->
+
+<div class="category-divider" data-section="personal" style="margin-top:72px;">
+  <div class="category-divider-line"></div>
+  <span class="category-divider-pill" style="color:#fbbf24;border-color:rgba(251,191,36,0.2);"><i class="fas fa-flask"></i> Personal &amp; Concept Projects</span>
+  <div class="category-divider-line"></div>
+</div>
+
+<div style="max-width:1200px;margin:0 auto 12px;padding:0 32px;">
+  <div style="background:linear-gradient(135deg,rgba(251,191,36,0.06),rgba(124,58,237,0.06));border:1px solid rgba(251,191,36,0.2);border-radius:14px;padding:18px 24px;display:flex;align-items:center;gap:14px;">
+    <i class="fas fa-lightbulb" style="color:#fbbf24;font-size:1.3rem;flex-shrink:0;"></i>
+    <p style="color:var(--text2);font-size:0.88rem;line-height:1.7;margin:0;">
+      These are <strong style="color:var(--text);">independently designed projects</strong> — built to explore cutting-edge AI techniques beyond my day job. Each solves a real industry problem and demonstrates end-to-end engineering from architecture to deployment.
+    </p>
   </div>
 </div>
 
-<div class="bento-grid" data-grid="personal">
+<div class="projects-full-grid">
 
-  <!-- P1 Medical Coding Agent — featured -->
-  <div class="pc featured" data-category="personal" id="medical-coding-agent">
-    <div class="pc-img" style="background:linear-gradient(135deg,#0a1628,#0f2d4a,#1a4a6b);">
-      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:3.5rem;opacity:0.4;"><i class="fas fa-file-medical-alt" style="color:#00d4ff;"></i></div>
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">P1</div>
-      <div class="pc-tags"><span class="pc-tag personal">GenAI Agent</span><span class="pc-tag nlp">Java + Python</span></div>
+  <!-- PERSONAL PROJECT 1: Medical Coding Agent -->
+  <div class="full-project-card" data-category="personal" id="medical-coding-agent">
+    <div class="full-project-img" style="background:linear-gradient(135deg,#0a1628,#0f2d4a,#1a4a6b);">
+      <div class="project-img-icon" style="font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.6;"><i class="fas fa-file-medical-alt" style="color:#00d4ff;"></i></div>
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag genai">GenAI Agent</span>
+        <span class="project-category-tag" style="background:rgba(251,191,36,0.12);color:#fbbf24;border:none;">Java + Python</span>
+      </div>
+      <div class="full-project-number">P1</div>
     </div>
-    <div class="pc-body">
+    <div class="full-project-body">
       <h3>Autonomous Medical Coding Agent</h3>
-      <p class="pc-desc">AI agent that reads unstructured clinical notes and autonomously assigns ICD-10 and CPT billing codes using LLMs combined with medical ontology validation. Java Spring Boot backend handles FHIR R4 API integration; Python LangChain orchestrates the reasoning pipeline with human-in-the-loop escalation.</p>
-      <div class="pc-quote">"Medical coding errors cost US healthcare $25B+ annually. This agent reduces coding time by 70% while improving accuracy — directly addressing a critical revenue cycle challenge."</div>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">70%</span><span class="pc-metric-lbl">Time reduction</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">94%</span><span class="pc-metric-lbl">Coding accuracy</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">ICD-10</span><span class="pc-metric-lbl">Compliant</span></div>
+      <p>An AI agent that reads unstructured clinical notes and autonomously assigns ICD-10 and CPT billing codes using LLMs combined with medical ontology validation. Java Spring Boot backend handles FHIR R4 API integration with EHR systems; Python LangChain layer orchestrates the LLM reasoning pipeline with confidence scoring and human-in-the-loop escalation for edge cases.</p>
+      <div class="project-quote">"Medical coding errors cost the US healthcare system $25B+ annually. This agent reduces coding time by 70% while improving accuracy — directly addressing a critical revenue cycle challenge."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-hospital"></i> ICD-10 / CPT Codes</span>
+        <span class="detail-chip"><i class="fas fa-shield-alt"></i> HIPAA Compliant</span>
+        <span class="detail-chip"><i class="fab fa-java"></i> FHIR R4 API</span>
       </div>
-      <div class="pc-stack"><span>Java (Spring Boot)</span><span>LangChain</span><span>GPT-4</span><span>FHIR API</span><span>PostgreSQL</span><span>Neo4j</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">70%</span><span class="full-metric-lbl">Time reduction</span></div>
+        <div class="full-metric"><span class="full-metric-val">94%</span><span class="full-metric-lbl">Coding accuracy</span></div>
+        <div class="full-metric"><span class="full-metric-val">ICD-10</span><span class="full-metric-lbl">Standard compliant</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Java (Spring Boot)</span><span>LangChain</span><span>GPT-4</span><span>FHIR API</span>
+        <span>PostgreSQL</span><span>Docker</span><span>FastAPI</span><span>Neo4j</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
       </div>
     </div>
   </div>
 
-  <!-- P2 Text-to-SQL -->
-  <div class="pc" data-category="personal" id="text-to-sql">
-    <div class="pc-img" style="background:linear-gradient(135deg,#0d1f0d,#1a3a1a,#0f2d0f);">
-      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:3rem;opacity:0.4;"><i class="fas fa-database" style="color:#10b981;"></i></div>
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">P2</div>
-      <div class="pc-tags"><span class="pc-tag personal">GenAI</span><span class="pc-tag ml">Text-to-SQL</span></div>
+  <!-- PERSONAL PROJECT 2: Text-to-SQL Generator -->
+  <div class="full-project-card reverse" data-category="personal" id="text-to-sql">
+    <div class="full-project-img" style="background:linear-gradient(135deg,#0d1f0d,#1a3a1a,#0f2d0f);">
+      <div class="project-img-icon" style="font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.6;"><i class="fas fa-database" style="color:#10b981;"></i></div>
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag genai">Generative AI</span>
+        <span class="project-category-tag" style="background:rgba(16,185,129,0.12);color:#10b981;border:none;">Text-to-SQL</span>
+      </div>
+      <div class="full-project-number">P2</div>
     </div>
-    <div class="pc-body">
+    <div class="full-project-body">
       <h3>LLM-Powered Text-to-SQL Engine</h3>
-      <p class="pc-desc">Natural language query interface for enterprise data warehouses. Java JDBC abstraction layer supports Snowflake, BigQuery, and PostgreSQL, with LLM-generated optimized SQL and result summarization.</p>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">89%</span><span class="pc-metric-lbl">Query accuracy</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">3+</span><span class="pc-metric-lbl">DB dialects</span></div>
+      <p>Natural language query interface for enterprise data warehouses. Users ask questions in plain English; the system understands the schema context, generates optimized SQL, validates syntax, and explains the query logic. Built a Java JDBC abstraction layer for multi-dialect support (Snowflake, BigQuery, PostgreSQL). Includes query optimization suggestions and result summarization via LLM.</p>
+      <div class="project-quote">"Democratizes data access for non-technical stakeholders — analysts get answers in seconds instead of waiting days for engineering support."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-language"></i> Natural Language → SQL</span>
+        <span class="detail-chip"><i class="fab fa-java"></i> Multi-dialect JDBC</span>
+        <span class="detail-chip"><i class="fas fa-snowflake"></i> Snowflake / BigQuery</span>
       </div>
-      <div class="pc-stack"><span>Java (JDBC)</span><span>LangChain</span><span>GPT-4</span><span>Snowflake</span><span>BigQuery</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">89%</span><span class="full-metric-lbl">Query accuracy</span></div>
+        <div class="full-metric"><span class="full-metric-val">&lt;2s</span><span class="full-metric-lbl">Response time</span></div>
+        <div class="full-metric"><span class="full-metric-val">3+</span><span class="full-metric-lbl">DB dialects</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Java (JDBC)</span><span>Python</span><span>LangChain</span><span>GPT-4</span>
+        <span>Snowflake</span><span>BigQuery</span><span>FastAPI</span><span>Redis</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
       </div>
     </div>
   </div>
 
-  <!-- P3 AI Code Review Bot -->
-  <div class="pc" data-category="personal" id="code-review-bot">
-    <div class="pc-img" style="background:linear-gradient(135deg,#1a0533,#2d0b63,#3d0f85);">
-      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:3rem;opacity:0.4;"><i class="fas fa-code-branch" style="color:#a78bfa;"></i></div>
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">P3</div>
-      <div class="pc-tags"><span class="pc-tag personal">GenAI</span><span class="pc-tag purple">Java + CI/CD</span></div>
+  <!-- PERSONAL PROJECT 3: AI Code Review Bot -->
+  <div class="full-project-card" data-category="personal" id="code-review-bot">
+    <div class="full-project-img" style="background:linear-gradient(135deg,#1a0533,#2d0b63,#3d0f85);">
+      <div class="project-img-icon" style="font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.6;"><i class="fas fa-code-branch" style="color:#a78bfa;"></i></div>
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag genai">GenAI</span>
+        <span class="project-category-tag" style="background:rgba(167,139,250,0.12);color:#a78bfa;border:none;">Java + CI/CD</span>
+      </div>
+      <div class="full-project-number">P3</div>
     </div>
-    <div class="pc-body">
+    <div class="full-project-body">
       <h3>AI-Powered Code Review Assistant</h3>
-      <p class="pc-desc">GitHub Actions bot that auto-reviews PRs using an LLM — detecting bugs, security vulnerabilities, and style violations with inline comments and suggested fixes. PR review time: 6 hours → 15 minutes.</p>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">15min</span><span class="pc-metric-lbl">Review time</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">92%</span><span class="pc-metric-lbl">Bug catch rate</span></div>
+      <p>GitHub Actions bot that automatically reviews pull requests using an LLM — detecting bugs, security vulnerabilities, code smells, and style violations. Posts precise inline comments on the diff with suggested fixes. Java Spring Boot webhook handler processes GitHub events; the LLM layer understands code context across multiple languages. Supports custom ruleset configuration per repository.</p>
+      <div class="project-quote">"Reduced average PR review turnaround from 6 hours to under 15 minutes, with security issues caught before they reached staging."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fab fa-github"></i> GitHub Actions</span>
+        <span class="detail-chip"><i class="fas fa-shield-virus"></i> Security Scanning</span>
+        <span class="detail-chip"><i class="fab fa-java"></i> Webhook Handler</span>
       </div>
-      <div class="pc-stack"><span>Java (Spring Boot)</span><span>LangChain</span><span>GPT-4</span><span>GitHub API</span><span>CI/CD</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">15min</span><span class="full-metric-lbl">Review time</span></div>
+        <div class="full-metric"><span class="full-metric-val">92%</span><span class="full-metric-lbl">Bug catch rate</span></div>
+        <div class="full-metric"><span class="full-metric-val">5+</span><span class="full-metric-lbl">Languages</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Java (Spring Boot)</span><span>LangChain</span><span>GPT-4</span><span>GitHub API</span>
+        <span>Docker</span><span>CI/CD</span><span>Python</span><span>FastAPI</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
       </div>
     </div>
   </div>
 
-  <!-- P4 Multimodal RAG — featured -->
-  <div class="pc featured" data-category="personal" id="multimodal-rag">
-    <div class="pc-img" style="background:linear-gradient(135deg,#1a1200,#3d2c00,#5c4200);">
-      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:3rem;opacity:0.4;"><i class="fas fa-eye" style="color:#fbbf24;"></i></div>
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">P4</div>
-      <div class="pc-tags"><span class="pc-tag personal">Multimodal AI</span><span class="pc-tag nlp">Vision + RAG</span></div>
+  <!-- PERSONAL PROJECT 4: Multimodal Document Intelligence -->
+  <div class="full-project-card reverse" data-category="personal" id="multimodal-rag">
+    <div class="full-project-img" style="background:linear-gradient(135deg,#1a1200,#3d2c00,#5c4200);">
+      <div class="project-img-icon" style="font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.6;"><i class="fas fa-eye" style="color:#fbbf24;"></i></div>
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag genai">Multimodal AI</span>
+        <span class="project-category-tag" style="background:rgba(251,191,36,0.12);color:#fbbf24;border:none;">Vision + RAG</span>
+      </div>
+      <div class="full-project-number">P4</div>
     </div>
-    <div class="pc-body">
+    <div class="full-project-body">
       <h3>Multimodal Document Intelligence Platform</h3>
-      <p class="pc-desc">Beyond text-only RAG — ingests PDFs, scanned images, complex tables, and embedded charts using GPT-4 Vision + Tesseract OCR. All modalities unified into a FAISS index enabling cross-document reasoning: "Compare risk disclosures across these 5 SEC filings."</p>
-      <div class="pc-quote">"Processes document types that traditional RAG systems simply can't handle — scanned contracts, hand-annotated diagrams, and mixed-format regulatory filings."</div>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">4+</span><span class="pc-metric-lbl">Modalities</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">91%</span><span class="pc-metric-lbl">Retrieval accuracy</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">10K+</span><span class="pc-metric-lbl">Pages indexed</span></div>
+      <p>Goes beyond text-only RAG — ingests PDFs, scanned images, complex tables, and embedded charts using GPT-4 Vision + Tesseract OCR. Chunks and embeds all modalities into a unified FAISS index, enabling semantic Q&A across contracts, research papers, and regulatory filings. Supports cross-document reasoning: "Compare the risk disclosures in these 5 SEC filings."</p>
+      <div class="project-quote">"Processes document types that traditional RAG systems simply can't handle — scanned contracts, hand-annotated diagrams, and mixed-format regulatory filings."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-eye"></i> GPT-4 Vision</span>
+        <span class="detail-chip"><i class="fas fa-file-pdf"></i> PDF + Images + Tables</span>
+        <span class="detail-chip"><i class="fas fa-search"></i> Cross-doc Reasoning</span>
       </div>
-      <div class="pc-stack"><span>GPT-4 Vision</span><span>LangChain</span><span>FAISS</span><span>Tesseract OCR</span><span>PyMuPDF</span><span>FastAPI</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">4+</span><span class="full-metric-lbl">Modalities</span></div>
+        <div class="full-metric"><span class="full-metric-val">91%</span><span class="full-metric-lbl">Retrieval accuracy</span></div>
+        <div class="full-metric"><span class="full-metric-val">10K+</span><span class="full-metric-lbl">Pages indexed</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>GPT-4 Vision</span><span>LangChain</span><span>FAISS</span><span>Tesseract OCR</span>
+        <span>PyMuPDF</span><span>FastAPI</span><span>Python</span><span>Docker</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
       </div>
     </div>
   </div>
 
-  <!-- P5 Clinical Trial Matching -->
-  <div class="pc" data-category="personal" id="clinical-trial-matching">
-    <div class="pc-img" style="background:linear-gradient(135deg,#001a2c,#003355,#004d7a);">
-      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:3rem;opacity:0.4;"><i class="fas fa-dna" style="color:#00d4ff;"></i></div>
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">P5</div>
-      <div class="pc-tags"><span class="pc-tag nlp">NLP</span><span class="pc-tag personal">Healthcare AI</span></div>
+  <!-- PERSONAL PROJECT 5: Clinical Trial Matching -->
+  <div class="full-project-card" data-category="personal" id="clinical-trial-matching">
+    <div class="full-project-img" style="background:linear-gradient(135deg,#001a2c,#003355,#004d7a);">
+      <div class="project-img-icon" style="font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.6;"><i class="fas fa-dna" style="color:#00d4ff;"></i></div>
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag nlp">NLP</span>
+        <span class="project-category-tag genai" style="background:rgba(16,185,129,0.12);color:#10b981;border:none;">Healthcare AI</span>
+      </div>
+      <div class="full-project-number">P5</div>
     </div>
-    <div class="pc-body">
+    <div class="full-project-body">
       <h3>Clinical Trial Matching Engine</h3>
-      <p class="pc-desc">Matches patients to eligible clinical trials by semantically parsing EHR data against trial eligibility criteria using BERT + LLM reasoning, with eligibility rules encoded in a Neo4j knowledge graph.</p>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">3x</span><span class="pc-metric-lbl">More matches</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">88%</span><span class="pc-metric-lbl">Precision</span></div>
+      <p>Matches patients to eligible clinical trials by semantically parsing EHR data against complex trial eligibility criteria using BERT embeddings + LLM reasoning. Eligibility rules (age, diagnosis, prior treatments, lab values) are extracted from ClinicalTrials.gov and encoded into a Neo4j knowledge graph. Returned ranked matches with plain-language explanations for physicians.</p>
+      <div class="project-quote">"In oncology and rare disease, finding the right trial can be life-changing — this system surfaces matches that manual chart review routinely misses."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-network-wired"></i> Knowledge Graph</span>
+        <span class="detail-chip"><i class="fas fa-pills"></i> ClinicalTrials.gov</span>
+        <span class="detail-chip"><i class="fas fa-user-md"></i> Physician Explainability</span>
       </div>
-      <div class="pc-stack"><span>BERT</span><span>FAISS</span><span>Neo4j</span><span>LangChain</span><span>Apache Spark</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">3x</span><span class="full-metric-lbl">More matches found</span></div>
+        <div class="full-metric"><span class="full-metric-val">88%</span><span class="full-metric-lbl">Match precision</span></div>
+        <div class="full-metric"><span class="full-metric-val">500+</span><span class="full-metric-lbl">Trials indexed</span></div>
       </div>
-    </div>
-  </div>
-
-  <!-- P6 Federated Learning -->
-  <div class="pc" data-category="personal" id="federated-learning">
-    <div class="pc-img" style="background:linear-gradient(135deg,#0f0a1e,#1e1040,#2d1760);">
-      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:3rem;opacity:0.4;"><i class="fas fa-network-wired" style="color:#a78bfa;"></i></div>
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">P6</div>
-      <div class="pc-tags"><span class="pc-tag personal">Privacy AI</span><span class="pc-tag purple">Federated ML</span></div>
-    </div>
-    <div class="pc-body">
-      <h3>Federated Learning for Privacy-Preserving ML</h3>
-      <p class="pc-desc">Trains ML models across 4 hospital nodes without sharing raw patient data. Only encrypted gradients are aggregated centrally with differential privacy noise injection — 96% accuracy vs centralized training.</p>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">0</span><span class="pc-metric-lbl">Data shared</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">96%</span><span class="pc-metric-lbl">vs centralized</span></div>
+      <div class="full-tech-stack">
+        <span>Python</span><span>BERT</span><span>FAISS</span><span>LangChain</span>
+        <span>Neo4j</span><span>Apache Spark</span><span>FastAPI</span><span>Docker</span>
       </div>
-      <div class="pc-stack"><span>PyTorch</span><span>Flower (flwr)</span><span>PySpark</span><span>Docker</span><span>Kubernetes</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
       </div>
     </div>
   </div>
 
-  <!-- P7 Fraud Detection XAI — featured -->
-  <div class="pc featured" data-category="personal" id="fraud-detection-xai">
-    <div class="pc-img" style="background:linear-gradient(135deg,#1a0000,#3d0000,#5c0000);">
-      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:3rem;opacity:0.4;"><i class="fas fa-exclamation-triangle" style="color:#ef4444;"></i></div>
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">P7</div>
-      <div class="pc-tags"><span class="pc-tag ml">ML + XAI</span><span class="pc-tag red">Java + Kafka</span></div>
+  <!-- PERSONAL PROJECT 6: Federated Learning -->
+  <div class="full-project-card reverse" data-category="personal" id="federated-learning">
+    <div class="full-project-img" style="background:linear-gradient(135deg,#0f0a1e,#1e1040,#2d1760);">
+      <div class="project-img-icon" style="font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.6;"><i class="fas fa-network-wired" style="color:#a78bfa;"></i></div>
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag mlops">Privacy AI</span>
+        <span class="project-category-tag" style="background:rgba(167,139,250,0.12);color:#a78bfa;border:none;">Federated ML</span>
+      </div>
+      <div class="full-project-number">P6</div>
     </div>
-    <div class="pc-body">
+    <div class="full-project-body">
+      <h3>Federated Learning System for Privacy-Preserving ML</h3>
+      <p>Trains ML models across multiple hospitals and organizations without ever sharing raw patient data — each node trains locally on its own data, and only encrypted gradients are aggregated centrally using the Flower framework. Implemented differential privacy noise injection and secure aggregation protocols. Demonstrated on a disease prediction task across 4 simulated hospital nodes.</p>
+      <div class="project-quote">"The holy grail of healthcare ML — train on data you're never allowed to see. This approach unlocks collaboration that regulatory constraints previously made impossible."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-lock"></i> Differential Privacy</span>
+        <span class="detail-chip"><i class="fas fa-hospital"></i> 4 Simulated Nodes</span>
+        <span class="detail-chip"><i class="fas fa-shield-alt"></i> Zero Data Sharing</span>
+      </div>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">0</span><span class="full-metric-lbl">Raw data shared</span></div>
+        <div class="full-metric"><span class="full-metric-val">96%</span><span class="full-metric-lbl">vs centralized acc.</span></div>
+        <div class="full-metric"><span class="full-metric-val">4</span><span class="full-metric-lbl">Federated nodes</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Python</span><span>PyTorch</span><span>Flower (flwr)</span><span>PySpark</span>
+        <span>Docker</span><span>Kubernetes</span><span>FastAPI</span><span>Redis</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- PERSONAL PROJECT 7: Explainable Fraud Detection -->
+  <div class="full-project-card" data-category="personal" id="fraud-detection-xai">
+    <div class="full-project-img" style="background:linear-gradient(135deg,#1a0000,#3d0000,#5c0000);">
+      <div class="project-img-icon" style="font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.6;"><i class="fas fa-exclamation-triangle" style="color:#ef4444;"></i></div>
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag ml">ML + XAI</span>
+        <span class="project-category-tag" style="background:rgba(239,68,68,0.12);color:#ef4444;border:none;">Java + Kafka</span>
+      </div>
+      <div class="full-project-number">P7</div>
+    </div>
+    <div class="full-project-body">
       <h3>Real-Time Fraud Detection with Explainable AI</h3>
-      <p class="pc-desc">Streams financial transactions through Kafka, scores them with XGBoost in &lt;50ms, then uses an LLM to generate natural language explanations of why each transaction was flagged — translating SHAP values into compliance-ready summaries for fraud analysts.</p>
-      <div class="pc-quote">"Compliance teams can't act on a black-box score of 0.94. Plain-English explanations turned model outputs into actionable evidence for case investigators."</div>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">&lt;50ms</span><span class="pc-metric-lbl">Inference</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">97%</span><span class="pc-metric-lbl">Precision</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">100%</span><span class="pc-metric-lbl">Explainable</span></div>
+      <p>Streams financial transactions through Kafka, scores them with an XGBoost ensemble in under 50ms, then uses an LLM to generate natural language explanations of <em>why</em> each transaction was flagged — translating SHAP values into compliance-ready summaries for fraud analysts. Java Kafka consumer handles high-throughput ingestion; Python layer runs inference and LLM explanation generation.</p>
+      <div class="project-quote">"Compliance teams can't act on a black-box score of 0.94. Plain-English explanations turned model outputs into actionable evidence for case investigators."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-bolt"></i> &lt;50ms Scoring</span>
+        <span class="detail-chip"><i class="fas fa-brain"></i> SHAP + LLM Explain</span>
+        <span class="detail-chip"><i class="fab fa-java"></i> Java Kafka Consumer</span>
       </div>
-      <div class="pc-stack"><span>Java (Kafka)</span><span>XGBoost</span><span>SHAP</span><span>LangChain</span><span>FastAPI</span><span>Redis</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">&lt;50ms</span><span class="full-metric-lbl">Inference latency</span></div>
+        <div class="full-metric"><span class="full-metric-val">97%</span><span class="full-metric-lbl">Precision</span></div>
+        <div class="full-metric"><span class="full-metric-val">100%</span><span class="full-metric-lbl">Explainable</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Java (Kafka)</span><span>Python</span><span>XGBoost</span><span>SHAP</span>
+        <span>LangChain</span><span>FastAPI</span><span>Redis</span><span>Docker</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
       </div>
     </div>
   </div>
 
-  <!-- P8 Brand Intelligence -->
-  <div class="pc" data-category="personal" id="brand-intelligence">
-    <div class="pc-img" style="background:linear-gradient(135deg,#001a0a,#003318,#004d24);">
-      <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:3rem;opacity:0.4;"><i class="fas fa-chart-line" style="color:#10b981;"></i></div>
-      <div class="pc-img-overlay"></div>
-      <div class="pc-number">P8</div>
-      <div class="pc-tags"><span class="pc-tag nlp">NLP</span><span class="pc-tag personal">Multimodal</span></div>
+  <!-- PERSONAL PROJECT 8: Brand Intelligence Dashboard -->
+  <div class="full-project-card reverse" data-category="personal" id="brand-intelligence">
+    <div class="full-project-img" style="background:linear-gradient(135deg,#001a0a,#003318,#004d24);">
+      <div class="project-img-icon" style="font-size:3rem;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);opacity:0.6;"><i class="fas fa-chart-line" style="color:#10b981;"></i></div>
+      <div class="full-project-img-overlay"></div>
+      <div class="full-project-img-badge">
+        <span class="project-category-tag nlp">NLP</span>
+        <span class="project-category-tag" style="background:rgba(16,185,129,0.12);color:#10b981;border:none;">Multimodal</span>
+      </div>
+      <div class="full-project-number">P8</div>
     </div>
-    <div class="pc-body">
+    <div class="full-project-body">
       <h3>Multimodal Brand Intelligence Dashboard</h3>
-      <p class="pc-desc">Real-time brand sentiment platform ingesting social media posts, news, and reviews. Kafka handles 10K+ posts/hour; Airflow orchestrates nightly aggregation; Plotly Dash surfaces sentiment scores with 7-day forecasts and anomaly alerts.</p>
-      <div class="pc-metrics">
-        <div class="pc-metric"><span class="pc-metric-val">10K+</span><span class="pc-metric-lbl">Posts/hour</span></div>
-        <div class="pc-metric"><span class="pc-metric-val">93%</span><span class="pc-metric-lbl">Sentiment acc.</span></div>
+      <p>Real-time brand sentiment platform that ingests social media posts, news articles, and product reviews — analyzing both text and images using multimodal HuggingFace models. Kafka handles high-volume stream ingestion; Airflow orchestrates nightly trend aggregation; a Plotly Dash dashboard surfaces sentiment scores, emerging topics, and 7-day forecasts with anomaly alerts for sudden brand reputation shifts.</p>
+      <div class="project-quote">"Detected a product sentiment nosedive 6 hours before it trended on Twitter — giving the brand team time to respond before it went viral."</div>
+      <div class="detail-chips">
+        <span class="detail-chip"><i class="fas fa-stream"></i> Real-time Kafka Stream</span>
+        <span class="detail-chip"><i class="fas fa-image"></i> Text + Image Analysis</span>
+        <span class="detail-chip"><i class="fas fa-bell"></i> Anomaly Alerts</span>
       </div>
-      <div class="pc-stack"><span>HuggingFace</span><span>Kafka</span><span>Airflow</span><span>Plotly Dash</span><span>PostgreSQL</span></div>
-      <div class="pc-links">
-        <a href="https://github.com/srinivas-gampasani" target="_blank" class="pc-link-gh"><i class="fab fa-github"></i> GitHub</a>
-        <a href="index.html#contact" class="pc-link-discuss"><i class="fas fa-comments"></i> Discuss</a>
+      <div class="full-metrics">
+        <div class="full-metric"><span class="full-metric-val">10K+</span><span class="full-metric-lbl">Posts/hour</span></div>
+        <div class="full-metric"><span class="full-metric-val">6hr</span><span class="full-metric-lbl">Early warning</span></div>
+        <div class="full-metric"><span class="full-metric-val">93%</span><span class="full-metric-lbl">Sentiment accuracy</span></div>
+      </div>
+      <div class="full-tech-stack">
+        <span>Python</span><span>HuggingFace</span><span>Kafka</span><span>Airflow</span>
+        <span>Plotly Dash</span><span>PostgreSQL</span><span>Docker</span><span>Redis</span>
+      </div>
+      <div class="full-project-links">
+        <a href="https://github.com/srinivas-gampasani" target="_blank" class="link-github"><i class="fab fa-github"></i> GitHub</a>
+        <a href="index.html#contact" class="link-demo"><i class="fas fa-comments"></i> Discuss Project</a>
       </div>
     </div>
   </div>
 
-</div><!-- /personal grid -->
+</div><!-- /personal projects grid -->
+</div><!-- /personal projects grid -->
 
-
-<!-- CTA -->
-<div class="proj-cta">
-  <div style="max-width:600px;margin:0 auto;">
-    <span class="section-label">Let's Work Together</span>
-    <h2>Interested in my work?</h2>
-    <p>I'm actively seeking roles in Generative AI, ML Engineering, and Data Science. Let's build something impactful together.</p>
-    <div class="cta-btns">
-      <a href="index.html#contact" class="btn-primary"><i class="fas fa-paper-plane"></i> Get In Touch</a>
-      <a href="assets/Srinivas Resume.pdf" target="_blank" class="btn-outline"><i class="fas fa-download"></i> Download Resume</a>
-    </div>
+<!-- CTA BAND -->
+<div class="projects-cta-band">
+  <span class="section-label">Let's Work Together</span>
+  <h2>Ready to build something <span class="accent">impactful</span>?</h2>
+  <p>I'm actively seeking roles in Generative AI, ML Engineering, and Data Science across the United States. Open to remote and hybrid opportunities.</p>
+  <div class="cta-btns">
+    <a href="index.html#contact" class="btn-primary"><i class="fas fa-paper-plane"></i> Get In Touch</a>
+    <a href="assets/Srinivas Resume.pdf" target="_blank" class="btn-outline"><i class="fas fa-download"></i> Download Resume</a>
+    <a href="https://www.linkedin.com/in/srinivasgampasani/" target="_blank" class="btn-outline"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
   </div>
 </div>
 
@@ -976,7 +1366,7 @@
 <button class="back-to-top" id="back-to-top" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
 <script>
-// ── Theme Toggle ──
+// ── Theme Toggle (synced with index.html via localStorage) ──
 const html = document.documentElement;
 const themeBtn = document.getElementById('theme-toggle');
 const savedTheme = localStorage.getItem('sg-theme') || 'dark';
@@ -986,6 +1376,7 @@ themeBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
 function getParticleColor(theme) {
   return theme === 'dark' ? 'rgba(0,212,255,' : 'rgba(0,119,182,';
 }
+
 let particleColor = getParticleColor(savedTheme);
 
 themeBtn.addEventListener('click', () => {
@@ -1001,6 +1392,7 @@ themeBtn.addEventListener('click', () => {
 const canvas = document.getElementById('bg-canvas');
 const ctx = canvas.getContext('2d');
 let W, H, particles = [];
+
 function resize() { W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
 resize();
 window.addEventListener('resize', resize);
@@ -1008,38 +1400,45 @@ window.addEventListener('resize', resize);
 class Particle {
   constructor() { this.reset(); }
   reset() {
-    this.x = Math.random()*W; this.y = Math.random()*H;
-    this.r = Math.random()*1.2+0.3;
-    this.vx = (Math.random()-0.5)*0.25; this.vy = (Math.random()-0.5)*0.25;
-    this.alpha = Math.random()*0.3+0.05;
+    this.x = Math.random() * W; this.y = Math.random() * H;
+    this.r = Math.random() * 1.2 + 0.3;
+    this.vx = (Math.random() - 0.5) * 0.25; this.vy = (Math.random() - 0.5) * 0.25;
+    this.alpha = Math.random() * 0.3 + 0.05;
   }
   update() {
     this.x += this.vx; this.y += this.vy;
-    if (this.x<0||this.x>W||this.y<0||this.y>H) this.reset();
+    if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
   }
   draw() {
-    ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
-    ctx.fillStyle=`${particleColor}${this.alpha})`; ctx.fill();
+    ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+    ctx.fillStyle = `${particleColor}${this.alpha})`; ctx.fill();
   }
 }
-for (let i=0;i<70;i++) particles.push(new Particle());
+for (let i = 0; i < 70; i++) particles.push(new Particle());
+
 function drawLines() {
-  for (let i=0;i<particles.length;i++) {
-    for (let j=i+1;j<particles.length;j++) {
-      const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y;
-      const d=Math.sqrt(dx*dx+dy*dy);
-      if (d<90){ctx.strokeStyle=`${particleColor}${0.05*(1-d/90)})`;ctx.lineWidth=0.4;ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke();}
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i + 1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+      const d = Math.sqrt(dx*dx + dy*dy);
+      if (d < 90) {
+        ctx.strokeStyle = `${particleColor}${0.05 * (1 - d/90)})`;
+        ctx.lineWidth = 0.4; ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y); ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.stroke();
+      }
     }
   }
 }
+
 function animate() {
-  ctx.clearRect(0,0,W,H);
-  particles.forEach(p=>{p.update();p.draw();});
+  ctx.clearRect(0, 0, W, H);
+  particles.forEach(p => { p.update(); p.draw(); });
   drawLines(); requestAnimationFrame(animate);
 }
 animate();
 
-// ── Navbar ──
+// ── Navbar scroll ──
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 60);
@@ -1059,57 +1458,97 @@ document.querySelectorAll('#mobile-menu a').forEach(a => {
 });
 
 // ── Filter ──
-const allCards = document.querySelectorAll('.pc[data-category]');
-const countBadge = document.getElementById('proj-count');
+const allCards = document.querySelectorAll('.full-project-card');
+const allDividers = document.querySelectorAll('.category-divider');
+const allGrids = document.querySelectorAll('.projects-full-grid');
+const filterCountEl = document.getElementById('filter-count');
 
-document.querySelectorAll('.fp-btn').forEach(btn => {
+function updateCount(filter) {
+  const count = filter === 'all'
+    ? allCards.length
+    : [...allCards].filter(c => c.dataset.category === filter).length;
+  if (filterCountEl) filterCountEl.textContent = count + ' project' + (count !== 1 ? 's' : '');
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
   btn.addEventListener('click', function() {
-    document.querySelectorAll('.fp-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
     this.classList.add('active');
     const filter = this.dataset.filter;
-    let visible = 0;
+    updateCount(filter);
 
     allCards.forEach(card => {
       const show = filter === 'all' || card.dataset.category === filter;
       card.style.display = show ? '' : 'none';
-      if (show) visible++;
+      if (show) {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        requestAnimationFrame(() => {
+          card.style.transition = 'opacity 0.45s ease, transform 0.45s ease';
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        });
+      }
     });
 
-    countBadge.textContent = `${visible} project${visible !== 1 ? 's' : ''}`;
+    allDividers.forEach(div => {
+      const section = div.dataset.section;
+      if (filter === 'all') { div.style.display = ''; return; }
+      div.style.display = (section === filter) ? '' : 'none';
+    });
 
-    // Show/hide section heads and grids
-    document.querySelectorAll('[data-section-head]').forEach(head => {
-      const sec = head.dataset.sectionHead;
-      head.style.display = (filter === 'all' || filter === sec) ? '' : 'none';
+    allGrids.forEach(grid => {
+      const visible = [...grid.querySelectorAll('.full-project-card')].some(c => c.style.display !== 'none');
+      grid.style.display = visible ? '' : 'none';
     });
-    document.querySelectorAll('[data-grid]').forEach(grid => {
-      const sec = grid.dataset.grid;
-      grid.style.display = (filter === 'all' || filter === sec) ? '' : 'none';
-    });
-    document.querySelector('.personal-notice').style.display =
-      (filter === 'all' || filter === 'personal') ? '' : 'none';
   });
 });
 
-// ── Scroll reveal ──
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
-      revealObserver.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.06 });
-allCards.forEach(card => revealObserver.observe(card));
+// ── Scroll Progress Bar ──
+const progressBar = document.getElementById('scroll-progress');
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const total = document.documentElement.scrollHeight - window.innerHeight;
+  if (progressBar) progressBar.style.width = (scrolled / total * 100) + '%';
+}, { passive: true });
+
+// ── Ticker animation keyframe ──
+const tickerStyle = document.createElement('style');
+tickerStyle.textContent = '@keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }';
+document.head.appendChild(tickerStyle);
 
 // ── Back to top ──
 document.getElementById('back-to-top').addEventListener('click', () => {
   window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
-// ── Anchor hash scrolling ──
+// ── Reveal on scroll ──
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.full-project-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(28px)';
+  el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+  observer.observe(el);
+});
+// Trigger visible class to apply
+document.querySelectorAll('.full-project-card').forEach(el => {
+  el.addEventListener('transitionend', () => {}, { once: true });
+
+});
+// Override observer to set styles directly
+const cardObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.style.opacity = '1';
+      e.target.style.transform = 'none';
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.full-project-card').forEach(el => cardObserver.observe(el));
+
+// ── Handle anchor hash scrolling (from index.html links) ──
 window.addEventListener('load', () => {
   if (window.location.hash) {
     setTimeout(() => {
